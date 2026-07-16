@@ -222,16 +222,182 @@ Adhering to a mobile-first philosophy, each interface was systematically drafted
 
 The conceptual wireframes for each page layout are presented below:
 
-- **Home Page** | [View](./documentation/odrerir-meadery-home-page.pdf)
-- **Products** | [View](./documentation/odrerir-meadery-products-page.pdf)
-- **Product Detail** | [View](./documentation/odrerir-meadery-product-detail-page.pdf)
-- **Flavour Sandbox** | [View](./documentation/odrerir-meadery-flavour-sandbox-page.pdf)
-- **Sandbox Detail** | [View](./documentation/odrerir-meadery-sandbox-detail-page.pdf)
-- **Basket** | [View](./documentation/odrerir-meadery-basket-page.pdf)
-- **Checkout** | [View](./documentation/odrerir-meadery-checkout-page.pdf)
-- **Profile** | [View](./documentation/odrerir-meadery-profile-page.pdf)
-- **Add Product** | [View](./documentation/odrerir-meadery-add-product-page.pdf)
+- **Home Page** | [View](./documentation/wireframes/odrerir-meadery-home-page.pdf)
+- **Products** | [View](./documentation/wireframes/odrerir-meadery-products-page.pdf)
+- **Product Detail** | [View](./documentation/wireframes/odrerir-meadery-product-detail-page.pdf)
+- **Flavour Sandbox** | [View](./documentation/wireframes/odrerir-meadery-flavour-sandbox-page.pdf)
+- **Sandbox Detail** | [View](./documentation/wireframes/odrerir-meadery-sandbox-detail-page.pdf)
+- **Basket** | [View](./documentation/wireframes/odrerir-meadery-basket-page.pdf)
+- **Checkout** | [View](./documentation/wireframes/odrerir-meadery-checkout-page.pdf)
+- **Profile** | [View](./documentation/wireframes/odrerir-meadery-profile-page.pdf)
+- **Add Product** | [View](./documentation/wireframes/odrerir-meadery-add-product-page.pdf)
 
 ### Surface Plane
 
-The architecture and visual identity of the Óðrerir Meadery platform are heavily inspired by two core themes: the honeybee—the vital catalyst in mead production—and Norse mythology, the historical culture intimately tied to the legendary heritage of honey wine. Every design element, from the typography to the curated colour palette, was intentionally selected to reflect these thematic roots. Crucially, this aesthetic is balanced with strict UX design principles, ensuring a seamless user journey that guides visitors effortlessly from discovery to conversion, ultimately driving sales and fostering long-term customer loyalty.
+The architecture and visual identity of the Óðrerir Meadery platform are heavily inspired by two core themes: the honeybee—the vital catalyst in mead production—and Norse mythology, the historical culture intimately tied to the legendary heritage of honey wine (mead). Every design element, from the typography to the curated colour palette, was intentionally selected to reflect these thematic roots. Crucially, this aesthetic is balanced with strict UX design principles, ensuring a seamless user journey that guides visitors effortlessly from discovery to conversion, ultimately driving sales and fostering long-term customer loyalty.
+
+#### *Colour Scheme*
+
+To establish a premium, artisanal aesthetic that honors both the honey-based craft of mead-making and a bold, historic atmosphere, a carefully balanced palette was curated:
+
+![Colour Palette](./documentation/images/odrerir-meadery-colour-palette.png)
+Colour pallete was generate using [Coolors](https://coolors.co/)
+
+- **Honey Gold | #E5A93C**
+
+    Serves as the primary brand identifier, injecting warmth and directly symbolising raw honey. It is utilized as the default background fill for primary call-to-action buttons, active badges, and prominent interface highlights.
+
+- **Ashen Black | #1A1917**
+
+    A soft, charcoal black that anchors the design's structural elements (headings, primary containers, and footers). It is strategically implemented as the dynamic hover state for interactive elements and buttons, providing an immediate, high-contrast visual response for the user.
+
+- **Mead Parchment | #FAF8F4**
+
+    This warm, off-white tone serves as the main canvas background. It provides a clean, highly readable layout and allows a custom honeycomb border graphic to rest naturally around the page margins without harsh, sterile contrast.
+
+- **Amber Nectar | #B8741A**
+
+    A rich, deeper accent shade used independently of buttons for system alerts, clearance badges, and secondary highlighted categories to introduce visual variety.
+
+- **Runestone Grey | #4D4A45**
+
+    Utilised for standard body typography, form labels, and subtle divider rules, ensuring that supporting copy remains highly readable while maintaining a clean contrast hierarchy.
+
+#### *Typography*
+
+To maintain a balanced visual hierarchy that honors the brand's rustic roots while ensuring modern readability, the typography relies on a clean, geometric pairing:
+
+- **Norse (Custom Font)**
+
+    Applied exclusively to main page headings (H1) to immediately establish the epic, legendary tone of the brand.
+
+- **Cinzel (Google Font)**
+
+    Used for subheadings and product titles to provide structure.
+
+- **Cinzel Fallback Font (`serif`)**
+
+    Universal backup (e.g., Georgia) to preserve the editorial, classic feel if the Google Font fails to load.
+
+- **Montserrat (Google Font)**
+
+    Used for all body copy, product descriptions, and interactive UI text to provide contrast to te bold headings.
+
+- **Montserrat Fallback Font (`sans-serif`)**
+
+    Universal system backup (e.g., Arial) to maintain clean, geometric proportions and optimal readability.
+
+#### *Imagery & Iconography*
+
+All visual assets and iconography were carefully curated to reflect the core identity of the brand, emphasizing the premium, handcrafted nature of the companies artisanal products.
+
+- **Hero Video**: Immediately following the age-verification gateway, the homepage opens with a cinematic, looping background video. This footage showcases the raw, organic journey of mead production, focusing heavily on active honeybees and the harvest of rich golden honey. This serves to instantly immerse the user in the brand's authentic atmosphere, visually validating our commitment to natural, premium, and handcrafted ingredients before they begin to browse the products.
+
+- **Product Imagery**: Each product listing features an image of the product, to provide an authentic preview of the mead, capturing its distinct colour, clarity, and character so users know exactly what to expect from our artisanal batches.
+
+- **AI-Assisted Asset Creation**: Because the business is currently a conceptual project without physical inventory to photograph, Google Gemini was utilized to generate high-quality, realistic product and bottle imagery. This advanced AI generation was also leveraged to design the brand's custom logo, ensuring a cohesive and premium visual identity across the entire application.
+
+- **Responsive Design**: All visual assets are designed with fluid responsiveness, using CSS to ensure images scale proportionally and fit seamlessly across mobile, tablet, and desktop screens.
+
+#### *Features*
+
+- **Header**
+
+    A persistent navigation bar is positioned at the top of the viewport across all pages, ensuring an intuitive, familiar, and seamless user experience.
+
+  - **Navigation & Dropdowns**: Includes direct links to all primary pages, featuring a structured dropdown menu that allows users to quickly filter by specific mead types or browse accessories.
+  - **Utility Icons**: Features clean, recognizable iconography linking directly to the shopping basket, user profile, and authentication pages (Login/Sign Up).
+  - **Visual Indicators**: Active navigation states are utilized so users always have immediate visual feedback regarding their current location on the site.
+  - **Brand Identity**: The company logo is prominently displayed and serves as an instant link back to the homepage.
+
+- **Footer**
+
+    Anchored consistently at the bottom of every page, the footer acts as a secondary directory to ensure essential business information is always within reach. It houses direct links to the customer contact form, official social media channels, and crucial policy pages, including shipping rates and the returns policy.
+
+- **Age Verification**
+
+    To comply with UK licensing laws (18+), first-time visitors are greeted by a secure age-verification gateway.
+
+  - Access Granted: Confirming they are of legal drinking age grants the user seamless access to the homepage.
+  - Access Denied: If a user indicates they are under 18, they are presented with a polite block message detailing the legal age requirements to enter the site.
+
+- **Product Catalog & Detail Pages**
+
+    The website features a comprehensive product catalog with built-in filtering and sorting capabilities, allowing users to effortlessly toggle between distinct mead categories and merchandise.
+
+  - **Dynamic Pricing**: On individual product detail pages, customers can choose from three distinct volume options, with the displayed price updating dynamically to reflect their selection.
+  - **Admin Management**: Authorized administrators can manage catalog details and update stock levels directly from the product detail interface.
+
+- **Basket & Checkout**
+
+    Accessible via the basket icon in the header, this dedicated area allows users to easily review, adjust quantities, or remove items from their selection. The interface clearly displays a live subtotal before guiding the user to a streamlined, secure checkout process where they can safely input shipping details and complete their purchase.
+
+- **Flavour Sandbox**
+
+    An interactive community space designed for crowdsourced product development. Users can pitch their own unique mead recipes and ingredient combinations, while other registered members can comment and vote on their favorite ideas. This provides the community with a creative hub and gives the business valuable, real-time data on consumer preferences and trends.
+
+- **Administration**
+
+    Beyond editing existing listings on the product pages, authorized administrators have access to a secure, dedicated dashboard link in the main navigation. This administrative portal allows staff to seamlessly add new products.
+
+- **User Profile**
+
+    Registered users have access to a personalized profile dashboard. Within this secure portal, customers can easily view their complete order history and manage or update their default shipping address for a faster checkout experience on future visits.
+
+---
+
+## Technologies Used
+
+### *Languages Used*
+
+- **HTML5**
+
+### *Frameworks, Libraries & Programs Used*
+
+---
+
+## Testing
+
+Please view the [Testing.md](./Testing.md) for details on testing.
+
+---
+
+## Deployment
+
+The project is deployed to Heroku using the following procedure. This process assumes you have an active Heroku account and your project repository is hosted on GitHub:
+
+1. Create a New App: Log in to Heroku and create a new application from the dashboard.
+2. Link the Repository: Navigate to the Deploy tab of your new app, select GitHub as the deployment method, and connect the relevant project repository.
+3. Configure Environment Variables: Go to the Settings tab and click Reveal Config Vars. Input all key-value pairs required for the application that are stored locally in your environment file (e.g., database URLs, secret keys, API credentials).
+4. Create a Procfile: In your local development environment, create a file named Procfile (with no file extension) in the root directory and add the following production command:
+    - `web: gunicorn <your app name>.wsgi:application`
+5. Apply Database Migrations: Ensure your remote database schema is up to date by running the following migration commands in your terminal:
+    - `python manage.py makemigrations` or `python3 manage.py makemigrations`
+    - `python manage.py migrate` or `python3 manage.py migrate`
+6. Disable Debug Mode: Set `DEBUG=False` within your project's settings.py file to secure the application for production
+7. Push Changes to GitHub: Commit and push all final updates—including the Procfile and configuration changes—to your remote GitHub repository.
+8. Trigger Manual Deployment: Return to the Deploy tab in Heroku, scroll down to the Manual deploy section, and click Deploy Branch to launch the site.
+
+### Forking the GitHub Repository
+
+Forking the GitHub repository allows you to make a copy of he original repository to view and/or make changes without afeecting the original repository. The following steps will fork your GitHub repository:
+
+1. Log in to GitHub and locate the relevant [GitHub repository](https://github.com/edchalk96/mimirs_index)
+2. At the top of the **repository page**, south-east of *Settings*, locate the *Fork* button and click.
+3. This will now have created a copy of the oringial repository in your GitHub account.
+
+### Making a Local Clone
+
+1. Log in to GitHub and locate the relevant [GitHub repository](https://github.com/edchalk96/mimirs_index)
+2. Under the repository name, to the right, click on the green **<> Code** dropdown button.
+3. To clone the repository using HTTPS, copy the URL by clicking the *copy to clipboard* icon or alternatively hightlight the URL, right click and copy.
+4. Open GitBash
+5. Change the working directory to the location where you would like the clines directory to be located.
+6. Type 'git clone' and paste the copied URL from step 3.
+7. Press enter and your local clone will be created in the selected location.
+
+---
+
+## Credits
+
+### Acknowledgements
