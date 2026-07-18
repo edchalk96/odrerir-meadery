@@ -1,0 +1,31 @@
+/*-- Navbar --*/
+
+:root{
+    --logo-size: 12vh;
+
+    --nav-vertical-padding: 2rem;
+
+    --nav-height: calc(var(--logo-size) + var(--nav-vertical-padding));
+}
+
+.navbar-logo {
+    padding: 0;
+}
+
+.navbar-brand {
+    margin-right: 0;
+}
+
+.navbar-brand img {
+    width: var(--logo-size);
+    height: var(--logo-size);
+}
+
+#delivery-promo {
+    color: white;
+    background-color: #8B0000;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}

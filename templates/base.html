@@ -12,6 +12,7 @@
 
     {% block corecss %}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block corejs %}
@@ -37,6 +38,15 @@
 
 <body>
     <header>
+        <!-- Delivery promotion message -->
+        <div class="container" id="delivery-promo">
+            <div class="row">
+                <div class="col-12">
+                    <p>Free delivery on orders over £60!</p>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar -->
         <nav class="navbar-expand-lg navbar-bg">
             <div class="container-fluid">
                 <div class="row navbar align-items-center flex-nowrap">
@@ -55,47 +65,66 @@
                                     <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{% url 'home' %}">Home</a>
                                 </li>
 
-                                <!-- Drop down link to categorised product pages-->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle {% if request.path == products_url %}active{% endif %}" href="#" id="navbarDropdownProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownProducts">
-                                        <li><a class="dropdown-item fw-bold" href="{% url 'products' %}">All Products</a></li>
-                                        <li><hr class="dropdown-divider"></li>
+                                <!-- Full width dropdown link to categorised product pages | Credit to https://github.com/mdbootstrap/bootstrap-mega-menu for Mega Menu code -->
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link dropdown-toggle dropdown-toggle-split {% if request.path == products_url %}active{% endif %}" href="#" id="navbarDropdownProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Products
+                                    </a>
 
-                                        <!-- Mead Varieties -->
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=traditional">Traditional</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=melomel">Melomel (Fruit)</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=metheglin">Metheglin (Spiced)</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=cyser">Cyser (Apple)</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=pyment">Pyment (Grape)</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=braggot">Braggot (Malt/Ale)</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=capsicumel">Capsicumel (Chili)</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=hydromel">Hydromel (Light)</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=acerglyn">Acerglyn (Maple)</a></li>
+                                    <div class="dropdown-menu w-100 p-4 border-0 shadow-sm" aria-labelledby="navbarDropdownProducts">
+                                        <div class="container-fluid">
+                                            <div class="row text-center text-lg-start justify-content-center">
 
-                                        <li><hr class="dropdown-divider"></li>
-
-                                        <!-- Merchandise & Extras -->
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?category=accessories">Accessories</a></li>
-
-                                        <li><hr class="dropdown-divider"></li>
-
-                                        <!-- Filters & Highlights -->
-                                        <li><a class="dropdown-item text-danger" href="{% url 'products' %}?category=clearance">Clearance</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'products' %}?sort=popular">Most Popular</a></li>
-                                    </ul>
+                                                <!-- Main Links -->
+                                                <div class="col-6 col-lg-2">
+                                                    <h6 class="dropdown-header px-0 d-none d-lg-block">&nbsp;</h6>
+                                                    <ul>
+                                                        <a class="dropdown-item px-0 py-1 d-block" href="#">All Products</a> <!-- % url 'products' % -->
+                                                        <a class="dropdown-item px-0 py-1 text-danger d-block" href="#">Clearance Items</a> <!-- % url 'products' %}?category=clearance -->
+                                                        <a class="dropdown-item px-0 py-1 d-block" href="#">Most Popular</a> <!-- % url 'products' %}?sort=popular -->
+                                                    </ul>
+                                                </div>
+                                            
+                                                <!-- Column 1: Core Varieties -->
+                                                <div class="col-6 col-lg-3 mb-3 mb-lg-0">
+                                                    <h6 class="dropdown-header px-0">Core Varieties</h6>
+                                                    <a class="dropdown-item px-0 py-1" href="#">Traditional Meads</a> <!-- % url 'products' %}?category=traditional -->
+                                                    <a class="dropdown-item px-0 py-1" href="#">Melomel (Fruit)</a> <!--  % url 'products' %}?category=melomel -->
+                                                    <a class="dropdown-item px-0 py-1" href="#">Metheglin (Spiced)</a> <!-- % url 'products' %}?category=metheglin -->
+                                                </div>
+                                            
+                                                <!-- Column 2: Specialty Blends -->
+                                                <div class="col-6 col-lg-3 mb-3 mb-lg-0">
+                                                    <h6 class="dropdown-header px-0">Specialty Blends</h6>
+                                                    <a class="dropdown-item px-0 py-1" href="#">Cyser (Apple)</a> <!-- % url 'products' %}?category=cyser -->
+                                                    <a class="dropdown-item px-0 py-1" href="#">Pyment (Grape)</a> <!-- % url 'products' %}?category=pyment -->
+                                                    <a class="dropdown-item px-0 py-1" href="#">Braggot (Malt/Ale)</a> <!-- % url 'products' %}?category=braggot -->
+                                                </div>
+                                            
+                                                <!-- Column 3: Small Batch & Extras -->
+                                                <div class="col-6 col-lg-3 mb-3 mb-lg-0">
+                                                    <h6 class="dropdown-header px-0">Small Batch & Wares</h6>
+                                                    <a class="dropdown-item px-0 py-1" href="#">Capsicumel (Chilli)</a> <!-- % url 'products' %}?category=capsicumel -->
+                                                    <a class="dropdown-item px-0 py-1" href="#">Hydromel (Light)</a> <!-- % url 'products' %}?category=hydromel -->
+                                                    <a class="dropdown-item px-0 py-1" href="#">Acerglyn (Maple)</a> <!-- % url 'products' %}?category=acerglyn -->
+                                                    <a class="dropdown-item px-0 py-1 mt-2" href="#">Accessories & Merchandise</a> <!-- % url 'products' %}?category=accessories -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link {% if request.path == sandbox_url %}active{% endif %}" href="{% url 'sandbox' %}">Flavour Sandbox</a>
+                                    <a class="nav-link {% if request.path == sandbox_url %}active{% endif %}" href="#">Flavour Sandbox</a> <!-- % url 'sandbox' %} -->
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#about-section">About</a>
                                 </li>
                                 {% if user.is_staff %}
                                     <li class="nav-item">
-                                        <a class="nav-link {% if request.path == add_product_url %}active{% endif %}" href="{% url 'add_product' %}">Add Product</a>
+                                        <a class="nav-link {% if request.path == add_product_url %}active{% endif %}" href="#">Add Product</a> <!-- % url 'add_product' %} -->
                                     </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
@@ -108,12 +137,12 @@
                     </div>
 
                     <!-- Account and Basket -->
-                    <div class="col order-3 d-md-flex flex-column align-items-center justify-content-end" id="account-basket-section">
-                        <div class="d-inline-flex flex-column align-items-center">
+                    <div class="col order-3 d-md-flex align-items-center justify-content-end" id="account-basket-section">
+                        <div class="d-inline-flex flex-row align-items-center gap-3">
 
-                            <!-- Account Dropdown | Credit to https://github.com/mdbootstrap/bootstrap-mega-menu for Mega Menu code-->
+                            <!-- Account Dropdown -->
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="navbarDropdownAccounts" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                <button class="btn dropdown-toggle dropdown-toggle-split" type="button" id="navbarDropdownAccounts" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-regular fa-user"></i>
                                 </button>
 
@@ -126,8 +155,8 @@
                                             <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin Dashboard</a></li>
                                         {% endif %}
 
-                                        <li><a class="dropdown-item" href="{% url 'profile' %}">Account</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a></li>
+                                        <li><a class="dropdown-item" href="#">Account</a></li> <!-- % url 'profile' %} -->
+                                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a></li> 
                                     {% else %}
                                         <li><a class="dropdown-item" href="{% url 'account_login' %}" >Log In</a></li>
                                         <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
@@ -137,8 +166,8 @@
 
                             <!-- Basket Link -->
                             <div>
-                                <a href="{% url 'view_bag' %}">
-                                    <i class="fa-regular fa-basket-shopping"></i>
+                                <a href="#" class="align-middle"> <!-- % url 'view_bag' %} -->
+                                    <i class="fa-solid fa-basket-shopping"></i> 
                                 </a>
                             </div>
                         </div>
@@ -146,6 +175,34 @@
                 </div>
             </div>
         </nav>
+
+        <!-- Displaying Django messages -->
+        <div class="container message-alert">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" id="msg">
+                            {{ message | safe }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </header>
+
+    <main>
+
+        {% block content %}
+
+        <!-- Page-specific content will be inserted here -->
+
+        {% endblock %}
+
+    </main>
+
+    {% block postloadjs %}
+    {% endblock %}
+
 </body>
 </html>
