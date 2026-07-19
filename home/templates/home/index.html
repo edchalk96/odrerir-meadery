@@ -6,7 +6,30 @@
 
 <!-- Home content starts here -->
 
-    <!-- Hero Video -->
+    <!-- Hero Video | Credit to https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_video_js_prop for video code -->
+    <div class="hero-video-container">
+        <video autoplay muted loop id="hero-video">
+            <source src="{% static 'videos/odrerir-meadery-hero-video.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay d-flex align-items-end p-4 p-md-5">
+            <div class="container-fluid px-0">
+                <div class="row align-items-end justify-content-between g-3">
+
+                    <div class="col-12 col-md-8 text-start">
+                        <h1>Welcome to Orderir Meadery</h1>
+                        <h2>Discover the finest meads crafted with passion and tradition.</h2>
+                    </div>
+
+                    <div class="col-12 col-md-4 text-start text-md-end">
+                        <button id="video-toggle-btn" class="btn rounded-circle p-0 d-inline-flex align-items-center justify-content-center" aria-label="Pause Video">
+                            <i class="fa-regular fa-circle-pause" id="toggle-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 <!-- Home content ends here -->
