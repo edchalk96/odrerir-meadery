@@ -19,21 +19,14 @@ body {
 }
 
 h1 {
-    font-family: Norse, serif;
+    font-family: NorseBold, serif;
 }
 
 h2, h3, h4, h5, h6 {
     font-family: 'Cinzel', Georgia, serif;
 }
 
-/* Delivery Promo */
-
-#delivery-promo {
-    color: white;
-    background-color: #8B0000;
-}
-
-/*-- Navbar --*/
+/* -- Header -- */
 
 :root{
     --logo-size: 12vh;
@@ -41,7 +34,27 @@ h2, h3, h4, h5, h6 {
     --nav-vertical-padding: 2rem;
 
     --nav-height: calc(var(--logo-size) + var(--nav-vertical-padding));
+
+    --promo-height: 3rem;
 }
+
+/* Delivery Promo */
+
+#delivery-promo {
+    color: #FAF8F4;
+    background-color: #1A1917;
+    height: var(--promo-height);
+}
+
+#delivery-promo h4 {
+    font-weight: 700;
+}
+
+#delivery-promo {
+    height: 100%;
+}
+
+/* Navbar */
 
 .navbar-logo {
     padding: 0;
@@ -64,9 +77,53 @@ h2, h3, h4, h5, h6 {
     display: none !important;
 }
 
+.homepage-sticky-nav {
+    position: fixed;
+    top: auto;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent !important; /* Invisible on homepage landing */
+    box-shadow: none !important;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.homepage-sticky-nav.scrolled {
+    position: fixed;
+    top: 0;
+    background-color: #FAF8F4 !important; /* Visible on scroll */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+.nav-link {
+    color:#FAF8F4;
+}
+
+#account-basket-section i {
+    color: #FAF8F4;
+}
+
 /* ---Home page --- */
 
 /* Hero Video */
+
+.hero-video-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - var(--promo-height));
+    margin-top: 0;
+    overflow: hidden;
+    background-color: #1A1917; /* Fallback background colour */
+}
+
+#hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
 
 .hero-overlay {
     position: absolute;
@@ -75,6 +132,7 @@ h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     z-index: 2;
+    padding-top: 4.5rem;
     background-color: rgba(77, 74, 69, 0.25);
 }
 

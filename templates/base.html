@@ -38,16 +38,18 @@
 
 <body>
     <header>
+
         <!-- Delivery promotion message -->
-        <div class="container" id="delivery-promo">
-            <div class="row">
-                <div class="col-12">
-                    <p>Free delivery on orders over £60!</p>
+        <div class="container-fluid py-2" id="delivery-promo">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12 text-center">
+                    <h4 class="mb-0">Free delivery on orders over £60!</h4>
                 </div>
             </div>
         </div>
+
         <!-- Navbar -->
-        <nav class="navbar-expand-lg navbar-bg">
+        <nav class="navbar-expand-lg navbar-bg {% if request.path == '/' %}homepage-sticky-nav{% else %}sticky-top{% endif %}">
             <div class="container-fluid">
                 <div class="row navbar align-items-center flex-nowrap">
 
@@ -202,7 +204,7 @@
     </main>
 
     <script src="{% static 'js/base.js' %}"></script>
-    
+
     {% block postloadjs %}
     {% endblock %}
 
