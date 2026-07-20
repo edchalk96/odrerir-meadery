@@ -33,4 +33,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Remove focus from toggler when collapsed
+    const toggler = document.querySelector('.navbar-toggler');
+    if (toggler) {
+        toggler.addEventListener('click', function() {
+            setTimeout(function() {
+                toggler.blur();
+            }, 150);
+        });
+    }
+
+    // Removve focus from dropdowns when closed
+    const dropdownButtons = document.querySelectorAll('.dropdown-toggle');
+    dropdownButtons.forEach(button => {
+        button.addEventListener('hidden.bs.dropdown', function() {
+            this.blur();
+        });
+    });
 });

@@ -54,22 +54,22 @@
                 <div class="row navbar align-items-center flex-nowrap">
 
                     <!-- Navbar toggler for tablets and mobiles-->
-                    <div class="col-auto order-1 order-lg-2 ms-md-3">
+                    <div class="col-3 col-lg order-1 order-lg-2 d-flex justify-content-start justify-content-lg-center">
                         <button class="navbar-toggler float-start" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                     
                     
                         <!-- Collapsible content -->
-                        <div class="collapse navbar-collapse mt-lg-0" id="navbar-content">
-                            <ul class="navbar-nav text-start mb-lg-0">
-                                <li class="nav-item">
-                                    <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                        <div class="collapse navbar-collapse mt-3 mt-lg-0 justify-content-center" id="navbar-content">
+                            <ul class="navbar-nav text-start text-lg-center align-items-start align-tems-lg-center mb-lg-0">
+                                <li class="nav-item mx-4">
+                                    <a class="nav-link {% if request.path == '/' %}active{% endif %} py-md-2 py-lg-0" href="{% url 'home' %}">Home</a>
                                 </li>
 
                                 <!-- Full width dropdown link to categorised product pages | Credit to https://github.com/mdbootstrap/bootstrap-mega-menu for Mega Menu code -->
-                                <li class="nav-item dropdown position-static">
-                                    <a class="nav-link dropdown-toggle dropdown-toggle-split {% if request.path == products_url %}active{% endif %}" href="#" id="navbarDropdownProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <li class="nav-item dropdown position-static mx-4">
+                                    <a class="nav-link dropdown-toggle dropdown-toggle-split {% if request.path == products_url %}active{% endif %} py-md-2 py-lg-0" href="#" id="navbarDropdownProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Products
                                     </a>
 
@@ -116,15 +116,15 @@
                                     </div>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link {% if request.path == sandbox_url %}active{% endif %}" href="#">Flavour Sandbox</a> <!-- % url 'sandbox' %} -->
+                                <li class="nav-item mx-4">
+                                    <a class="nav-link {% if request.path == sandbox_url %}active{% endif %} py-md-2 py-lg-0" href="#">Flavour Sandbox</a> <!-- % url 'sandbox' %} -->
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#about-section">About</a>
+                                <li class="nav-item mx-4">
+                                    <a class="nav-link py-md-2 py-lg-0" href="#about-section">About</a>
                                 </li>
                                 {% if user.is_staff %}
-                                    <li class="nav-item">
-                                        <a class="nav-link {% if request.path == add_product_url %}active{% endif %}" href="#">Add Product</a> <!-- % url 'add_product' %} -->
+                                    <li class="nav-item mx-4">
+                                        <a class="nav-link {% if request.path == add_product_url %}active{% endif %} py-md-2 py-lg-0" href="#">Add Product</a> <!-- % url 'add_product' %} -->
                                     </li>
                                 {% endif %}
                             </ul>
@@ -132,14 +132,14 @@
                     </div>
 
                     <!-- Logo in navbar -->
-                    <div class="col navbar-logo order-2 order-lg-1 text-end text-lg-start ps-lg-3 px-2 px-md-0">
-                        <a class="navbar-brand" href="{% url 'home' %}">
+                    <div class="col-6 col-lg-auto order-2 order-lg-1 text-center text-lg-start navbar-logo px-0">
+                        <a class="navbar-brand me-0" href="{% url 'home' %}">
                             <img src="{% static 'images/brand-logo.png' %}" alt="logo">
                         </a>
                     </div>
 
                     <!-- Account and Basket -->
-                    <div class="col order-3 d-md-flex align-items-center justify-content-end" id="account-basket-section">
+                    <div class="col-3 col-lg-auto order-3 d-flex align-items-center justify-content-end" id="account-basket-section">
                         <div class="d-inline-flex flex-row align-items-center gap-3">
 
                             <!-- Account Dropdown -->
@@ -148,27 +148,27 @@
                                     <i class="fa-regular fa-user"></i>
                                 </button>
 
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAccounts">
+                                <ul class="dropdown-menu dropdown-menu-end pt-3" aria-labelledby="navbarDropdownAccounts">
                                     {% if user.is_authenticated %}
-                                        <li><h6 class="dropdown-header">Welcome, {{ user.username }}!</h6></li>
-                                        <li><hr class="dropdown-divider"></li>
+                                        <li class="mx-4"><h6 class="dropdown-header">Welcome, {{ user.username }}!</h6></li>
+                                        <li class="mx-4"><hr class="dropdown-divider pb-2"></li>
                                         
                                         {% if user.is_staff %} <!-- Show admin link if user is staff -->
-                                            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin Dashboard</a></li>
+                                            <li class="mx-4"><a class="dropdown-item pb-2" href="{% url 'admin:index' %}">Admin Dashboard</a></li>
                                         {% endif %}
 
-                                        <li><a class="dropdown-item" href="#">Account</a></li> <!-- % url 'profile' %} -->
-                                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a></li> 
+                                        <li class="mx-4"><a class="dropdown-item pb-2 {% if request.path == profile_url %}active{% endif %}" href="#">Account</a></li> <!-- % url 'profile' %} -->
+                                        <li class="mx-4"><a class="dropdown-item pb-2 {% if request.path == logout_url %}active{% endif %}" href="{% url 'account_logout' %}">Log Out</a></li> 
                                     {% else %}
-                                        <li><a class="dropdown-item" href="{% url 'account_login' %}" >Log In</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
+                                        <li class="mx-4"><a class="dropdown-item pb-2 {% if request.path == login_url %}active{% endif %}" href="{% url 'account_login' %}" >Log In</a></li>
+                                        <li class="mx-4"><a class="dropdown-item pb-2 {% if request.path == signup_url %}active{% endif %}" href="{% url 'account_signup' %}">Register</a></li>
                                     {% endif %}
                                 </ul>
                             </div>
 
                             <!-- Basket Link -->
                             <div>
-                                <a href="#" class="align-middle"> <!-- % url 'view_bag' %} -->
+                                <a href="#" class="align-middle {% if request.path == basket_url %}active{% endif %}"> <!-- % url 'basket' %} -->
                                     <i class="fa-solid fa-basket-shopping"></i> 
                                 </a>
                             </div>
