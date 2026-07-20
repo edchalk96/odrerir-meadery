@@ -51,4 +51,13 @@ document.addEventListener('DOMContentLoaded', function() {
             this.blur();
         });
     });
+
+    // Close Django messages after set period of time
+    setTimeout(function() {
+        let messages = document.getElementById("msg");
+        if (messages) {
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }
+    }, 8000);
 });

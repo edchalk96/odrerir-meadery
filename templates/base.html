@@ -150,8 +150,8 @@
 
                                 <ul class="dropdown-menu dropdown-menu-end pt-3" aria-labelledby="navbarDropdownAccounts">
                                     {% if user.is_authenticated %}
-                                        <li class="mx-4"><h6 class="dropdown-header">Welcome, {{ user.username }}!</h6></li>
-                                        <li class="mx-4"><hr class="dropdown-divider pb-2"></li>
+                                        <li class="mx-4"><h3 class="dropdown-header">Welcome, {{ user.username }}!</h3></li>
+                                        <li class="mx-4"><hr></li>
                                         
                                         {% if user.is_staff %} <!-- Show admin link if user is staff -->
                                             <li class="mx-4"><a class="dropdown-item pb-2" href="{% url 'admin:index' %}">Admin Dashboard</a></li>
@@ -202,6 +202,113 @@
         {% endblock %}
 
     </main>
+
+    <!--Footer-->
+    <footer class="container-fluid overflow-hidden pt-4 pb-5">
+        <div class="row footer-sections text-center g-3 gy-4 align-items-center">
+
+            <!-- Contact Developer modal trigger -->
+            <div class="col-6 col-lg-4 d-flex justify-content-center align-items-center">
+                <a class="modal-btn mb-0" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+                    <p class="mb-0 d-inline-block">Contact Óðrerir Meadery</p>
+                </a>
+            </div>
+
+            <!-- Contact Developer Modal -->
+            <div class="modal fade send-raven-modal" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content text-center">
+                        <div class="modal-header justify-content-center position-relative">
+                            <h2 class="modal-title" id="contactModalLabel">Contact Óðrerir Meadery</h2>
+                            <button type="button" class="btn-close position-absolute end-0 me-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <!-- Contact form content -->
+                             <!-- <form id="contactForm" method="post" action="% url 'contact_developer' %}" class="{% if not user.is_authenticated %}guest-view{% endif %}">
+                                {% csrf_token %}
+                                <div class="mb-3 w-75 mx-auto">
+                                    <textarea name="message" class="form-control text-center" placeholder="Your Message" required></textarea>
+                                </div>
+
+                                <div class="d-flex justify-content-between mt-4">
+                                    <button type="button" class="btn send-raven-btn mx-3" data-bs-dismiss="modal">Close</button>
+                                    {% if user.is_authenticated %}
+                                        <button type="submit" class="btn send-raven-btn mx-2">Send Message<i class="fa-solid fa-paper-plane"></i></button>
+                                    {% else %}
+                                        <a href="{% url 'account_login' %}" class="btn send-raven-btn mx-2">Sign In to Send Message</a>
+                                    {% endif %}
+                                </div>
+                             </form> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="col-6 col-lg-4 social-link d-flex justify-content-center align-self-center"> <!-- As this is a conceptual company, there is no specific social links currently and all links are to the social sites landing page -->
+                <a class="px-2 d-inline-flex align-items-center" href="https://www.facebook.com/" target="_blank" aria-label="Facebook link"><i class="fa-brands fa-facebook align-middle"></i></a>
+                <a class="px-2 d-inline-flex align-items-center" href="https://www.instagram.com/" target="_blank" aria-label="Instagram link"><i class="fa-brands fa-instagram align-middle"></i></a>
+                <a class="px-2 d-inline-flex align-items-center" href="https://www.tiktok.com/" target="_blank" aria-label="TikTok link"><i class="fa-brands fa-tiktok align-middle"></i></a>
+            </div>
+
+            <!-- Policy Modals & Payment Icons -->
+            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center position-relative">
+                <div class="d-inline-flex flex-column align-items-end position-relative">
+
+                    <!-- Policy Links-->
+                    <div class="d-flex gap-4 justify-content-center w-100">
+                        <a class="modal-btn" href="#" data-bs-toggle="modal" data-bs-target="#returnsPolicy">Returns Policy</a>
+                        <a class="modal-btn" href="#" data-bs-toggle="modal" data-bs-target="#deliveryPolicy">Delivery Policy</a>
+                    </div>
+
+                    <!-- Stripe Payment Icons -->
+                    <div class="stripe-icons d-flex gap-2 justify-content-center justify-content-lg-end w-100 position-absolute top-100 start-0 pt-3">
+                        <i class="fa-brands fa-cc-stripe"></i>
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                        <i class="fa-brands fa-cc-amex"></i>
+                    </div>
+                </div>
+
+                <!-- Returns Policy Modal-->
+                <div class="modal fade" id="returnsPolicy" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="returnsPolicyLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="returnsPolicyLabel">Returns Policy</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        ...
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Delivery Policy Modal-->
+                <div class="modal fade" id="deliveryPolicy" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deliveryPolicyLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deliveryPolicyLabel">Delivery Policy</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        ...
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="{% static 'js/base.js' %}"></script>
 

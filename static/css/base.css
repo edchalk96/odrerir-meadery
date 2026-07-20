@@ -26,6 +26,16 @@ h2, h3, h4, h5, h6 {
     font-family: 'Cinzel', Georgia, serif;
 }
 
+hr {
+    border: none !important;
+    outline: none !important;
+    opacity: 1 !important;
+    height: 0.25rem !important;
+    background: linear-gradient(to right, rgba(229, 169, 60, 1) 0%, rgba(229, 169, 60, 0.4) 35%, rgba(26, 25, 23, 0) 100%);
+    margin-left: 0;
+    margin-right: auto;
+}
+
 /* -- Header -- */
 
 :root{
@@ -188,10 +198,17 @@ h2, h3, h4, h5, h6 {
     border: none;
 }
 
-#account-basket-section h6 {
+#account-basket-section h3 {
     color:#FAF8F4;
-    font-family: Norse, Georgia, serif;
+    font-family: NorseBold, Georgia, serif;
     text-shadow: 2px 2px 4px rgba(26, 25, 23, 0.8);
+    font-size: 1.75rem !important;
+}
+
+#account-basket-section hr {
+    width: 100%;
+    margin-left: auto !important;
+    margin-right: 0 !important;
 }
 
 #account-basket-section .dropdown-item {
@@ -230,6 +247,10 @@ h2, h3, h4, h5, h6 {
     #account-basket-section .dropdown-item {
         font-size: 1.2rem;
     }
+
+    #account-basket-section h3 {
+        font-size: 1.25rem !important;
+    }
 }
 
 #account-basket-section .dropdown {
@@ -261,6 +282,66 @@ h2, h3, h4, h5, h6 {
 #account-basket-section .dropdown-menu.show {
     transform: translate3d(0, 0, 0) !important;
     visibility: visible;
+}
+
+/* -- Footer -- */
+
+footer a {
+    font-family: 'Cinzel', Georgia, serif;
+    color: #4D4A45;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #E5A93C;
+    font-weight: 700;
+}
+
+.social-link i {
+    font-size: 1.5rem;
+}
+
+.social-link i:hover {
+    font-size: 1.75rem;
+}
+
+.modal-btn {
+    font-size: 1.25rem;
+}
+
+.modal-btn:hover,
+.modal-btn p:hover {
+    text-decoration: underline;
+}
+
+.stripe-icons i {
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width:575.98px) {
+        .social-link i {
+        font-size: 1.25rem;
+    }
+
+    .social-link i:hover {
+        font-size: 1.5rem;
+    }
+
+    .modal-btn,
+    .stripe-icons i {
+    font-size: 1rem;
+}    
+}
+
+.message-alert {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    background-color: rgba(229, 169, 60, 0.6);
+    color: #1A1917 !important;
 }
 
 /* ---Home page --- */
@@ -312,13 +393,7 @@ h2, h3, h4, h5, h6 {
 }
 
 .hero-overlay hr {
-    border: 0;
-    opacity: 1;
-    height: 0.25rem;
     width: 60%;
-    margin-left: 0;
-    margin-right: auto;
-    background: linear-gradient(to right, rgba(229, 169, 60, 1) 0%, rgba(229, 169, 60, 0.4) 35%, rgba(26, 25, 23, 0) 100%);
 }
 
 @media screen and (max-width:960px) {
