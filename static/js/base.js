@@ -54,7 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Opening
         productsToggle.addEventListener('show.bs.dropdown', function() {
-            navbar.classList.add('navbar-products-open');
+            if (window.innerWidth >= 992) {
+                navbar.classList.add('navbar-products-open');
+            }
 
             if (dropdownMenu) {
                 dropdownMenu.style.display = 'block';
@@ -70,7 +72,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Closing
         productsToggle.addEventListener('hide.bs.dropdown', function(e) {
             productsToggle.blur();
-            navbar.classList.remove('navbar-products-open');
+
+            if (window.innerWidth >= 992) {
+                navbar.classList.remove('navbar-products-open');
+            }
 
             if (dropdownMenu && !dropdownMenu.classList.contains('is-collapsing')) {
                 e.preventDefault() // https://getbootstrap.com/docs/4.0/getting-started/javascript/#:~:text=All%20infinitive%20events%20provide%20preventDefault,also%20automatically%20call%20preventDefault()%20
@@ -91,6 +96,17 @@ document.addEventListener('DOMContentLoaded', function() {
                         productsToggle.classList.remove('show');
                     }
                 }, 600);
+            }
+        });
+    }
+
+    //Closing products menu on mobile and tablet
+    const closeMobileBtn = document.getElementById('closeProductsMobile');
+    if (closeMobileBtn) {
+        closeMobileBtn.addEventListener('click', function() {
+            const bsDropdown = bootstrap.Dropdown.getInstance(productsToggle);
+            if (bsDropdown) {
+                bsDropdown.hide();
             }
         });
     }
