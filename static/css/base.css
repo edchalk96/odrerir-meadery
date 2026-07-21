@@ -182,14 +182,82 @@ hr {
     }
 }
 
+/* Products menu toggle animation */
+.navbar-bg {
+    transition: background-color 0.6s cubic-bezier(0.25, 1, 0.5, 1)
+}
+
+.navbar-products-open {
+    background-color: #FAF8F4 !important;
+}
+
+.navbar-products-open .active {
+    text-shadow: 0px 0px 1px rgba(26, 25, 23, 0.8) !important;
+}
+
+.navbar-products-open .nav-link {
+    color: #1A1917;
+}
+
+.navbar-bg .nav-link,
+.navbar-bg i {
+    transition: color 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.products-dropdown-menu {
+    background-color: #FAF8F4 !important;
+    border-radius: 0 0 8px 8px;
+    border: none !important;
+    box-shadow: none !important;   
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin-top: -2px !important;
+    transform: translateY(-100%);
+    clip-path: inset(-px 0 100% 0);
+    visibility: hidden;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s step-end;
+    will-change: transform, clip-path;
+}
+
+.products-dropdown-menu.show {
+    display: block !important;
+    transform: translateY(0) !important;
+    clip-path: inset(-1px 0 0 0) !important;
+    visibility: visible !important;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear;
+}
+
+.products-dropdown-menu.is-collapsing {
+    display: block !important;
+    transform: translateY(-100%) !important;
+    clip-path: inset(0 0 100% 0) !important;
+    visibility: hidden !important;
+}
+
 #account-basket-section i {
     color: #FAF8F4;
     font-size: 1.5rem;
     text-shadow: 1px 1px 1px rgba(26, 25, 23, 0.5);
 }
 
-#account-basket-section i:hover,
-#account-basket-section i:focus {
+.navbar-products-open #account-basket-section i {
+    color: #1A1917 !important;
+}
+
+#account-basket-section i:hover {
+    color: #E5A93C !important;
+    font-weight: 700;
+}
+
+#account-basket-section .btn.show i {
+    color: #E5A93C !important;
+    font-weight: 700;
+}
+
+#account-basket-section i .active {
     color: #E5A93C;
     font-weight: 700;
 }

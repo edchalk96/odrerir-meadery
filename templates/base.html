@@ -73,7 +73,7 @@
                                         Products
                                     </a>
 
-                                    <div class="dropdown-menu w-100 p-4 border-0 shadow-sm" aria-labelledby="navbarDropdownProducts">
+                                    <div class="products-dropdown-menu dropdown-menu w-100 p-4 mt-0 border-0 shadow-sm" aria-labelledby="navbarDropdownProducts" data-bs-popper="static">
                                         <div class="container-fluid">
                                             <div class="row text-center text-lg-start justify-content-center">
 
@@ -168,8 +168,8 @@
 
                             <!-- Basket Link -->
                             <div>
-                                <a href="#" class="align-middle {% if request.path == basket_url %}active{% endif %}"> <!-- % url 'basket' %} -->
-                                    <i class="fa-solid fa-basket-shopping"></i> 
+                                <a href="#" class="align-middle"> <!-- % url 'basket' %} -->
+                                    <i class="fa-solid fa-basket-shopping {% if request.path == basket_url %}active{% endif %}"></i> 
                                 </a>
                             </div>
                         </div>
