@@ -79,16 +79,16 @@
     </div>
 
     <!-- Mead Types-->
-    <div class="container my-5 mead-type-container">
+    <div class="container-fluid my-5 px-md-5 px-1 mead-type-container overflow-hidden">
         <div class="row align-items-center">
 
             <!-- Image Column -->
-            <div class="col-12 col-lg-4 order-1 order-lg-2 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+            <div class="col-12 col-lg-4 order-1 order-lg-2 mb-4 mb-lg-0 d-flex align-items-center justify-content-center px-3">
                 <img src="{% static 'images/mead-types-image.png' %}" alt="Mead selection" class="img-fluid rounded shadow-sm">
             </div>
 
             <!-- Hex Grid Column -->
-            <div class="col-12 col-lg-8 order-2 order-lg-1">
+            <div class="col-12 col-lg-8 order-2 order-lg-1 px-3">
                 <h2 class="">Mead Types</h2>
                 <hr>
 
@@ -135,5 +135,28 @@
             </div>
         </div>
     </div>
+
+    <!-- Company SP Icons Banner -->
+    <div class="container-fluid icons-banner py-4 overflow-hidden">
+        <div class="row flex-nowrap align-items-center text-center gx-2 gx-md-4">
+            <div class="col-3 d-flex flex-column align-items-center justify-content-center icon-box">
+                <i class="fa-solid fa-tree banner-icon"></i>
+                <span class="banner-text">100% Natural</span>
+            </div>
+            <div class="col-3 d-flex flex-column align-items-center justify-content-center icon-box">
+                <i class="fa-solid fa-ban banner-icon"></i>
+                <span class="banner-text">No added sulfites or preservatives</span>
+            </div>
+            <div class="col-3 d-flex flex-column align-items-center justify-content-center icon-box">
+                <img src="{% static 'images/uk-icon.svg' %}" alt="UK Flag" class="banner-icon banner-svg">
+                <span class="banner-text">Made in the UK</span>
+            </div>
+            <div class="col-3 d-flex flex-column align-items-center justify-content-center icon-box">
+                <i class="fa-solid fa-hand-holding-heart banner-icon"></i>
+                <span class="banner-text">Handcrafted</span>
+            </div>
+        </div>
+    </div>
+
 <!-- Home content ends here -->
 {% endblock content %}

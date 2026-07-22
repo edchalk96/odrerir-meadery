@@ -742,7 +742,7 @@ footer a:hover {
 }
 
 .hex-item:hover,
-.hex-item .active {
+.hex-item.active {
     background: #1A1917;
     color: #E5A93C;
 }
@@ -784,5 +784,55 @@ footer a:hover {
     }
     .hex-text {
         font-size: 0.5rem;
+    }
+}
+
+/* Icons Banner */
+
+.icons-banner {
+    background-color: rgba(229, 169, 60, 0.3);
+    color: #1A1917;
+}
+
+.banner-icon {
+    font-size: 2rem;
+    color: #1A1917;
+    margin-bottom: 0.5rem;
+}
+
+.banner-svg {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+}
+
+.banner-text {
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.icons-banner {
+    overflow-x: hidden;
+}
+
+.icons-banner .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+@media (max-width: 575.98px) {
+    .banner-svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+
+    .banner-icon {
+        font-size: 1.2rem;
+    }
+
+    .banner-text {
+        font-size: 0.75rem;
     }
 }
