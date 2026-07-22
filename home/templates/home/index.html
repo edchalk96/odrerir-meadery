@@ -33,11 +33,11 @@
     </div>
 
     <!-- History of Mead -->
-     <div class="history-container container-fluid mt-5 px-md-5 px-1"> 
+    <div class="history-container container-fluid mt-5 px-md-5 px-1"> 
         <div class="row align-items-start g-0">
 
             <div class="col-12 col-lg-6 px-3">
-                <img src="{% static 'images/history-of-mead-image.png' %}" alt="history of mead image" id="historyImage" class="img-fluid w-100">
+                <img src="{% static 'images/history-of-mead-image.png' %}" alt="history of mead image" id="historyImage" class="img-fluid w-100 shadow-sm">
             </div>
 
             <div class="col-12 col-lg-6 px-3">
@@ -76,8 +76,64 @@
                 </div>
             </div>
         </div>
-     </div>
+    </div>
 
+    <!-- Mead Types-->
+    <div class="container my-5 mead-type-container">
+        <div class="row align-items-center">
 
+            <!-- Image Column -->
+            <div class="col-12 col-lg-4 order-1 order-lg-2 mb-4 mb-lg-0 d-flex align-items-center justify-content-center">
+                <img src="{% static 'images/mead-types-image.png' %}" alt="Mead selection" class="img-fluid rounded shadow-sm">
+            </div>
+
+            <!-- Hex Grid Column -->
+            <div class="col-12 col-lg-8 order-2 order-lg-1">
+                <h2 class="">Mead Types</h2>
+                <hr>
+
+                <div class="hex-grid">
+                    <!-- Row 1 (4 items) -->
+                    <div class="hex-item hex-r1-c1" data-type="Melomel" data-description="Melomel is a mead brewed with fruit—such as blackberries, raspberries, or cherry—offering a rich, vibrant blend of sweet honey notes and bright fruit acidity." data-url="PLACEHOLDER">
+                        <span class="hex-text">Melomel</span>
+                    </div>
+                    <div class="hex-item hex-r1-c2" data-type="Cyser" data-description="Cyser is a traditional mead fermented specifically with apple juice or cider. It yields crisp, refreshing orchard flavors reminiscent of fine hard cider with honey warmth." data-url="PLACEHOLDER">
+                        <span class="hex-text">Cyser</span>
+                    </div>
+                    <div class="hex-item hex-r1-c3" data-type="Braggot" data-description="Braggot bridges the world of beer and mead, fermented with both honey and malted barley or hops, resulting in a hearty, robust, and complex brew." data-url="PLACEHOLDER">
+                        <span class="hex-text">Braggot</span>
+                    </div>
+                    <div class="hex-item hex-r1-c4" data-type="Hydromel" data-description="Hydromel is a light, session-style mead with lower alcohol content (typically under 7.5% ABV). It is often sparkling, crisp, and exceptionally easy-drinking." data-url="PLACEHOLDER">
+                        <span class="hex-text">Hydromel</span>
+                    </div>
+
+                    <!-- Row 2 (5 items) -->
+                    <div class="hex-item hex-r2-c1" data-type="Traditional" data-description="Traditional mead showcases pure honey, water, and yeast with no added fruits or spices. It highlights the unadulterated terroir and floral profile of the source nectar." data-url="PLACEHOLDER">
+                        <span class="hex-text">Traditional</span>
+                    </div>
+                    <div class="hex-item hex-r2-c2" data-type="Metheglin" data-description="Metheglin is mead infused with herbs and botanical spices like cinnamon, clove, nutmeg, or vanilla—historically crafted for medicinal and aromatic enjoyment." data-url="PLACEHOLDER">
+                        <span class="hex-text">Metheglin</span>
+                    </div>
+                    <div class="hex-item hex-r2-c3" data-type="Pyment" data-description="Pyment is a hybrid mead fermented with grape juice or wine grapes, seamlessly marrying the crisp, tannic complexity of wine with rich honey sweetness." data-url="PLACEHOLDER">
+                        <span class="hex-text">Pyment</span>
+                    </div>
+                    <div class="hex-item hex-r2-c4" data-type="Capsicumel" data-description="Capsicumel is a fiery mead infused with chili peppers. The sweet honey base softens the pepper's heat, creating an intriguing, sweet-and-spicy balance." data-url="PLACEHOLDER">
+                        <span class="hex-text">Capsicumel</span>
+                    </div>
+                    <div class="hex-item hex-r2-c5" data-type="Acerglyn" data-description="Acerglyn is made by fermenting honey alongside pure maple syrup, producing a warm, rich mead with deep caramelized wood and syrup notes." data-url="PLACEHOLDER">
+                        <span class="hex-text">Acerglyn</span>
+                    </div>
+                </div>
+
+                <div class="mt-3 mead-type-content">
+                    <span id="meadDescription">Mead encompasses a remarkably diverse spectrum of styles, ranging from bone-dry and crisp to rich, dessert-like sweetness. Depending on the honey-to-water ratio, aging process, and the addition of natural ingredients—such as fruits, spices, herbs, or hops—mead can take on widely varying flavor profiles, colors, and alcohol strengths. Whether served sparkling, still, light, or full-bodied, every style highlights the unique character of the floral nectar from which its honey was harvested. Learn about each unique mead style and its tasting notes above, then browse our selection below to find your ideal pour.</span>
+                </div>
+
+                <div class="d-flex align-items-center gap-3 mt-3">
+                    <a href="PLACEHOLDER" id="meadTypeShopBtn" class="btn">Shop All</a>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-- Home content ends here -->
 {% endblock content %}

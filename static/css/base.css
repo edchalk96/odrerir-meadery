@@ -187,8 +187,7 @@ header {
     }
 
     .homepage-nav.scrolled .navbar-collapse {
-        top: 100%;
-        margin-top: 0 !important;
+        margin-top: -1rem !important;
     }
   
     .navbar-collapse.collapsing {
@@ -454,6 +453,10 @@ header {
     background-color: inherit;
 }
 
+.homepage-nav.scrolled #account-basket-section .dropdown-menu {
+    margin-top: -1rem !important;
+}
+
 @media screen and (max-width:575.98px) {
     #account-basket-section i {
         font-size: 1.2rem;
@@ -652,12 +655,14 @@ footer a:hover {
     border-radius: 8%;
 }
 
-.history-container h2 {
+.history-container h2,
+.mead-type-container h2 {
     line-height: 1 !important;
     font-weight: 700;
 }
 
-.history-container hr {
+.history-container hr,
+.mead-type-container hr {
     width: 60%;
 }
 
@@ -666,12 +671,14 @@ footer a:hover {
     color: #4D4A45;
 }
 
-.history-content span {
+.history-content span,
+.mead-type-content span {
     font-size: 1rem;
     color: #4D4A45;
 }
 
-.history-container .btn {
+.history-container .btn,
+.mead-type-container .btn {
     background-color: #E5A93C;
     font-family: 'Cinzel', Georgia, serif;
     font-weight: 500;
@@ -679,7 +686,8 @@ footer a:hover {
     font-size: 1.1rem;
 }
 
-.history-container .btn:hover {
+.history-container .btn:hover,
+.mead-type-container .btn:hover {
     background-color: #1A1917;
     color: #E5A93C;
     font-weight: 600;
@@ -691,12 +699,90 @@ footer a:hover {
         color: #4D4A45;
     }
 
-    .history-container .btn {
+    .history-container .btn,
+    .mead-type-container .btn {
         font-size: 1rem;
     }
 
     .history-content span {
         font-size: 0.8rem;
         color: #4D4A45;
+    }
+}
+
+/* Mead Types | Credit to https://css-tricks.com/hexagons-and-beyond-flexible-responsive-grid-patterns-sans-media-queries/ */
+
+.hex-grid {
+    --s: 8rem;
+    --gap: 2px;
+    display: grid;
+    grid-template-columns: repeat(10, calc(var(--s) / 2)); 
+    justify-content: center;
+}
+
+.hex-item {
+    width: var(--s);
+    height: calc(var(--s) * 1.1547);
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(
+        var(--gap) 25%, 
+        var(--gap) 75%, 
+        50% calc(100% - var(--gap)), 
+        calc(100% - var(--gap)) 75%, 
+        calc(100% - var(--gap)) 25%, 
+        50% var(--gap)
+    );
+    background: #E5A93C;
+    color: #1A1917;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.hex-item:hover,
+.hex-item .active {
+    background: #1A1917;
+    color: #E5A93C;
+}
+
+/* Row 1 Placement (Shifted right by 1 track) */
+.hex-r1-c1 { grid-column: 2 / span 2; grid-row: 1; }
+.hex-r1-c2 { grid-column: 4 / span 2; grid-row: 1; }
+.hex-r1-c3 { grid-column: 6 / span 2; grid-row: 1; }
+.hex-r1-c4 { grid-column: 8 / span 2; grid-row: 1; }
+
+/* Row 2 Placement: Pulls row 2 UP into row 1's gaps */
+.hex-r2-c1, .hex-r2-c2, .hex-r2-c3, .hex-r2-c4, .hex-r2-c5 {
+    grid-row: 2;
+    /* Negative margin pulls the 2nd row up to interlock tightly */
+    margin-top: calc(var(--s) * -0.28); 
+}
+
+.hex-r2-c1 { grid-column: 1 / span 2; }
+.hex-r2-c2 { grid-column: 3 / span 2; }
+.hex-r2-c3 { grid-column: 5 / span 2; }
+.hex-r2-c4 { grid-column: 7 / span 2; }
+.hex-r2-c5 { grid-column: 9 / span 2; }
+
+.hex-text {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Cinzel', Georgia, serif;
+    text-align: center;
+    line-height: 1.1;
+}
+
+#meadDescription {
+    transition: opacity 0.15s ease-in-out; display: inline-block;
+}
+
+@media (max-width: 575.98px) {
+    .hex-grid {
+        --s: 4rem;
+    }
+    .hex-text {
+        font-size: 0.5rem;
     }
 }

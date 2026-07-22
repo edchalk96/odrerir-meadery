@@ -136,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     // Close Django messages after set period of time
     setTimeout(function() {
         let messages = document.getElementById("msg");
@@ -145,4 +144,43 @@ document.addEventListener('DOMContentLoaded', function() {
             alert.close();
         }
     }, 8000);
+
+    // Mead type content and button changes
+    const hexItems = document.querySelectorAll('.hex-item');
+    const descriptionInfo = document.getElementById('meadDescription');
+    const shopBtn = document.getElementById('meadTypeShopBtn');
+
+    const defaultDescription = descriptionInfo.textContent.trim();
+    const defaultBtnText = shopBtn.innerText.trim();
+    const defaultBtnUrl = shopBtn.getAttribute('href');
+    
+    hexItems.forEach(item => {
+        item.addEventListener('click', function () {
+            const isAlreadyActive = this.classList.contains('active');
+
+            descriptionInfo.style.opacity = '0';
+
+            setTimeout(() => {
+                hexItems.forEach(hex => hex.classList.remove('active'));
+
+                if (isAlreadyActive) {
+                    descriptionInfo.innerText = defaultDescription;
+                    shopBtn.innerText = defaultBtnText;
+                    shopBtn.setAttribute('href', defaultBtnUrl);
+                } else {
+                    this.classList.add('active');
+
+                    const typeName = this.getAttribute('data-type');
+                    const description = this.getAttribute('data-description');
+                    const url = this.getAttribute('data-url');
+
+                    descriptionInfo.textContent = description;
+                    shopBtn.textContent = `Shop ${typeName}`;
+                    shopBtn.setAttribute('href', url);
+                }
+
+                descriptionInfo.style.opacity = '1';
+            }, 150);
+        });
+    });
 });
