@@ -5,26 +5,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const button = document.getElementById('video-toggle-btn');
     const icon = document.getElementById('toggle-icon');
 
-    button.addEventListener('click', function() {
-        if (video.paused) {
-            video.play();
-            icon.classList.remove('fa-circle-play');
-            icon.classList.add('fa-circle-pause');
-            button.setAttribute('aria-label', 'Pause Video');
-        } else {
-            video.pause();
-            icon.classList.remove('fa-circle-pause');
-            icon.classList.add('fa-circle-play');
-            button.setAttribute('aria-label', 'Play Video');
-        }
-    });
+    if (video && button && icon) {
+        button.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                icon.classList.remove('fa-circle-play');
+                icon.classList.add('fa-circle-pause');
+                button.setAttribute('aria-label', 'Pause Video');
+            } else {
+                video.pause();
+                icon.classList.remove('fa-circle-pause');
+                icon.classList.add('fa-circle-play');
+                button.setAttribute('aria-label', 'Play Video');
+            }
+        });
+    }
 
     // Sticky Navigation Bar on Scroll | Credit to https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
-    const navbarSticky = document.querySelector('.homepage-sticky-nav');
+    const navbarSticky = document.querySelector('.homepage-nav');
 
     if (navbarSticky && video) {
         window.addEventListener('scroll', function() {
-            const scrollTriggerPoint = video.offsetHeight / 2;
+            const scrollTriggerPoint = video.offsetHeight / 4;
 
             if (window.scrollY > scrollTriggerPoint) {
                 navbarSticky.classList.add('scrolled');
@@ -73,9 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         productsToggle.addEventListener('hide.bs.dropdown', function(e) {
             productsToggle.blur();
 
-            if (window.innerWidth >= 992) {
-                navbar.classList.remove('navbar-products-open');
-            }
+            navbar.classList.remove('navbar-products-open');
 
             if (dropdownMenu && !dropdownMenu.classList.contains('is-collapsing')) {
                 e.preventDefault() // https://getbootstrap.com/docs/4.0/getting-started/javascript/#:~:text=All%20infinitive%20events%20provide%20preventDefault,also%20automatically%20call%20preventDefault()%20
@@ -110,6 +110,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Read more dynamic changes
+    const historyCollapse = document.getElementById('historyCollapse');
+    const readMoreBtn = document.querySelector('.read-more-btn');
+
+    if (historyCollapse && readMoreBtn) {
+        const btnText = readMoreBtn.querySelector('.btn-text');
+        const toggleIcon = readMoreBtn.querySelector('.toggle-icon');
+
+        historyCollapse.addEventListener('show.bs.collapse', function () {
+            btnText.textContent = 'Read Less';
+                if (toggleIcon) {
+                    toggleIcon.classList.remove('fa-chevron-down');
+                    toggleIcon.classList.add('fa-chevron-up');
+                }
+        });
+
+        historyCollapse.addEventListener('hide.bs.collapse', function () {
+            btnText.textContent = 'Read More';
+            if (toggleIcon) {
+                toggleIcon.classList.remove('fa-chevron-up');
+                toggleIcon.classList.add('fa-chevron-down');
+            }
+        });
+    }
+
 
     // Close Django messages after set period of time
     setTimeout(function() {

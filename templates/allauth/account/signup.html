@@ -1,45 +1,35 @@
-{% extends "account/base_entrance.html" %}
-{% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
+{% extends "base.html" %}
+{% load i18n %}
+{% load allauth account %}
+
+{% block head_title %}{% trans "Before the Bifrost" %}{% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    {% setvar link %}
-        <a href="{{ login_url }}">
-        {% endsetvar %}
-        {% setvar end_link %}
-        </a>
-    {% endsetvar %}
-    {% element p %}
-        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-    {% endelement %}
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% url 'account_signup' as action_url %}
-        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-            {% slot body %}
+
+<div class="container text-center account-content">
+    <div class="row justify-content-center pt-4 pt-md-2 pt-lg-4">
+        <div class="col-md-8">
+            <h2 class="text-center mb-4 mb-md-0 mb-lg-3">{% trans "Petition Heimdall" %}</h2>
+            <p class="px-5">{% blocktrans %}Enter your details to pass the Bifrost and contribute to the eternal sagas{% endblocktrans %}</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4 mt-md-3 mt-lg-4">
+        <div class="col-md-8">
+            <form class="signup" action="{% url 'account_signup' %}" method="post">
                 {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                {% element button tags="prominent,signup" type="submit" %}
-                    {% trans "Sign Up" %}
-                {% endelement %}
-            {% endslot %}
-        {% endelement %}
-    {% endif %}
-    {% if PASSKEY_SIGNUP_ENABLED %}
-        {% element hr %}
-        {% endelement %}
-        {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary" %}
-            {% trans "Sign up using a passkey" %}
-        {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+                {{form.as_p}}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+                <button class="btn btn-signup right mt-2" type="submit">{% trans "Secure Entry" %}</button>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-lg-3">
+        <div class="col-md-8 text-center mt-4">
+            <p>{% blocktrans %}Already passed through Haimdall's watch? <a class="signup-link" href="{{ login_url }}">Enter the Halls here</a>{% endblocktrans %}</p>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}

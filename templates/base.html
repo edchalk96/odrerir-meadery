@@ -49,8 +49,8 @@
         </div>
 
         <!-- Navbar -->
-        <nav class="navbar-expand-lg navbar-bg {% if request.path == '/' %}homepage-sticky-nav{% else %}sticky-top{% endif %}">
-            <div class="container-fluid">
+        <nav class="navbar-expand-lg navbar-bg {% if request.path == '/' %}homepage-nav{% else %}subpage-nav{% endif %}">
+            <div class="container-fluid flex-nowrap align-items-center">
                 <div class="row navbar align-items-center flex-nowrap">
 
                     <!-- Navbar toggler for tablets and mobiles-->
@@ -69,7 +69,7 @@
 
                                 <!-- Full width dropdown link to categorised product pages | Credit to https://github.com/mdbootstrap/bootstrap-mega-menu for Mega Menu code -->
                                 <li class="nav-item dropdown position-static mx-4">
-                                    <a class="nav-link dropdown-toggle dropdown-toggle-split {% if request.path == products_url %}active{% endif %} py-md-2 py-lg-0" href="#" id="navbarDropdownProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle dropdown-toggle-split {% if request.path == products_url %}active{% endif %} py-md-2 py-lg-0" data-bs-display="static" href="#" id="navbarDropdownProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Products
                                     </a>
 
@@ -154,7 +154,7 @@
                                     <i class="fa-regular fa-user"></i>
                                 </button>
 
-                                <ul class="dropdown-menu dropdown-menu-end pt-3" aria-labelledby="navbarDropdownAccounts">
+                                <ul class="dropdown-menu dropdown-menu-end pt-3 mt-3" aria-labelledby="navbarDropdownAccounts">
                                     {% if user.is_authenticated %}
                                         <li class="mx-4"><h3 class="dropdown-header">Welcome, {{ user.username }}!</h3></li>
                                         <li class="mx-4"><hr></li>
