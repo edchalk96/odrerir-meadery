@@ -37,7 +37,7 @@
         <div class="row align-items-start g-0">
 
             <div class="col-12 col-lg-6 px-3">
-                <img src="{% static 'images/history-of-mead-image.png' %}" alt="history of mead image" id="historyImage" class="img-fluid w-100 shadow-sm">
+                <img src="{% static 'images/history-of-mead-image.png' %}" alt="history of mead image" id="historyImage" class="img-fluid w-100 rounded">
             </div>
 
             <div class="col-12 col-lg-6 px-3">
@@ -89,7 +89,7 @@
 
             <!-- Hex Grid Column -->
             <div class="col-12 col-lg-8 order-2 order-lg-1 px-3">
-                <h2 class="">Mead Types</h2>
+                <h2>Mead Types</h2>
                 <hr>
 
                 <div class="hex-grid">
@@ -154,6 +154,152 @@
             <div class="col-3 d-flex flex-column align-items-center justify-content-center icon-box">
                 <i class="fa-solid fa-hand-holding-heart banner-icon"></i>
                 <span class="banner-text">Handcrafted</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Most Popular products section-->
+    <div class="container-fluid popular-container my-5 px-md-5 px-1 overflow-hidden">
+        <div class="row align-items-end mb-4">
+            <div class="col">
+                <h2>Legendary Pours</h2>
+                <hr>
+                <h3 class="h5 text-muted mb-0">Discover our most popular products and fast-selling batches.</h3>
+            </div>
+
+            <div class="col-auto d-flex gap-2 me-3 me-md-0">
+                <button class="btn rounded-circle p-2 d-flex align-items-center justify-content-center custom-carousel-btn" type="button" data-bs-target="#popularProductsCarousel" data-bs-slide="prev" aria-label="Previous slide">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="btn rounded-circle p-2 d-flex align-items-center justify-content-center custom-carousel-btn" type="button" data-bs-target="#popularProductsCarousel" data-bs-slide="next" aria-label="Next slide">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Carousel Wrapper -->
+        <div id="popularProductsCarousel" class="carousel slide px-3">
+            <div class="carousel-inner">
+                <!-- Slide 1 (Items 1 to 4) -->
+                <!-- Product 1 -->
+                <div class="js-product-card">
+                    <div class="card h-100 border-0">
+                        <a href="#" class="text-decoration-none d-flex flex-column h-100">
+                            <img src="{% static 'images/no-product-image.png' %}" class="card-img-top rounded" alt="Traditional Mead">
+                            <div class="card-body d-flex flex-column p-0 pt-2">
+                                <div class="d-flex justify-content-between align-items-baseline w-100 mb-2">
+                                    <h5 class="card-title">Traditional Mead</h5>
+                                    <p class="mt-auto card-price">£18.99</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="js-product-card">
+                    <div class="card h-100 border-0">
+                        <a href="#" class="text-decoration-none d-flex flex-column h-100">
+                            <img src="{% static 'images/no-product-image.png' %}" class="card-img-top rounded" alt="Traditional Mead">
+                            <div class="card-body d-flex flex-column p-0 pt-2">
+                                <div class="d-flex justify-content-between align-items-baseline w-100 mb-2">
+                                    <h5 class="card-title">Traditional Mead</h5>
+                                    <p class="mt-auto card-price">£18.99</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="js-product-card">
+                    <div class="card h-100 border-0">
+                        <a href="#" class="text-decoration-none d-flex flex-column h-100">
+                            <img src="{% static 'images/no-product-image.png' %}" class="card-img-top rounded" alt="Traditional Mead">
+                            <div class="card-body d-flex flex-column p-0 pt-2">
+                                <div class="d-flex justify-content-between align-items-baseline w-100 mb-2">
+                                    <h5 class="card-title">Traditional Mead</h5>
+                                    <p class="mt-auto card-price">£18.99</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="js-product-card">
+                    <div class="card h-100 border-0">
+                        <a href="#" class="text-decoration-none d-flex flex-column h-100">
+                            <img src="{% static 'images/no-product-image.png' %}" class="card-img-top rounded" alt="Traditional Mead">
+                            <div class="card-body d-flex flex-column p-0 pt-2">
+                                <div class="d-flex justify-content-between align-items-baseline w-100 mb-2">
+                                    <h5 class="card-title">Traditional Mead</h5>
+                                    <p class="mt-auto card-price">£18.99</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Slide 2 (Items 5 to 8) -->
+                <!-- Product 5 -->
+                <div class="js-product-card">
+                    <div class="card h-100 border-0">
+                        <a href="#" class="text-decoration-none d-flex flex-column h-100">
+                            <img src="{% static 'images/no-product-image.png' %}" class="card-img-top rounded" alt="Traditional Mead">
+                            <div class="card-body d-flex flex-column p-0 pt-2">
+                                <div class="d-flex justify-content-between align-items-baseline w-100 mb-2">
+                                    <h5 class="card-title">Traditional Mead</h5>
+                                    <p class="mt-auto card-price">£18.99</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Product 6 -->
+                <div class="js-product-card">
+                    <div class="card h-100 border-0">
+                        <a href="#" class="text-decoration-none d-flex flex-column h-100">
+                            <img src="{% static 'images/no-product-image.png' %}" class="card-img-top rounded" alt="Traditional Mead">
+                            <div class="card-body d-flex flex-column p-0 pt-2">
+                                <div class="d-flex justify-content-between align-items-baseline w-100 mb-2">
+                                    <h5 class="card-title">Traditional Mead</h5>
+                                    <p class="mt-auto card-price">£18.99</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Product 8 -->
+                <div class="js-product-card">
+                    <div class="card h-100 border-0">
+                        <a href="#" class="text-decoration-none d-flex flex-column h-100">
+                            <img src="{% static 'images/no-product-image.png' %}" class="card-img-top rounded" alt="Traditional Mead">
+                            <div class="card-body d-flex flex-column p-0 pt-2">
+                                <div class="d-flex justify-content-between align-items-baseline w-100 mb-2">
+                                    <h5 class="card-title">Traditional Mead</h5>
+                                    <p class="mt-auto card-price">£18.99</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Company -->
+    <div class="about-container container-fluid mt-5 px-md-5 px-1"> 
+        <div class="row align-items-start g-0">
+
+            <div class="col-12 col-md-4 px-3 d-flex justify-content-center align-items-center">
+                <img src="{% static 'images/brand-logo.png' %}" alt="company logo" class="img-fluid rounded">
+            </div>
+
+            <div class="col-12 col-md-8 px-3">
+                <h2 class="mt-lg-0 mt-3">About Óðrerir Meadery</h2>
+                <hr>
+            
+                <div class="mt-2 about-content">
+                    <span>What began in a small kitchen as a personal passion for homebrewing—crafting small batches for self-consumption and sharing bottles as gifts among friends—has evolved into Óðrerir Meadery. Driven by a deep respect for Norse tradition and the ancient art of honey-wine, those early kitchen experiments quickly revealed a true calling: bringing authentic, hand-forged mead to a wider audience. Today, every bottle is still crafted with that same dedication, pride, and personal touch that went into our very first batch.</span>
+                </div>
             </div>
         </div>
     </div>

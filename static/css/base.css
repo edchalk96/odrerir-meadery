@@ -1,5 +1,9 @@
 /*-- General --*/
 
+html, body {
+    max-width: 100%;
+}
+
 /*Credit to: https://www.w3schools.com/css/css3_fonts.asp for font-face code*/
 @font-face {
     font-family: Norse;
@@ -34,6 +38,10 @@ hr {
     background: linear-gradient(to right, rgba(229, 169, 60, 1) 0%, rgba(229, 169, 60, 0.4) 35%, rgba(26, 25, 23, 0) 100%);
     margin-left: 0;
     margin-right: auto;
+}
+
+img {
+    box-shadow: rgba(26, 25, 23, 0.2) 0px 8px 24px;
 }
 
 /* -- Header -- */
@@ -91,6 +99,7 @@ header {
 .navbar-brand img {
     width: var(--logo-size);
     height: var(--logo-size);
+    box-shadow: none;
 }
 
 .dropdown-toggle::after {
@@ -651,18 +660,19 @@ footer a:hover {
 
 /* History of Mead */
 
-#historyImage {
-    border-radius: 8%;
-}
-
 .history-container h2,
-.mead-type-container h2 {
+.mead-type-container h2,
+.popular-container h2,
+.about-container h2 {
     line-height: 1 !important;
     font-weight: 700;
+    color: #1A1917;
 }
 
 .history-container hr,
-.mead-type-container hr {
+.mead-type-container hr,
+.popular-container hr,
+.about-container hr {
     width: 60%;
 }
 
@@ -672,7 +682,8 @@ footer a:hover {
 }
 
 .history-content span,
-.mead-type-content span {
+.mead-type-content span,
+.about-container span {
     font-size: 1rem;
     color: #4D4A45;
 }
@@ -704,7 +715,9 @@ footer a:hover {
         font-size: 1rem;
     }
 
-    .history-content span {
+    .history-content span,
+    .mead-type-container span,
+    .about-container span {
         font-size: 0.8rem;
         color: #4D4A45;
     }
@@ -834,5 +847,89 @@ footer a:hover {
 
     .banner-text {
         font-size: 0.75rem;
+    }
+}
+
+/* Most popular section */
+
+.popular-container h3 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.25rem;
+}
+
+#popularProductsCarousel {
+    overflow: hidden;
+}
+
+#popularProductsCarousel img {
+    box-shadow: none;
+}
+
+#popularProductsCarousel .carousel-inner {
+    overflow: visible;
+}
+
+#popularProductsCarousel .card-body {
+    background-color: #FAF8F4;
+}
+
+#popularProductsCarousel h5 {
+    color: #1A1917;
+    font-weight: 600;
+}
+
+#popularProductsCarousel p {
+    color: #4D4A45;
+}
+
+.card-price {
+    color: #E5A93C !important;
+    font-weight: bold;
+}
+
+#popularProductsCarousel .card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#popularProductsCarousel .card:hover {
+    transform: translateY(-4px);
+    cursor: pointer;
+}
+
+.popular-container button {
+    background-color: rgba(229, 169, 60, 0.75);
+    backdrop-filter: blur(6px);
+    border: none;
+}
+
+.popular-container button:hover {
+    background-color: rgba(229, 169, 60, 0.9);
+}
+
+.popular-container button:focus,
+.popular-container button:focus-visible {
+    background-color: rgba(229, 169, 60, 0.75);
+    box-shadow: none;
+}
+
+.popular-container button:active {
+    background-color: rgba(229, 169, 60, 1) !important;
+    transform: scale(0.96);
+}
+
+.popular-container button i {
+    color: #1A1917;
+    font-size: 1.2rem;
+}
+
+/* About Company */
+
+.about-container img {
+    box-shadow: none !important;
+}
+
+@media (min-width: 1198.98px) {
+    .about-container img {
+        width: 60%;
     }
 }

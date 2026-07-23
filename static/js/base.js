@@ -183,4 +183,60 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 150);
         });
     });
+
+    // Responsive popular items carousel
+    const container = document.querySelector('#popularProductsCarousel .carousel-inner');
+    if (!container) return;
+
+    const rawCards = Array.from(container.querySelectorAll('.js-product-card'));
+    if (rawCards.length === 0) return;
+
+    function responsiveCarousel() {
+        let itemsPerSlide = 4;
+        let colClass = "col-lg-3";
+
+        if (window.innerWidth < 576) {
+            itemsPerSlide = 1;
+            colClass = "col-12";
+        } else if (window.innerWidth < 768) {
+            itemsPerSlide = 2;
+            colClass = "col-6";
+        } else if (window.innerWidth < 992) {
+            itemsPerSlide = 3;
+            colClass = "col-4";
+        }
+        
+        container.innerHTML = '';
+
+        for (let i = 0; i < rawCards.length; i += itemsPerSlide) {
+            const chunk = rawCards.slice(i, i + itemsPerSlide);
+
+            const slide = document.createElement('div');
+            slide.className = `carousel-item ${i === 0 ? 'active' : ''}`;
+
+            const row = document.createElement('div');
+            row.className = 'row g-3 justify-content-center py-3 px-3 px-md-0';
+
+            chunk.forEach(cardWrapper => {
+                const col = document.createElement('div');
+                col.className = colClass;
+                col.appendChild(cardWrapper.cloneNode(true));
+                row.appendChild(col);
+            });
+
+            slide.appendChild(row);
+            container.appendChild(slide);
+        }
+    }
+
+    responsiveCarousel();
+
+    //Code adapted from https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event + https://www.freecodecamp.org/news/javascript-debounce-example/
+
+    let resizeTimer;
+
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer)
+        resizeTimer = setTimeout(responsiveCarousel, 150);
+    });
 });
