@@ -19,12 +19,10 @@ class Category(models.Model):
         ACERGLYN = 'ACERGLYN', 'Acerglyn (Maple)'
         ACCESSORIES = 'ACCESSORIES', 'Accessories & Merch'
 
-    mead_type = models.CharField(max_length=20, choices=MeadType.choices, default=MeadType.TRADITIONAL,)
-
-    name = models.CharField(max_length=100)
+    mead_type = models.CharField(max_length=20, choices=MeadType.choices, default=MeadType.TRADITIONAL, unique=True)
 
     def __str__(self):
-        return f"{self.name} ({self.get_mead_type_display()})"
+        return self.get_mead_type_display()
 
 
 class Product(models.Model):
