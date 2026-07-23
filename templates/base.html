@@ -150,7 +150,7 @@
 
                             <!-- Account Dropdown -->
                             <div class="dropdown">
-                                <button class="btn dropdown-toggle dropdown-toggle-split" type="button" id="navbarDropdownAccounts" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn p-0 border-0 dropdown-toggle dropdown-toggle-split" type="button" id="navbarDropdownAccounts" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-regular fa-user"></i>
                                 </button>
 
@@ -173,9 +173,16 @@
                             </div>
 
                             <!-- Basket Link -->
-                            <div>
-                                <a href="#" class="align-middle"> <!-- % url 'basket' %} -->
-                                    <i class="fa-solid fa-basket-shopping {% if request.path == basket_url %}active{% endif %}"></i> 
+                            <div class="position-relative d-inline-flex flex-column align-items-center">
+                                <a href="#" class="text-decoration-none text-center d-flex flex-column align-items-center"> <!-- % url 'basket' %} -->
+                                    <i class="fa-solid fa-basket-shopping {% if request.path == basket_url %}active{% endif %}"></i>
+                                    <span class="position-absolute start-50 translate-middle-x my-0 text-nowrap">
+                                        {% if grand_total %}
+                                            ${{ grand_total |floatformat:2 }}
+                                        {% else %}
+                                            £0.00
+                                        {% endif %}
+                                    </span> 
                                 </a>
                             </div>
                         </div>

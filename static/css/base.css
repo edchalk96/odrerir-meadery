@@ -394,11 +394,23 @@ header {
     text-shadow: 1px 1px 1px rgba(26, 25, 23, 0.5);
 }
 
-.homepage-nav #account-basket-section i {
+#account-basket-section button {
+    line-height: 1;
+}
+
+#account-basket-section span {
+    top: 100%; 
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
+.homepage-nav #account-basket-section i,
+.homepage-nav #account-basket-section span {
     color: #FAF8F4
 }
 
-.subpage-nav #account-basket-section i {
+.subpage-nav #account-basket-section i,
+.subpage-nav #account-basket-section span {
     color: #1A1917
 }
 
@@ -408,7 +420,9 @@ header {
 }
 
 .navbar-products-open #account-basket-section i,
-.homepage-nav.scrolled #account-basket-section i {
+.homepage-nav.scrolled #account-basket-section i,
+.navbar-products-open #account-basket-section span,
+.homepage-nav.scrolled #account-basket-section span {
     color: #1A1917;
 }
 
@@ -417,7 +431,8 @@ header {
     font-weight: 700;
 }
 
-#account-basket-section i .active {
+#account-basket-section i .active,
+#account-basket-section span .active {
     color: #E5A93C;
     font-weight: 700;
 }
