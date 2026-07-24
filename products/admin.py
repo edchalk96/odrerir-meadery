@@ -15,7 +15,6 @@ class ProductAdmin(admin.ModelAdmin):
     )
     ordering = ('sku',)
     search_fields = ('name', 'sku')
-    list_filter = ('stock_level')
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

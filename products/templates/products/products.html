@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid page-header d-flex align-items-end px-4 pb-3">
+    <div class="row">
+        <div class="col-12 text-start">
+            <h1>Explore the Óðrerir Collection</h1>
+            <hr>
+            <h2>Explore the complete range of handcrafted Óðrerir meads.</h2>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
