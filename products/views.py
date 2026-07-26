@@ -1,14 +1,48 @@
+from django.core.paginator import Paginator
+from django.db.models.functions import Lower
 from django.shortcuts import render
-from .models import Product
+from .models import Product, Category
 
 
 def all_products(request):
     """ A view to show all products, including sorting and filtering by category"""
 
     products = Product.objects.all()
+    categories = None
+    sort = None
+    direction = None
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
+
+        if 'category' in request.GET:
+            category_code = request.GET['category']
+            products = products.filter(mead_type__mead_type__iexact=category_code)
+            categories = Category.objects.filter(mead_type__iexact=category_code)
+
+    current_sorting = f'{sort}_{direction}'
+
+    paginator = Paginator(products, 12) # Show 12 products per page
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
     context = {
-        'products': products,
+        'products': page_obj,
+        'all_products': page_obj,
+        'current_categories': categories,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'products/products.html', context)
+
+    

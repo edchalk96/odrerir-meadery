@@ -1,0 +1,51 @@
+.product-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: #FAF8F4;
+}
+
+.product-card:has(.card-img-wrapper:hover) {
+    transform: translateY(-8px);
+}
+
+.product-card h5 { 
+    color: #1A1917;
+    font-weight: 700;
+}
+
+.card-mead-type {
+    font-family: 'Cinzel', Georgia, serif;
+    color: #1A1917;
+    font-weight: 500;
+}
+
+.card-mead-type span:hover {
+    color: #E5A93C;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.products-container hr {
+    background: linear-gradient(to right, rgba(26, 25, 23, 0) 0%, rgba(229, 169, 60, 1) 50%, rgba(26, 25, 23, 0) 100%);
+    width: 80%;
+}
+
+.products-container #sort-selector {
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #4D4A45;
+    background-color: rgba(229, 169, 60, 0.5);
+    border: none;
+}
+
+.products-container #sort-selector option:checked {
+    color: #1A1917 !important;
+    font-weight: 600;
+}
+
+.card-rating {
+    color: #4D4A45;
+    font-weight: 600;
+}
+
+.card-rating i {
+    color: #E5A93C;
+}

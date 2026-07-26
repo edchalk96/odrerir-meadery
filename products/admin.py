@@ -9,7 +9,7 @@ class ProductAdmin(admin.ModelAdmin):
         'name',
         'mead_type',
         'price',
-        'rating',
+        'average_rating',
         'image',
         'stock_level',
     )
