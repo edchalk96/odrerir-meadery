@@ -12,6 +12,8 @@ class ProductAdmin(admin.ModelAdmin):
         'average_rating',
         'image',
         'stock_level',
+        'clearance',
+        'most_popular'
     )
     ordering = ('sku',)
     search_fields = ('name', 'sku')
