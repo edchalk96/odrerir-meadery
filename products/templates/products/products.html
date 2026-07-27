@@ -61,7 +61,7 @@
             <div class="col-12 col-md-6 col-lg-3 pb-3 px-3">
                 <div class="card product-card h-100 border-0 px-4 px-md-0">
                     <div class="card-img-wrapper text-center pt-3">
-                        <a href="#" class="d-block"> <!-- % url 'product_detail' product.name %} -->
+                        <a href="{% url 'product_detail' product.id %}" class="d-block">
                             <img class="card-icon card-img-fixed rounded mx-auto img-fluid" src="{{ product.get_image_url }}" alt="{{ product.get_image_alt }}">
                         </a>
                     </div>
