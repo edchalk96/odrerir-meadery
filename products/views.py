@@ -47,6 +47,10 @@ def all_products(request):
         'all_products': page_obj,
         'current_categories': categories,
         'current_sorting': current_sorting,
+        "page_obj": page_obj,
+        "is_paginated": page_obj.has_other_pages(),
+        "sort": sort,
+        "direction": direction,
     }
 
     return render(request, 'products/products.html', context)

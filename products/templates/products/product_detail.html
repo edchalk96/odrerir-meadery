@@ -89,6 +89,47 @@
 
                 <button type="submit" class="btn">Add to Basket</button>
             </form>
+
+            {% if user.is_staff %}
+                <div id="adminButtons" class="mt-4">
+                    <button class="btn edit-btn" type="button" data-bs-toggle="modal" data-bs-target="#editProductModal">Edit</button>
+                    <button class="btn delete-btn" type="button" data-bs-toggle="modal" data-bs-target="#deleteProductModal">Delete</button>
+                </div>
+
+                <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form method="POST" enctype="multipart/form-data" action="">
+                                {% csrf_token %}
+                                <div class="modal-body">
+                                    <h5 class="text-center">Edit {{ product.name }}</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn edit-btn">Edit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center" id="deleteProductModalLabel">Delete {{ product.name }}?</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete {{ product.name }}?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                                <button href="#" class="btn delete-btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>

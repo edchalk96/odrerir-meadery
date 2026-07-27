@@ -290,6 +290,10 @@ header {
 .dropdown-item {
     color: #4D4A45;
     font-size: 1.2rem;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .dropdown-item:active,
@@ -297,6 +301,8 @@ header {
     background-color: #1A1917;
     color: #E5A93C;
     font-weight: 600;
+    border: none !important;
+    outline: none !important;
 }
 
 .text-danger {

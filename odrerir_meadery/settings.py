@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.instagram',
     'home',
     'products',
+    'flavour_sandbox'
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'flavour_sandbox/css/flavour_sandbox.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid page-header d-flex align-items-end px-4 pb-3">
+    <div class="row">
+        <div class="col-12 text-start">
+            <h1>The Flavour Sandbox</h1>
+            <hr>
+            <h2>Submit your ideas. Inspire the craft. Vote for the exceptional.</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container sandbox-ideas-container">
+
+    <!-- Sort function -->
+    <div class="row sorting-wrapper mt-3 mb-2">
+        <div class="col-md-8 justify-content-start">
+            <div class="sort-select-wrapper w-50">
+                <select id="sort-selector" class="custom-select custom-select-sm">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                    <option value="likes_desc" {% if current_sorting == 'likes_desc' %}selected{% endif %}>Most Liked</option>
+                    <option value="created_on_desc" {% if current_sorting == 'created_on_desc' %}selected{% endif %}>Newest First</option>
+                    <option value="created_on_asc" {% if current_sorting == 'created_on_asc' %}selected{% endif %}>Oldest First</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sandbox Idea cards -->
+    <div class="row">
+        {% for idea in sandbox_list %}
+            <div class="col-12 col-md-6 col-lg-3 pb-3 px-3">
+                <div class="card product-card h-100 border-0 px-4 px-md-0">
+                    <div class="card-body d-flex flex-column pb-3 pt-2 px-0">
+                        <a href="{% url 'idea_detail' idea.id %}">
+                            <div class="d-flex justify-content-between align-items-start my-2">
+                                <h5 class="card-title mb-0 text-start flex-grow-1 pe-2">{{ idea.title }}</h5>
+                                <p class="mb-0 text-end ms-2">{{ idea.mead_type }}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-start my-2">
+                                    <p>{{ idea.ingredients|join:", " }}</p>
+                            </div>
+                        </a>
+                            
+                        <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                            <div class="text-start">
+                                <p class="mb-0 card-date">{{ idea.created_on|date:"d M, Y" }}</p>
+                            </div>
+
+                            <div class="text-end">
+                                <form action="{% url 'like_idea' idea.id %}" method="POST" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn text-decoration-none p-0">
+                                        <span class="me-1">{{ idea.likes.count }}</span>
+                                        {% if user.is_authenticated and user in idea.likes.all %}
+                                            <i class="fa-solid fa-thumbs-up"></i>
+                                        {% else %}
+                                            <i class="fa-regular fa-thumbs-up"></i>
+                                        {% endif %}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:1 %}
+                <div class="col-12 d-md-none">
+                    <hr class="mx-auto">
+                </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-md-block d-lg-none">
+                    <hr class="mx-auto">
+                </div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-lg-block ">
+                    <hr class="mx-auto">
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+        {% if is_paginated %}
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li><a href="?page=1{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link">&laquo; First</a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link">&laquo; Previous</a></li>
+                {% endif %}
+                
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link">Next &raquo;</a></li>
+                <li><a href="?page={{ page_obj.paginator.num_pages }}{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link">Last &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+<script src="{% static 'flavour_sandbox/js/flavour_sandbox.js' %}"></script>    
+{% endblock %}
