@@ -93,34 +93,32 @@
                 <hr>
 
                 <div class="hex-grid">
-                    <!-- Row 1 (4 items) -->
-                    <div class="hex-item hex-r1-c1" data-type="Melomel" data-description="Melomel is a mead brewed with fruit—such as blackberries, raspberries, or cherry—offering a rich, vibrant blend of sweet honey notes and bright fruit acidity." data-url="PLACEHOLDER">
+                    <div class="hex-item hex-r1-c1" data-type="Melomel" data-description="Melomel is a mead brewed with fruit—such as blackberries, raspberries, or cherry—offering a rich, vibrant blend of sweet honey notes and bright fruit acidity." data-url="{% url 'products' %}?category=melomel">
                         <span class="hex-text">Melomel</span>
                     </div>
-                    <div class="hex-item hex-r1-c2" data-type="Cyser" data-description="Cyser is a traditional mead fermented specifically with apple juice or cider. It yields crisp, refreshing orchard flavors reminiscent of fine hard cider with honey warmth." data-url="PLACEHOLDER">
+                    <div class="hex-item hex-r1-c2" data-type="Cyser" data-description="Cyser is a traditional mead fermented specifically with apple juice or cider. It yields crisp, refreshing orchard flavors reminiscent of fine hard cider with honey warmth." data-url="{% url 'products' %}?category=cyser">
                         <span class="hex-text">Cyser</span>
                     </div>
-                    <div class="hex-item hex-r1-c3" data-type="Braggot" data-description="Braggot bridges the world of beer and mead, fermented with both honey and malted barley or hops, resulting in a hearty, robust, and complex brew." data-url="PLACEHOLDER">
+                    <div class="hex-item hex-r1-c3" data-type="Braggot" data-description="Braggot bridges the world of beer and mead, fermented with both honey and malted barley or hops, resulting in a hearty, robust, and complex brew." data-url="{% url 'products' %}?category=braggot">
                         <span class="hex-text">Braggot</span>
                     </div>
-                    <div class="hex-item hex-r1-c4" data-type="Hydromel" data-description="Hydromel is a light, session-style mead with lower alcohol content (typically under 7.5% ABV). It is often sparkling, crisp, and exceptionally easy-drinking." data-url="PLACEHOLDER">
+                    <div class="hex-item hex-r1-c4" data-type="Hydromel" data-description="Hydromel is a light, session-style mead with lower alcohol content (typically under 7.5% ABV). It is often sparkling, crisp, and exceptionally easy-drinking." data-url="{% url 'products' %}?category=hydromel">
                         <span class="hex-text">Hydromel</span>
                     </div>
 
-                    <!-- Row 2 (5 items) -->
                     <div class="hex-item hex-r2-c1" data-type="Traditional" data-description="Traditional mead showcases pure honey, water, and yeast with no added fruits or spices. It highlights the unadulterated terroir and floral profile of the source nectar." data-url="{% url 'products' %}?category=traditional">
                         <span class="hex-text">Traditional</span>
                     </div>
-                    <div class="hex-item hex-r2-c2" data-type="Metheglin" data-description="Metheglin is mead infused with herbs and botanical spices like cinnamon, clove, nutmeg, or vanilla—historically crafted for medicinal and aromatic enjoyment." data-url="PLACEHOLDER">
+                    <div class="hex-item hex-r2-c2" data-type="Metheglin" data-description="Metheglin is mead infused with herbs and botanical spices like cinnamon, clove, nutmeg, or vanilla—historically crafted for medicinal and aromatic enjoyment." data-url="{% url 'products' %}?category=metheglin">
                         <span class="hex-text">Metheglin</span>
                     </div>
-                    <div class="hex-item hex-r2-c3" data-type="Pyment" data-description="Pyment is a hybrid mead fermented with grape juice or wine grapes, seamlessly marrying the crisp, tannic complexity of wine with rich honey sweetness." data-url="PLACEHOLDER">
+                    <div class="hex-item hex-r2-c3" data-type="Pyment" data-description="Pyment is a hybrid mead fermented with grape juice or wine grapes, seamlessly marrying the crisp, tannic complexity of wine with rich honey sweetness." data-url="{% url 'products' %}?category=pyment">
                         <span class="hex-text">Pyment</span>
                     </div>
-                    <div class="hex-item hex-r2-c4" data-type="Capsicumel" data-description="Capsicumel is a fiery mead infused with chili peppers. The sweet honey base softens the pepper's heat, creating an intriguing, sweet-and-spicy balance." data-url="PLACEHOLDER">
+                    <div class="hex-item hex-r2-c4" data-type="Capsicumel" data-description="Capsicumel is a fiery mead infused with chili peppers. The sweet honey base softens the pepper's heat, creating an intriguing, sweet-and-spicy balance." data-url="{% url 'products' %}?category=capsicumel">
                         <span class="hex-text">Capsicumel</span>
                     </div>
-                    <div class="hex-item hex-r2-c5" data-type="Acerglyn" data-description="Acerglyn is made by fermenting honey alongside pure maple syrup, producing a warm, rich mead with deep caramelized wood and syrup notes." data-url="PLACEHOLDER">
+                    <div class="hex-item hex-r2-c5" data-type="Acerglyn" data-description="Acerglyn is made by fermenting honey alongside pure maple syrup, producing a warm, rich mead with deep caramelized wood and syrup notes." data-url="{% url 'products' %}?category=acerglyn">
                         <span class="hex-text">Acerglyn</span>
                     </div>
                 </div>
@@ -191,7 +189,7 @@
                                             <div class="card-body d-flex flex-column p-0 pt-2">
                                                 <div class="d-flex justify-content-between align-items-baseline w-100 mb-2">
                                                     <h5 class="card-title">{{ product.name }}</h5>
-                                                    <p class="mt-auto card-price">£{{ product.price }}</p>
+                                                    <p class="mt-0 card-price">{% if product.mead_type.mead_type|lower != 'accessories' %}From {% endif %}£{{ product.price }}</p>
                                                 </div>
                                             </div>
                                         </a>

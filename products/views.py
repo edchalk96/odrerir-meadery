@@ -13,6 +13,12 @@ def all_products(request):
     direction = None
 
     if request.GET:
+        if 'clearance' in request.GET:
+            products = products.filter(clearance=True)
+
+        if 'most_popular' in request.GET:
+            products = products.filter(most_popular=True)
+
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey

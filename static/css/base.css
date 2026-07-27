@@ -292,6 +292,13 @@ header {
     font-size: 1.2rem;
 }
 
+.dropdown-item:active,
+.dropdown-item:hover {
+    background-color: #1A1917;
+    color: #E5A93C;
+    font-weight: 600;
+}
+
 .text-danger {
     color: #B8741A !important;
 }
@@ -904,6 +911,7 @@ footer a:hover {
 .card-price {
     color: #E5A93C !important;
     font-weight: bold;
+    font-size: 0.8rem;
 }
 
 #popularProductsCarousel .card {

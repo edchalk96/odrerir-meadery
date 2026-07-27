@@ -16,6 +16,7 @@
     font-family: 'Cinzel', Georgia, serif;
     color: #1A1917;
     font-weight: 500;
+    font-size: 0.85rem;
 }
 
 .card-mead-type span:hover {
@@ -44,6 +45,7 @@
 .card-rating {
     color: #4D4A45;
     font-weight: 600;
+    font-size: 0.8rem;
 }
 
 .card-rating i {

@@ -94,8 +94,8 @@
                                                     <h6 class="dropdown-header px-0 d-none d-lg-block">&nbsp;</h6>
                                                     <ul class="ps-0 ps-lg-2">
                                                         <a class="dropdown-item px-0 py-1 d-block" href="{% url 'products' %}">All Products</a>
-                                                        <a class="dropdown-item px-0 py-1 text-danger d-block" href="#">Clearance Items</a> <!-- % url 'products' %}?category=clearance -->
-                                                        <a class="dropdown-item px-0 py-1 d-block" href="#">Most Popular</a> <!-- % url 'products' %}?sort=popular -->
+                                                        <a class="dropdown-item px-0 py-1 text-danger d-block" href="{% url 'products' %}?clearance=true">Clearance Items</a>
+                                                        <a class="dropdown-item px-0 py-1 d-block" href="{% url 'products' %}?most_popular=true">Most Popular</a>
                                                     </ul>
                                                 </div>
                                             
@@ -103,25 +103,25 @@
                                                 <div class="col-6 col-lg-3 mb-3 mb-lg-0">
                                                     <h6 class="dropdown-header px-0 text-decoration-underline">Core Varieties</h6>
                                                     <a class="dropdown-item px-0 py-1" href="{% url 'products' %}?category=traditional">Traditional Meads</a>
-                                                    <a class="dropdown-item px-0 py-1" href="#">Melomel (Fruit)</a> <!--  % url 'products' %}?category=melomel -->
-                                                    <a class="dropdown-item px-0 py-1" href="#">Metheglin (Spiced)</a> <!-- % url 'products' %}?category=metheglin -->
+                                                    <a class="dropdown-item px-0 py-1" href="{% url 'products' %}?category=melomel">Melomel (Fruit)</a>
+                                                    <a class="dropdown-item px-0 py-1" href="{% url 'products' %}?category=metheglin">Metheglin (Spiced)</a>
                                                 </div>
                                             
                                                 <!-- Column 2: Specialty Blends -->
                                                 <div class="col-6 col-lg-3 mb-3 mb-lg-0">
                                                     <h6 class="dropdown-header px-0 text-decoration-underline">Specialty Blends</h6>
-                                                    <a class="dropdown-item px-0 py-1" href="#">Cyser (Apple)</a> <!-- % url 'products' %}?category=cyser -->
-                                                    <a class="dropdown-item px-0 py-1" href="#">Pyment (Grape)</a> <!-- % url 'products' %}?category=pyment -->
-                                                    <a class="dropdown-item px-0 py-1" href="#">Braggot (Malt/Ale)</a> <!-- % url 'products' %}?category=braggot -->
+                                                    <a class="dropdown-item px-0 py-1" href="{% url 'products' %}?category=cyser">Cyser (Apple)</a>
+                                                    <a class="dropdown-item px-0 py-1" href="{% url 'products' %}?category=pyment">Pyment (Grape)</a>
+                                                    <a class="dropdown-item px-0 py-1" href="{% url 'products' %}?category=braggot">Braggot (Malt/Ale)</a>
                                                 </div>
                                             
                                                 <!-- Column 3: Small Batch & Extras -->
                                                 <div class="col-6 col-lg-3 mb-3 mb-lg-0">
                                                     <h6 class="dropdown-header px-0 text-decoration-underline">Small Batch & Wares</h6>
-                                                    <a class="dropdown-item px-0 py-1" href="#">Capsicumel (Chilli)</a> <!-- % url 'products' %}?category=capsicumel -->
-                                                    <a class="dropdown-item px-0 py-1" href="#">Hydromel (Light)</a> <!-- % url 'products' %}?category=hydromel -->
-                                                    <a class="dropdown-item px-0 py-1" href="#">Acerglyn (Maple)</a> <!-- % url 'products' %}?category=acerglyn -->
-                                                    <a class="dropdown-item px-0 py-1 mt-2" href="#">Accessories & Merchandise</a> <!-- % url 'products' %}?category=accessories -->
+                                                    <a class="dropdown-item px-0 py-1" href="{% url 'products' %}?category=capsicumel">Capsicumel (Chilli)</a>
+                                                    <a class="dropdown-item px-0 py-1" href="{% url 'products' %}?category=hydromel">Hydromel (Light)</a>
+                                                    <a class="dropdown-item px-0 py-1" href="{% url 'products' %}?category=acerglyn">Acerglyn (Maple)</a>
+                                                    <a class="dropdown-item px-0 py-1 mt-2" href="{% url 'products' %}?category=accessories">Accessories & Merchandise</a>
                                                 </div>
                                             </div>
                                         </div>
