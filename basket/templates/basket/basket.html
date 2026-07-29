@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+    <link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -10,22 +10,78 @@
 <div class="container-fluid page-header d-flex align-items-end px-4 pb-3">
     <div class="row">
         <div class="col-12 text-start">
-            <h1>{{ product.name }}</h1>
+            <h1>Secure Your Haul</h1>
             <hr>
-            <h2>{{ product.mead_type }}</h2>
+            <h2>You're just a few steps away from enjoying Óðrerir mead.</h2>
         </div>
     </div>
 </div>
 
-<div class="product-detail-container container-fluid mt-5 px-md-5 px-1"> 
+<div class="basket-container container-fluid mt-5 px-md-5 px-1"> 
     <div class="row align-items-start g-4">
 
-        <div class="col-12 col-lg-6 px-3">
-            <img src="{{ product.get_image_url }}" alt="{{ product.get_image_alt }}" class="img-fluid w-100 rounded">
+        <!-- Basket Products Section -->
+        <div class="col-12 col-lg-8 px-3 basket-products">
+
+            {% if basket_items %}
+                <div class="mb-3">
+                    {% for item in basket_items %}
+                        <div>
+                            <img src="{{ product.get_image_url }}" alt="{{ product.get_image_alt }}" class="img-fluid w-100 rounded">
+                        </div>
+
+                        <div>
+                            <p>{{ item.product.name }}</p>
+                            <p>{{ item.product.sku }}</p>
+                            {% if item.volume %}
+                                <p>VOLUME</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="qty-container mb-4">
+                            <form action="{% url 'adjust_basket' item.item_id %}" method="POST">
+                                {% csrf_token %}
+                                <div class="qty-container">
+                                    <div class="input-group input-group-{{ item.item_id }}">
+                                        <button class="decrement-qty btn decrement-qty_{{ item.item_id }}" data-item_id="{{ item.item_id }}">
+                                            <span><i class="fa-solid fa-minus"></i></span>
+                                        </button>
+                                    
+                                        <input class="form-control qty_input text-center id_qty_{{ item.item_id }}" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ item.item_id }}">
+                                    
+                                    
+                                        <button class="increment-qty btn increment-qty_{{ item.item_id }}" data-item_id="{{ item.item_id }}">
+                                            <span><i class="fa-solid fa-plus"></i></span>
+                                        </button>  
+                                    </div>
+                            </form>
+                            
+                            <div>
+                                <button class="remove-product">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="mb-3">
+                    <p>Your basket is empty.</p>
+                    <a href="{% url 'products' %}" class="btn rounded-0 ">
+                        <span>
+                            <i class="fa-solid fa-angles-left"></i>
+                        </span>
+                        <span class="text-uppercase">Keep Shopping</span>
+                    </a>
+                </div>
+            {% endif %}
+
+            
         </div>
         
-        <div class="col-12 col-lg-6 px-3">
-            <h3>{{ product.name }}</h3>
+        <!-- Basket Total Section -->
+        <div class="col-12 col-lg-4 px-3 basket-total">
+            <h3>Basket Total</h3>
         
             <div class="mb-3">
                 <span class="me-3"><strong>ABV:</strong> {{ product.abv }}%</span>
@@ -51,7 +107,7 @@
             
             <h4 id="displayPrice">£{{ product.price }}</h4>
 
-            <form action="{% url 'add_to_basket' product.id %}" method="POST" id="add-to-basket-form">
+            <form action="" method="POST" id="add-to-basket-form"> <!-- action: % url 'add_to_basket' product.id %}-->
                 {% csrf_token %}
 
                 <label class="form-label d-block mb-2">Select Volume:</label>
@@ -88,7 +144,6 @@
                 </div>
 
                 <button type="submit" class="btn">Add to Basket</button>
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form>
 
             {% if user.is_staff %}
@@ -138,5 +193,5 @@
 {% endblock %}
 
 {% block postloadjs %}
-<script src="{% static 'products/js/products.js' %}"></script>    
+<script src="{% static 'basket/js/basket.js' %}"></script>    
 {% endblock %}

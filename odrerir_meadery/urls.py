@@ -26,5 +26,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path('products/', include('products.urls')),
     path('sandbox/', include('flavour_sandbox.urls')),
+    path('basket/', include('basket.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

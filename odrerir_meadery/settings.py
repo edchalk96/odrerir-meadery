@@ -51,9 +51,10 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_select2',
+    'basket',
     'home',
     'products',
-    'flavour_sandbox'
+    'flavour_sandbox',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -85,6 +86,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'basket.contexts.basket_contents',
             ],
         },
     },
@@ -171,3 +173,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'media')
+
+FREE_DELIVERY_THRESHOLD = 60
+STANDARD_DELIVERY_PERCENTAGE = 10
