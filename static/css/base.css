@@ -609,9 +609,9 @@ footer a:hover {
     top: var(--nav-height);
     left: 0;
     right: 0;
-    z-index: 1020;
-    background-color: rgba(229, 169, 60, 0.6);
-    color: #1A1917 !important;
+    z-index: 1100;
+    background-color: rgba(26, 25, 23, 0.8);
+    color: #E5A93C !important;
 }
 
 /* ---Home page --- */

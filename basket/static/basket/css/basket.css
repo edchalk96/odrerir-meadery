@@ -1,0 +1,16 @@
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
+.update-form {
+    width: 75%;
+}
+
+.update-link {
+    width: 75%;
+}
+
+.remove-item {
+    width: 20%;
+}
