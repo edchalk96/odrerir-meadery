@@ -580,6 +580,15 @@ footer a:hover {
     font-size: 1.2rem;
 }
 
+#contactModalLabel {
+    font-size: 1.5rem;
+    color: #1A1917;
+}
+
+#contactModal textarea {
+    color: #4D4A45;
+}
+
 @media screen and (max-width:575.98px) {
     .social-link i {
     font-size: 1.25rem;
@@ -722,7 +731,10 @@ footer a:hover {
 }
 
 .history-container .btn,
-.mead-type-container .btn {
+.mead-type-container .btn,
+#contactModal .btn,
+#returnsPolicy .btn,
+#deliveryPolicy .btn {
     background-color: #E5A93C;
     font-family: 'Cinzel', Georgia, serif;
     font-weight: 500;
@@ -730,11 +742,24 @@ footer a:hover {
     font-size: 1.1rem;
 }
 
+#contactModal .btn,
+#returnsPolicy .btn,
+#deliveryPolicy .btn {
+    font-size: 0.85rem !important;
+}
+
 .history-container .btn:hover,
-.mead-type-container .btn:hover {
+.mead-type-container .btn:hover,
+#contactModal .btn:hover,
+#returnsPolicy .btn:hover,
+#deliveryPolicy .btn:hover {
     background-color: #1A1917;
     color: #E5A93C;
     font-weight: 600;
+}
+
+.modal-dialog {
+    min-width: 75vw;
 }
 
 @media (max-width: 575.98px) {

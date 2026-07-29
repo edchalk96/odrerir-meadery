@@ -235,31 +235,31 @@
             </div>
 
             <!-- Contact Developer Modal -->
-            <div class="modal fade send-raven-modal" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+            <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content text-center">
                         <div class="modal-header justify-content-center position-relative">
-                            <h2 class="modal-title" id="contactModalLabel">Contact Óðrerir Meadery</h2>
-                            <button type="button" class="btn-close position-absolute end-0 me-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h1 class="modal-title" id="contactModalLabel">Contact Óðrerir Meadery</h1>
+                            <button type="button" class="btn-close position-absolute end-0 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body">
                             <!-- Contact form content -->
-                             <!-- <form id="contactForm" method="post" action="% url 'contact_developer' %}" class="{% if not user.is_authenticated %}guest-view{% endif %}">
+                            <form id="contactForm" method="post" action="{% url 'contact_developer' %}" class="{% if not user.is_authenticated %}guest-view{% endif %}">
                                 {% csrf_token %}
                                 <div class="mb-3 w-75 mx-auto">
                                     <textarea name="message" class="form-control text-center" placeholder="Your Message" required></textarea>
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-4">
-                                    <button type="button" class="btn send-raven-btn mx-3" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn mx-3" data-bs-dismiss="modal">Close</button>
                                     {% if user.is_authenticated %}
-                                        <button type="submit" class="btn send-raven-btn mx-2">Send Message<i class="fa-solid fa-paper-plane"></i></button>
+                                        <button type="submit" class="btn mx-2">Send Message<i class="fa-solid fa-paper-plane ms-2"></i></button>
                                     {% else %}
-                                        <a href="{% url 'account_login' %}" class="btn send-raven-btn mx-2">Sign In to Send Message</a>
+                                        <a href="{% url 'account_login' %}" class="btn mx-2">Sign In to Send Message</a>
                                     {% endif %}
                                 </div>
-                             </form> -->
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -300,7 +300,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        ...
+                        <ol>
+                            <li class="mb-3"><strong>Overview & Contact:</strong>We want every drop to meet yours and our expectations. If there is an issue with your order, please get in contact with us at odrerirmeadery@gmail.com within <strong>14 days</strong> of receiving your package with your order number and details of the issue.</li>
+                            <li class="mb-3"><strong>Damaged, Defective, or Incorrect Deliveries:</strong>If your bottle(s) arrive broken, leaking, or damaged during transit, or if you received the incorrect item, please take a clear photograph of the item and packaging and send it to us immediately. We will arrange a replacement or issue a full refund for the affected items free of charge.</li>
+                            <li class="mb-3"><strong>Alcohol & Perishable Goods Regulations:</strong>Due to safety and food health regulations, opened bottles or unsealed beverages cannot be returned or refunded unless the product itself is faulty (e.g., cork taint or spoilage). If you suspect a beverage is flawed, please retain the original bottle and stopper for verification.</li>
+                            <li class="mb-3"><strong>Merchandise & Drinkware Returns:</strong>Non-perishable merchandise (apparel, drinking horns, wooden cups, beanies, and accessories) can be returned within 30 days of delivery for a full refund or exchange, provided items are unused, unwashed, and in their original packaging.</li>
+                            <li class="mb-3"><strong>Return Shipping Costs:</strong>
+                                <ul>
+                                    <li>For damaged or incorrect items: Óðrerir Meadery will cover all return shipping costs or provide a prepaid return shipping label.</li>
+                                    <li>For change-of-mind merchandise returns: The customer is responsible for the cost of return postage. We recommend using a tracked shipping service.</li>
+                                </ul>
+                            </li>
+                            <li class="mb-3"><strong>Refund Processing Time:</strong>Once your returned item is received and inspected (or a damage claim is verified), your refund will be processed back to your original payment method within 5 to 7 business days.</li>
+                            <li class="mb-3"><strong>Non-Returnable Items:</strong>The following items are strictly non-refundable:
+                                <ul>
+                                    <li>Opened bottles or consumed beverages.</li>
+                                    <li>Clearance or final-sale items.</li>
+                                </ul>
+                            </li>
+                        </ol>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
@@ -318,7 +336,21 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        ...
+                        <ol>
+                            <li class="mb-3"><strong>Age Verification Requirement:</strong>By placing an order with Óðrerir Meadery, you confirm that you are of legal drinking age in your destination country/region. An adult signature and valid government-issued photo ID are required upon delivery for all orders containing alcohol. Packages containing alcohol cannot be left unattended or handed to minors.</li>
+                            <li class="mb-3"><strong>Order Processing Times:</strong>All orders are processed and dispatched within 1 to 2 business days (Monday through Friday, excluding public holidays). Orders placed over the weekend or on public holidays will be processed on the following business day.</li>
+                            <li class="mb-3"><strong>Shipping Rates & Delivery Options:</strong>Delivery costs are calculated at checkout based on package weight and destination:
+                                <ul>
+                                    <li>Standard Delivery (3-5 Business Days): Standard parcel courier service.</li>
+                                    <li>Express Delivery (1-2 Business Days): Priority tracked shipping.</li>
+                                    <li>Free Shipping: Applicable on select orders over a specified threshold (e.g., orders over £60)</li>
+                                </ul>
+                            </li>
+                            <li class="mb-3"><strong>Tracking & Dispatch Confirmation:</strong>Once your order has been packed and handed over to our courier partners, you will receive a dispatch confirmation email containing your tracking link so you can follow your shipment's journey to your door.</li>
+                            <li class="mb-3"><strong>Bottle-Safe Protective Packaging:</strong>All glass bottles and fragile merchandise (such as stoneware tankards and drinking horns) are packed using specially designed, eco-friendly, crash-tested protective packaging to minimize the risk of damage during transit.</li>
+                            <li class="mb-3"><strong>Shipping Restrictions & Excluded Locations:</strong>Due to local alcohol licensing regulations and customs laws, we cannot ship alcohol to certain restricted postal codes, territories, or countries. If your address is restricted, you will be notified at checkout before payment is completed.</li>
+                            <li class="mb-3"><strong>Failed Delivery & Returned Packages:</strong>If a delivery attempt fails because no adult is available to sign, or if an incorrect delivery address was provided, the courier will leave a calling card or attempt redelivery. Packages returned to us due to multiple failed delivery attempts or address errors may incur a re-dispatch fee to be resent.</li>
+                        </ol>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn" data-bs-dismiss="modal">Close</button>

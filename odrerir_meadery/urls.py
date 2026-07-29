@@ -20,8 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('admin/', admin.site.urls),
+    path("select2/", include("django_select2.urls")),
     path('', include('home.urls')),
     path('products/', include('products.urls')),
     path('sandbox/', include('flavour_sandbox.urls')),
