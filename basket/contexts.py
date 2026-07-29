@@ -13,26 +13,39 @@ def basket_contents(request):
 
     for item_id, item_data in basket.items():
 
+        product = get_object_or_404(Product, pk=item_id)
+
         if isinstance(item_data, int):
-            product = get_object_or_404(Product, pk=item_id)
-            total += item_data * product.price
+            item_total = item_data * product.price
+            total += item_total
             product_count += item_data
             basket_items.append({
                 'item_id': item_id,
                 'quantity': item_data,
-                'product': product,
+                'product': product.price,
             })
 
-        else:
-            product = get_object_or_404(Product, pk=item_id)
-            for quantity in item_data.items():
-                total += quantity * product.price
+        elif isinstance(item_data, dict) and "items_by_volume" in item_data:
+            for volume, quantity in item_data["items_by_volume"].items():
+                if volume == "1L" and product.price_1l:
+                    price = product.price_1l
+                elif volume == "4L" and product.price_4l:
+                    price = product.price_4l
+                else:
+                    price = product.price
+
+                item_total = quantity * price
+                total += item_total
                 product_count += quantity
-                basket_items.append({
-                    'item_id': item_id,
-                    'quantity': quantity,
-                    'product': product,
-                })
+                basket_items.append(
+                    {
+                        "item_id": item_id,
+                        "quantity": quantity,
+                        "product": product,
+                        "volume": volume,
+                        "price": price,
+                    }
+                )
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
