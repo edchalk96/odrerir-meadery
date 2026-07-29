@@ -2,6 +2,7 @@
 
 {% url 'home' as home_url %}
 {% url 'products' as products_url %}
+{% url 'sandbox' as sandbox_url %}
 
 <!doctype html>
 <html lang="en">
@@ -129,10 +130,10 @@
                                 </li>
 
                                 <li class="nav-item mx-4">
-                                    <a class="nav-link {% if request.path == sandbox_url %}active{% endif %} py-md-2 py-lg-0" href="#">Flavour Sandbox</a> <!-- % url 'sandbox' %} -->
+                                    <a class="nav-link {% if request.path == sandbox_url %}active{% endif %} py-md-2 py-lg-0" href="{% url 'sandbox' %}">Flavour Sandbox</a>
                                 </li>
                                 <li class="nav-item mx-4">
-                                    <a class="nav-link py-md-2 py-lg-0" href="#about-section">About</a>
+                                    <a class="nav-link py-md-2 py-lg-0" href="{% if request.path == '/' %}#about-section{% else %}{% url 'home' %}#about-section{% endif %}">About</a>
                                 </li>
                                 {% if user.is_staff %}
                                     <li class="nav-item mx-4">

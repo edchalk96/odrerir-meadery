@@ -27,7 +27,7 @@ class FlavourSandboxIdea(models.Model):
 # Adapted from Mimir's Index | https://github.com/edchalk96/mimirs_index/
 
 class Comment(models.Model):
-    sandbox_idea = models.ForeignKey(FlavourSandboxIdea, related_name="comments", on_delete=models.CASCADE)
+    idea = models.ForeignKey(FlavourSandboxIdea, related_name="comments", on_delete=models.CASCADE)
     author = models.ForeignKey(User, related_name="user_comments", on_delete=models.CASCADE)
     body = models.TextField()
     approved = models.BooleanField(default=False)
@@ -40,4 +40,4 @@ class Comment(models.Model):
         ordering = ['created_on']
 
     def __str__(self):
-        return f"Comment by {self.author.username} on {self.sandbox_idea.title}"
+        return f"Comment by {self.author.username} on {self.idea.title}"

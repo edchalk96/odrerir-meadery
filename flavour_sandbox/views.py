@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, redirect
+from .forms import CommentForm, IdeaForm
 from .models import FlavourSandboxIdea, Comment
 
 
@@ -51,10 +52,47 @@ def sandbox_list(request):
 def idea_detail(request, idea_id):    
     """ A view to show individual idea details """
 
-    idea = get_object_or_404(FlavourSandboxIdea, pk=idea_id)
+    queryset = FlavourSandboxIdea.objects.filter(approved=True)
+    idea = get_object_or_404(queryset, pk=idea_id)
+    comments = idea.comments.all().order_by("-created_on")
+    comment_count = idea.comments.filter(approved=True, parent__isnull=True).count()
+
+    comment_form = CommentForm()
+    edit_idea_form = IdeaForm(instance=idea)
+
+    if request.method == "POST":
+
+        if "submit_comment" in request.POST:
+            comment_form = CommentForm(data=request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.idea = idea
+
+                parent_id = request.POST.get("parent_id")
+                if parent_id:
+                    comment.parent = Comment.objects.get(id=parent_id)
+                comment.save()
+
+                messages.add_message(request, messages.SUCCESS, "Your comment has been submitted and is awaiting approval.")
+                return redirect("idea_detail", idea_id)
+
+        if "submit_edit_idea" in request.POST:
+            edit_idea_form = IdeaForm(data=request.POST, instance=idea, files=request.FILES)
+            if edit_idea_form.is_valid():
+                idea = edit_idea_form.save(commit=False)
+                idea.status = 0
+                idea.save()
+                edit_idea_form.save_m2m()
+                messages.add_message(request, messages.SUCCESS, "Your Flavour Sandbox post has been edited and is waiting approval")
+                return redirect("sandbox")
 
     context = {
         'idea': idea,
+        'comments': comments,
+        "comment_count": comment_count,
+        "comment_form": comment_form,
+        "edit_idea_form": edit_idea_form
     }
 
     return render(request, 'flavour_sandbox/idea_detail.html', context)
@@ -75,3 +113,41 @@ def like_idea(request, pk):
         idea.likes.add(request.user)
 
     return redirect(request.META.get("HTTP_REFERER", "sandbox_list"))
+
+
+def comment_edit(request, idea_id, comment_id):
+    """
+    View to enable users to edit their own comments
+    """
+
+    if request.method == "POST":
+        queryset = FlavourSandboxIdea.objects.filter(status=1)
+        idea = get_object_or_404(queryset, idea_id)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.idea = idea
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated! Pending approval.')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+
+    return redirect("idea_detail", idea_id)
+
+
+def comment_delete(request, idea_id, comment_id):
+    """
+    View to enable users to delete their own comments
+    """
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.author == request.user:
+        comment.delete()
+        messages.add_message(request, messages.SUCCESS, 'Comment Deleted!')
+    else:
+        messages.add_message(request, messages.ERROR,
+                             'You can only delete your own comments!')
+
+    return redirect("idea_detail", idea_id)

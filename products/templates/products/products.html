@@ -43,14 +43,48 @@
     <!-- Sort function -->
     <div class="row sorting-wrapper mt-3 mb-2">
         <div class="col-md-8 justify-content-start">
-            <div class="sort-select-wrapper w-50">
-                <select id="sort-selector" class="custom-select custom-select-sm">
-                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                    <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
-                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-                </select>
+            <div class="sort-select-wrapper w-50 dropdown">
+                <button class="btn dropdown-toggle w-100 text-start d-flex justify-content-between align-items-center" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span>
+                        {% if current_sorting == 'price_asc' %}Price (low to high)
+                        {% elif current_sorting == 'price_desc' %}Price (high to low)
+                        {% elif current_sorting == 'name_asc' %}Name (A-Z)
+                        {% elif current_sorting == 'name_desc' %}Name (Z-A)
+                        {% else %}Sort by...{% endif %}
+                    </span>
+                </button>
+                <ul class="dropdown-menu w-100" aria-labelledby="sortDropdown">
+                    <li>
+                        <a class="dropdown-item {% if current_sorting == 'None_None' %}active{% endif %}" 
+                           href="?{% if current_categories %}category={{ current_categories.0.mead_type }}{% endif %}">
+                           Sort by...
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item {% if current_sorting == 'price_asc' %}active{% endif %}" 
+                           href="?sort=price&direction=asc{% if current_categories %}&category={{ current_categories.0.mead_type }}{% endif %}">
+                           Price (low to high)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item {% if current_sorting == 'price_desc' %}active{% endif %}" 
+                           href="?sort=price&direction=desc{% if current_categories %}&category={{ current_categories.0.mead_type }}{% endif %}">
+                           Price (high to low)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item {% if current_sorting == 'name_asc' %}active{% endif %}" 
+                           href="?sort=name&direction=asc{% if current_categories %}&category={{ current_categories.0.mead_type }}{% endif %}">
+                           Name (A-Z)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item {% if current_sorting == 'name_desc' %}active{% endif %}" 
+                           href="?sort=name&direction=desc{% if current_categories %}&category={{ current_categories.0.mead_type }}{% endif %}">
+                           Name (Z-A)
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -113,13 +147,13 @@
         <nav aria-label="Page navigation" class="mt-4">
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
-                <li><a href="?page=1{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link">&laquo; First</a></li>
-                <li><a href="?page={{ page_obj.previous_page_number }}{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link">&laquo; Previous</a></li>
+                <li><a href="?page=1{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link mx-1">&laquo; First</a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link mx-1">&laquo; Previous</a></li>
                 {% endif %}
                 
                 {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link">Next &raquo;</a></li>
-                <li><a href="?page={{ page_obj.paginator.num_pages }}{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link">Last &raquo;</a></li>
+                <li><a href="?page={{ page_obj.next_page_number }}{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link mx-1">Next &raquo;</a></li>
+                <li><a href="?page={{ page_obj.paginator.num_pages }}{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link mx-1">Last &raquo;</a></li>
                 {% endif %}
             </ul>
         </nav>

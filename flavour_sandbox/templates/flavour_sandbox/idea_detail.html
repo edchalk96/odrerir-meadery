@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'flavour_sandbox/css/flavour_sandbox.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid page-header d-flex align-items-end px-4 pb-3">
+    <div class="row">
+        <div class="col-12 text-start">
+            <h1>The Flavour Sandbox</h1>
+            <hr>
+            <h2>{{ idea.title }}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="idea-detail-container container-fluid mt-5 px-md-5 px-1"> 
+    <div class="row align-items-start g-4">
+
+        <div class="col-12 col-lg-6 px-3">
+            <img src="{% static 'images/sandbox-img.png' %}" alt="Company Logo etched into sand" class="img-fluid w-100 rounded">
+        </div>
+        
+        <div class="col-12 col-lg-6 px-3">
+            <h3 class="mb-0">{{ idea.title }}</h3>
+
+            <p class="mb-4">by {{ idea.author }}</p>
+
+            {% if idea.ingredients %}
+            <div class="mb-3">
+                <a class="btn p-0" data-bs-toggle="collapse" href="#ingredientsList" role="button" aria-expanded="false" aria-controls="ingredientsList">Ingredients <i class="fa-solid fa-chevron-down ms-1"></i></a>
+                <div class="collapse mt-2" id="ingredientsList">
+                    <div class="card card-body">
+                        {{ idea.ingredients|join:", " }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <p class="mb-4">{{ idea.content }}</p>
+
+            <div class="col-12 col-lg-6">
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                    <div class="text-start">
+                        <p class="mb-0 card-date">{{ idea.created_on|date:"d M, Y" }}</p>
+                    </div>
+                
+                    <div class="text-end idea-likes">
+                        <form action="{% url 'like_idea' idea.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn text-decoration-none p-0">
+                                <span class="me-1">{{ idea.likes.count }}</span>
+                                {% if user.is_authenticated and user in idea.likes.all %}
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                {% else %}
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                {% endif %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {% if user.is_staff or idea.author == user %}
+                <div id="adminButtons" class="mt-4">
+                    <button class="btn edit-btn" type="button" data-bs-toggle="modal" data-bs-target="#editIdeaModal">Edit</button>
+                    <button class="btn delete-btn" type="button" data-bs-toggle="modal" data-bs-target="#deleteIdeaModal">Delete</button>
+                </div>
+
+                <div class="modal fade" id="editIdeaModal" tabindex="-1" aria-labelledby="editIdeaModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form method="POST" enctype="multipart/form-data" action="">
+                                {% csrf_token %}
+                                <div class="modal-body">
+                                    <h5 class="text-center">Edit {{ idea.title }}</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn edit-btn">Edit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="deleteIdeaModal" tabindex="-1" aria-labelledby="deleteIdeaModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center" id="deleteIdeaModalLabel">Delete {{ idea.title }}?</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete {{ idea.title }}?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                                <button href="#" class="btn delete-btn">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Comments Section Adapted from Mimir's Index | https://github.com/edchalk96/mimirs_index/ | Credit to Tom Dekan (https://tomdekan.com/articles/comment-threads) for creation of comments thread --> 
+
+<div class="container comments-section mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Comments</h2>
+            <strong><i class="fa-solid fa-comments"></i> {{ comment_count }}</strong>
+        </div>
+
+        <!-- Comment Threads -->
+        <div class="col-md-12">
+            {% for comment in comments %}
+                {% if not comment.parent %}
+                    {% include "flavour_sandbox/partials/comment_thread.html" with comment=comment %}
+                {% endif %}
+            {% empty %}
+                <p>No comments right now. Be the first to comment?</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Comment Form-->
+    <div class="row mt-5">
+        <div class="col-md-8">
+            {% if user.is_authenticated %}
+            <h3 id="commentHeading">Add a Comment:</h3>
+            <p>Posting as: {{ user.username }}</p>
+            <form method="post" id="commentForm">
+                {% csrf_token %}
+                {{ comment_form | crispy }}
+                <button id="submitButton" name="submit_comment" type="submit" class="btn comment-button">Post</button>
+            </form>
+            {% else %}
+                <p><a href="{% url 'account_login' %}">Log in</a> to share your thoughts.</p>
+            {% endif %}
+        </div>   
+    </div>
+</div>
+
+<!-- Confirmation modal to delete comment -->
+<div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your comment?
+                This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn close-btn" data-bs-dismiss="modal">Close</button>
+                <a id="deleteConfirm" href="#" class="btn delete-btn">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block postloadjs %}
+<script src="{% static 'flavour_sandbox/js/flavour_sandbox.js' %}"></script>    
+{% endblock %}

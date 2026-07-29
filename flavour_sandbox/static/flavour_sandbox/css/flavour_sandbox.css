@@ -1,0 +1,198 @@
+#sortDropdown {
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #4D4A45;
+    background-color: rgba(229, 169, 60, 0.5);
+    border: none;
+    border-radius: 0;
+}
+
+.sort-select-wrapper ul {
+    background-color: #FAF8F4;
+}
+
+#sandboxRow .card {
+    background-color: #FAF8F4;
+    border-style: dashed;
+    border-color: #4D4A45;
+    border-width: 1px;
+    box-shadow: 0 2px 10px rgba(26, 25, 23, 0.2);
+}
+
+#sandboxRow h5 {
+    color: #1A1917;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(26, 25, 23, 0.5);
+}
+
+#sandboxRow p,
+#sandboxRow span {
+    color: #4D4A45;
+}
+
+#sandboxRow i {
+    color: #E5A93C;
+    font-size: 1.2rem;
+}
+
+#sandboxRow i:hover {
+    font-weight: 900;
+    transition: transform 0.15s ease-in-out;
+}
+
+#sandboxRow i:hover {
+    transform: scale(1.15);
+    transition: transform 0.15s ease-in-out;
+}
+
+#ideaIngredients {
+    font-size: 0.8rem;
+}
+
+#sandboxRow a:hover h5 {
+    color: #E5A93C;
+    text-decoration: underline;
+}
+
+.page-link {
+    background-color: #E5A93C;
+    font-family: 'Cinzel', Georgia, serif;
+    font-weight: 500;
+    color: #1A1917 !important;
+    font-size: 1.1rem;
+}
+
+.page-link:hover {
+    background-color: #1A1917;
+    color: #E5A93C !important;
+    font-weight: 600;
+}
+
+/* Idea Detail */
+
+.idea-detail-container h3 {
+    color: #1A1917;
+    font-weight: 700;
+}
+
+.idea-detail-container span,
+.idea-detail-container p,
+.idea-detail-container label {
+    color: #4D4A45;
+}
+
+.idea-detail-container .fa-chevron-down {
+    color: #E5A93C;
+}
+
+.idea-detail-container a {
+    color: #4D4A45 !important;
+}
+
+#ingredientsList .card {
+    background-color: #FAF8F4;
+    color: #4D4A45;
+    border: none;
+}
+
+.idea-detail-container form .btn,
+.idea-detail-container .modal .btn,
+#adminButtons .btn,
+#submitButton,
+.comments-section .edit-btn,
+.comments-section .comment-delete-btn {
+    background-color: #E5A93C;
+    font-family: 'Cinzel', Georgia, serif;
+    font-weight: 500;
+    color: #1A1917 !important;
+    font-size: 1.1rem;
+}
+
+.idea-detail-container form .btn:hover,
+.idea-detail-container form .btn-check:checked+.btn,
+.idea-detail-container .modal .btn:hover,
+#adminButtons .btn:hover,
+#submitButton:hover,
+.comments-section .edit-btn:hover,
+.comments-section .comment-delete-btn:hover {
+    background-color: #1A1917;
+    color: #E5A93C !important;
+    font-weight: 600;
+}
+
+.idea-detail-container form .btn-check:checked+.btn {
+    border: none;
+}
+
+.idea-detail-container .btn-group label {
+    border-radius: var(--bs-border-radius) !important;
+}
+
+@media (max-width: 575.98px) {
+    .idea-detail-container form .btn {
+        font-size: 1rem;
+    }
+}
+
+.idea-likes button {
+    background-color: #FAF8F4 !important;
+    color: #4D4A45 !important;
+}
+
+.idea-likes button i {
+    color: #E5A93C;
+    font-size: 1.2rem;
+}
+
+.idea-likes button i:hover {
+    font-weight: 900;
+    transition: transform 0.15s ease-in-out;
+}
+
+.idea-likes button i:hover {
+    transform: scale(1.15);
+    transition: transform 0.15s ease-in-out;
+}
+
+.sandbox-ideas-container hr {
+    background: linear-gradient(to right, rgba(26, 25, 23, 0) 0%, rgba(229, 169, 60, 1) 50%, rgba(26, 25, 23, 0) 100%);
+    width: 80%;
+}
+
+.comments-section h2 {
+    font-weight: 600;
+    color: #1A1917;
+}
+
+.comments-section strong {
+    font-size: 1.2rem;
+}
+
+.comments-section p {
+    color: #4D4A45;
+}
+
+.comments-section h3 {
+    color: #1A1917;
+    font-weight: 500;
+}
+
+.comments-section form {
+    color: #4D4A45;
+}
+
+.comments-section .edit-btn,
+.comments-section .comment-delete-btn {
+    font-size: 0.85rem !important;
+}
+
+#replyButton {
+    color: #1A1917;
+    font-weight: 700;
+    transition: transform 0.15s ease-in-out;
+}
+
+#replyButton:hover {
+    color: #E5A93C;
+    transform: scale(1.15);
+    transition: transform 0.15s ease-in-out;
+}

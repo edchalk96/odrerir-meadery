@@ -297,6 +297,7 @@ header {
 }
 
 .dropdown-item:active,
+.dropdown-item.active,
 .dropdown-item:hover {
     background-color: #1A1917;
     color: #E5A93C;
