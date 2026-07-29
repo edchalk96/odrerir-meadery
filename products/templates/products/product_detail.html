@@ -28,7 +28,9 @@
             <h3>{{ product.name }}</h3>
         
             <div class="mb-3">
-                <span class="me-3"><strong>ABV:</strong> {{ product.abv }}%</span>
+                {% if product.mead_type|stringformat:"s" != 'Accessories & Merch' %}
+                    <span class="me-3"><strong>ABV:</strong> {{ product.abv }}%</span>
+                {% endif %}
                 {% if product.average_rating %}
                     <span>{{ product.average_rating }}<i class="fa-solid fa-star ms-1"></i></span>
                 {% else %}
@@ -54,23 +56,25 @@
             <form action="{% url 'add_to_basket' product.id %}" method="POST" id="add-to-basket-form">
                 {% csrf_token %}
 
-                <label class="form-label d-block mb-2">Select Volume:</label>
-                <div class="btn-group mb-3" role="group" aria-label="Volume Selection">
-                    {% if product.price %}
-                        <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-500ml" value="500ML" data-price="{{ product.price }}" checked autocomplete="off">
-                        <label class="btn py-2" for="vol-500ml">500ml</label>
-                    {% endif %}
+                {% if product.mead_type|stringformat:"s" != 'Accessories & Merch' %}
+                    <label class="form-label d-block mb-2">Select Volume:</label>
+                    <div class="btn-group mb-3" role="group" aria-label="Volume Selection">
+                        {% if product.price %}
+                            <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-500ml" value="500ML" data-price="{{ product.price }}" checked autocomplete="off">
+                            <label class="btn py-2" for="vol-500ml">500ml</label>
+                        {% endif %}
 
-                    {% if product.price_1l %}
-                        <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-1l" value="1L" data-price="{{ product.price_1l }}" autocomplete="off">
-                        <label class="btn py-2 mx-2" for="vol-1l">1 Litre</label>
-                    {% endif %}
+                        {% if product.price_1l %}
+                            <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-1l" value="1L" data-price="{{ product.price_1l }}" autocomplete="off">
+                            <label class="btn py-2 mx-2" for="vol-1l">1 Litre</label>
+                        {% endif %}
 
-                    {% if product.price_4l %}
-                        <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-4l" value="4L" data-price="{{ product.price_4l }}" autocomplete="off">
-                        <label class="btn py-2" for="vol-4l">4 Litre</label>
-                    {% endif %}
-                </div>
+                        {% if product.price_4l %}
+                            <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-4l" value="4L" data-price="{{ product.price_4l }}" autocomplete="off">
+                            <label class="btn py-2" for="vol-4l">4 Litre</label>
+                        {% endif %}
+                    </div>
+                {% endif %}
 
                 <div class="qty-container mb-4">
                     <div class="input-group input-group-{{ product.id }}">

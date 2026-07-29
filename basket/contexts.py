@@ -22,7 +22,8 @@ def basket_contents(request):
             basket_items.append({
                 'item_id': item_id,
                 'quantity': item_data,
-                'product': product.price,
+                'product': product,
+                'price': product.price,
             })
 
         elif isinstance(item_data, dict) and "items_by_volume" in item_data:

@@ -27,19 +27,19 @@
                 <div class="mb-3">
                     {% for item in basket_items %}
                         <div>
-                            <img src="{{ product.get_image_url }}" alt="{{ product.get_image_alt }}" class="img-fluid w-100 rounded">
+                            <img src="{{ item.product.get_image_url }}" alt="{{ item.product.get_image_alt }}" class="img-fluid w-100 rounded">
                         </div>
 
                         <div>
                             <p>{{ item.product.name }}</p>
                             <p>{{ item.product.sku }}</p>
                             {% if item.volume %}
-                                <p>VOLUME</p>
+                                <p>{{ item.volume }}</p>
                             {% endif %}
                         </div>
 
                         <div class="qty-container mb-4">
-                            <form action="{% url 'adjust_basket' item.item_id %}" method="POST">
+                            <form action="" method="POST"> <!-- action="% url 'adjust_basket' item.item_id %}" -->
                                 {% csrf_token %}
                                 <div class="qty-container">
                                     <div class="input-group input-group-{{ item.item_id }}">
@@ -82,110 +82,6 @@
         <!-- Basket Total Section -->
         <div class="col-12 col-lg-4 px-3 basket-total">
             <h3>Basket Total</h3>
-        
-            <div class="mb-3">
-                <span class="me-3"><strong>ABV:</strong> {{ product.abv }}%</span>
-                {% if product.average_rating %}
-                    <span>{{ product.average_rating }}<i class="fa-solid fa-star ms-1"></i></span>
-                {% else %}
-                    <span>No ratings yet</span>
-                {% endif %}
-            </div>
-
-            {% if product.ingredients %}
-            <div class="mb-3">
-                <a class="btn p-0" data-bs-toggle="collapse" href="#ingredientsList" role="button" aria-expanded="false" aria-controls="ingredientsList">Ingredients <i class="fa-solid fa-chevron-down ms-1"></i></a>
-                <div class="collapse mt-2" id="ingredientsList">
-                    <div class="card card-body">
-                        {{ product.ingredients|join:", " }}
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            <p class="mb-4">{{ product.description }}</p>
-            
-            <h4 id="displayPrice">£{{ product.price }}</h4>
-
-            <form action="" method="POST" id="add-to-basket-form"> <!-- action: % url 'add_to_basket' product.id %}-->
-                {% csrf_token %}
-
-                <label class="form-label d-block mb-2">Select Volume:</label>
-                <div class="btn-group mb-3" role="group" aria-label="Volume Selection">
-                    {% if product.price %}
-                        <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-500ml" value="500ML" data-price="{{ product.price }}" checked autocomplete="off">
-                        <label class="btn py-2" for="vol-500ml">500ml</label>
-                    {% endif %}
-
-                    {% if product.price_1l %}
-                        <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-1l" value="1L" data-price="{{ product.price_1l }}" autocomplete="off">
-                        <label class="btn py-2 mx-2" for="vol-1l">1 Litre</label>
-                    {% endif %}
-
-                    {% if product.price_4l %}
-                        <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-4l" value="4L" data-price="{{ product.price_4l }}" autocomplete="off">
-                        <label class="btn py-2" for="vol-4l">4 Litre</label>
-                    {% endif %}
-                </div>
-
-                <div class="qty-container mb-4">
-                    <div class="input-group input-group-{{ product.id }}">
-                        <button class="decrement-qty btn decrement-qty_{{ product.id }}" data-item_id="{{ product.id }}">
-                            <span><i class="fa-solid fa-minus"></i></span>
-                        </button>
-
-                        <input class="form-control qty_input text-center id_qty_{{ product.id }}" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}">
-                        
-                        
-                        <button class="increment-qty btn increment-qty_{{ product.id }}" data-item_id="{{ product.id }}">
-                            <span><i class="fa-solid fa-plus"></i></span>
-                        </button>  
-                    </div>
-                </div>
-
-                <button type="submit" class="btn">Add to Basket</button>
-            </form>
-
-            {% if user.is_staff %}
-                <div id="adminButtons" class="mt-4">
-                    <button class="btn edit-btn" type="button" data-bs-toggle="modal" data-bs-target="#editProductModal">Edit</button>
-                    <button class="btn delete-btn" type="button" data-bs-toggle="modal" data-bs-target="#deleteProductModal">Delete</button>
-                </div>
-
-                <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form method="POST" enctype="multipart/form-data" action="">
-                                {% csrf_token %}
-                                <div class="modal-body">
-                                    <h5 class="text-center">Edit {{ product.name }}</h5>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn edit-btn">Edit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-center" id="deleteProductModalLabel">Delete {{ product.name }}?</h5>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure you want to delete {{ product.name }}?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
-                                <button href="#" class="btn delete-btn">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
         </div>
     </div>
 </div>
