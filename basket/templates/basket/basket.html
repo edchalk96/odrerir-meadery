@@ -21,7 +21,7 @@
     <div class="row align-items-start g-4">
 
         <!-- Basket Total Section -->
-        <div class="col-12 col-md-4 order-1 order-md-2 px-3 basket-total mb-4 mb-md-0">
+        <div class="col-12 col-md-4 order-1 order-md-2 px-3 mb-4 mb-md-0 totals-summary">
             <div class="card p-3">
                 <h3 class="mb-3 text-center">Basket Total</h3>
 
@@ -32,7 +32,7 @@
 
                 {% if free_delivery_delta > 0 %}
                     <div class="py-2 px-3 my-2">
-                        Spend an extra <strong>£{{ free_delivery_delta|floatformat:2 }}</strong> for free delivery!
+                        <p>Spend an extra <strong>£{{ free_delivery_delta|floatformat:2 }}</strong> for free delivery!</p>
                     </div>
                 {% else %}
                     <div class="py-2 px-3 my-2">
@@ -45,9 +45,13 @@
                     <p class="mb-0 basket-total">£{{ grand_total|floatformat:2 }}</p>
                 </div>
 
-                <div class="mt-3">
-                    <a href="#" class="btn py-2">Proceed to Checkout</a> <!-- % url 'checkout' %} -->
+                <div class="mt-3 text-center">
+                    <a href="#" class="btn py-2"><i class="fa-solid fa-cart-arrow-down me-1"></i>Check Out</a> <!-- % url 'checkout' %} -->
                 </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <a href="{% url 'products' %}" class="continue-link d-inline-block">Continue Shopping</a>
             </div>
         </div>
 
@@ -58,22 +62,22 @@
                     {% for item in basket_items %}
                         <div class="row align-items-center py-3">
 
-                            <div class="col-4 col-sm-3 col-md-2 mb-2 mb-sm-0">
+                            <div class="col-4 col-sm-3 col-md-2 mb-2 mb-sm-0 p-md-0">
                                 <a href="{% url 'product_detail' item.product.id %}">
                                     <img src="{{ item.product.get_image_url }}" alt="{{ item.product.get_image_alt }}" class="img-fluid rounded">
                                 </a>
                             </div>
 
-                            <div class="col-8 col-sm-5 col-md-6 mb-2 mb-sm-0">
-                                <h5 class="mb-1 fs-6 fw-bold">{{ item.product.name }}</h5>
-                                <p class="mb-1">SKU: {{ item.product.sku }}</p>
+                            <div class="col-8 col-sm-5 col-lg-6 mb-2 mb-sm-0 ps-3 pe-0">
+                                <h5 class="mb-1">{{ item.product.name }}</h5>
+                                <p class="mb-1 item-sku">SKU: {{ item.product.sku }}</p>
                                 {% if item.volume %}
-                                    <p class="badge bg-secondary mb-1">{{ item.volume }}</p>
+                                    <p class="badge mb-1">{{ item.volume }}</p>
                                 {% endif %}
-                                <p class="mb-0">£{{ item.price|floatformat:2 }}</p>
+                                <p class="mb-0 basket-total">£{{ item.price|floatformat:2 }}</p>
                             </div>
 
-                            <div class="col-12 col-sm-4 col-md-4 d-flex flex-wrap align-items-center justify-content-start justify-content-sm-end mt-2 mt-sm-0">
+                            <div class="col-12 col-sm-4 col-md-5 col-lg-4 d-flex flex-wrap align-items-center justify-content-start justify-content-sm-end mt-2 mt-sm-0">
                                 <form action="{% url 'adjust_basket' item.item_id %}" method="POST" class="update-form me-2">
                                     {% csrf_token %}
                                     <div class="input-group input-group-sm input-group-{{ item.item_id }}">
@@ -93,8 +97,8 @@
                                     {% endif %}
                                 </form>
                                 
-                                <a class="remove-item role-button" title="Remove item" id="remove_{{ item.item_id }}" data-product_volume="{{ item.volume }}">
-                                    <i class="fa-regular fa-trash-can fs-5"></i>
+                                <a class="remove-item role-button mt-1 mt-lg-0" title="Remove item" id="remove_{{ item.item_id }}" data-product_volume="{{ item.volume }}">
+                                    <i class="fa-regular fa-trash-can pt-1"></i>
                                 </a>
 
                                 <a class="update-link text-center role-button mt-1 me-auto">Update</a>
@@ -107,11 +111,13 @@
                 </div>
             {% else %}
                 <div class="mb-3">
-                    <a href="{% url 'products' %}" class="btn">
+                    <p>Your basket is empty</p>
+                    <a href="{% url 'products' %}" class="btn p-0 keep-shopping-link">
                         <span>
                             <i class="fa-solid fa-angles-left"></i>
                         </span>
                         <span class="ms-1">Keep Shopping</span>
+                    </a>
                 </div>
             {% endif %}            
         </div>
