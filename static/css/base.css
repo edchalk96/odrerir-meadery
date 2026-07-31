@@ -1146,8 +1146,23 @@ footer a:hover {
 
 .toast-header-wrapper .toast-icon {
     font-size: 1.5rem !important;
-    color: #40f467 !important;
     margin-top: 2px !important;
+}
+
+.toast-header-wrapper .fa-circle-check {
+    color: #40f467 !important;
+}
+
+.toast-header-wrapper .fa-circle-xmark {
+    color: #e74c3c !important;
+}
+
+.toast-header-wrapper .fa-circle-info {
+    color: #4070f4 !important;
+}
+
+.toast-header-wrapper .fa-circle-exclamation {
+    color: #f39c12 !important;
 }
 
 .toast-header-wrapper .message {

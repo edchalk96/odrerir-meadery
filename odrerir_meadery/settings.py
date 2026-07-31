@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_countries',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'home',
     'products',
     'flavour_sandbox',
+    'checkout',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
