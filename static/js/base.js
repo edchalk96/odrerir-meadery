@@ -240,3 +240,77 @@ document.addEventListener('DOMContentLoaded', function() {
         resizeTimer = setTimeout(responsiveCarousel, 150);
     });
 });
+
+// Toast Functionality
+
+function showDjangoToasts() {
+    const toasts = document.querySelectorAll("#toast-container .toast");
+
+    toasts.forEach((toast) => {
+        const closeBtn = toast.querySelector(".close");
+        const progress = toast.querySelector(".progress");
+
+        let timer1, timer2;
+        let remainingTime = 10000;
+        let startTime;
+
+        // Function to start or resume the dismiss timer
+        const startDismissTimer = (time) => {
+            startTime = Date.now();
+
+            timer1 = setTimeout(() => {
+                toast.classList.remove("active");
+            }, time);
+
+            timer2 = setTimeout(() => {
+                if (progress) {
+                    progress.classList.remove("active");
+                }
+                toast.remove();
+            }, time + 500);
+        };
+
+        setTimeout(() => {
+            toast.classList.add("active");
+            if (progress) {
+                progress.classList.add("active");
+            }
+            startDismissTimer(remainingTime);
+        }, 100);
+
+        toast.addEventListener("mouseenter", () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            remainingTime -= Date.now() - startTime;
+        });
+
+        toast.addEventListener("mouseleave", () => {
+            if (remainingTime > 0) {
+                startDismissTimer(remainingTime);
+            } else {
+                toast.classList.remove("active");
+                setTimeout(() => toast.remove(), 500);
+            }
+        });
+
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => {
+                toast.classList.remove("active");
+                setTimeout(() => {
+                    if (progress) {
+                        progress.classList.remove("active");
+                    }
+                    toast.remove();
+                }, 400);
+                clearTimeout(timer1);
+                clearTimeout(timer2);
+            });
+        }
+    });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", showDjangoToasts);
+} else {
+    showDjangoToasts();
+}

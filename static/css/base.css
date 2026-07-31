@@ -1026,3 +1026,220 @@ footer a:hover {
         font-size: 1rem;
     }
 }
+
+/* Toast CSS Styling | Credit to: https://colorlib.com/wp/bootstrap-toasts/ | https://codepen.io/nttoan1202/pen/OJzvQQN */
+
+#toast-container {
+    position: fixed !important;
+    top: calc(var(--nav-height) + var(--promo-height) - 0.5rem) !important;
+    right: 20px !important;
+    left: auto !important;
+    z-index: 999999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    pointer-events: none !important;
+}
+
+.toast {
+    position: relative !important;
+    pointer-events: auto !important;
+    display: block !important;
+    opacity: 1 !important;
+    border-radius: 12px !important;
+    background: #ffffff !important;
+    padding: 20px 35px 20px 25px !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden !important;
+    min-width: 320px !important;
+    max-width: 400px !important;
+    border: none !important;
+    transform: translateX(calc(100% + 40px)) !important;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+}
+
+.toast.active {
+    transform: translateX(0%) !important;
+}
+
+.toast .toast-content {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+.toast .close {
+    position: absolute !important;
+    top: 12px !important;
+    right: 15px !important;
+    padding: 5px !important;
+    cursor: pointer !important;
+    opacity: 0.7 !important;
+    color: #333 !important;
+}
+
+.toast .close:hover {
+    opacity: 1 !important;
+}
+
+.toast .progress {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 3px !important;
+    width: 100% !important;
+    background-color: #ddd !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.toast .progress::before {
+    content: "" !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.toast.success .progress::before {
+    background-color: #40f467 !important;
+}
+
+.toast.info .progress::before {
+    background-color: #4070f4 !important;
+}
+
+.toast.error .progress::before,
+.toast.danger .progress::before {
+    background-color: #e74c3c !important;
+}
+
+.toast.warning .progress::before {
+    background-color: #f39c12 !important;
+}
+
+.toast .progress.active::before {
+    animation: toastProgress 10s linear forwards !important;
+}
+
+@keyframes toastProgress {
+    0% {
+        right: 0%;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
+.toast:hover .progress.active::before {
+    animation-play-state: paused !important;
+}
+
+.toast-header-wrapper {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    margin-bottom: 10px !important;
+}
+
+.toast-header-wrapper .toast-icon {
+    font-size: 1.5rem !important;
+    color: #40f467 !important;
+    margin-top: 2px !important;
+}
+
+.toast-header-wrapper .message {
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0 !important;
+}
+
+.basket-title {
+    font-weight: 600 !important;
+    margin: 10px 0 8px 0 !important;
+    font-size: 0.95rem !important;
+    color: #1A1917 !important;
+}
+
+.basket-notification-wrapper {
+    max-height: 250px !important;
+    overflow-y: auto !important;
+    padding-right: 4px !important;
+}
+
+.basket-item-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 8px 0 !important;
+}
+
+.basket-img-col {
+    width: 60px !important;
+    flex-shrink: 0 !important;
+}
+
+.basket-img-col img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+}
+
+.basket-details-col {
+    flex-grow: 1 !important;
+}
+
+.basket-details-col h6 {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 2px !important;
+    color: #1A1917 !important;
+}
+
+.basket-details-col p {
+    font-size: 0.8rem !important;
+    color: #4D4A45 !important;
+    margin: 0 !important;
+}
+
+.toast-totals-section {
+    margin-top: 12px !important;
+    padding-top: 8px !important;
+}
+
+.toast-totals-section .toast-total {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    color: #1A1917 !important;
+    margin-bottom: 4px !important;
+}
+
+.toast-totals-section .free-delivery-msg {
+    font-size: 0.8rem !important;
+    background-color: #E5A93C !important;
+    padding: 6px !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    margin-bottom: 8px !important;
+    color: #1A1917 !important;
+}
+
+.toast-totals-section .btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #E5A93C !important;
+    color: #1A1917 !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.toast-totals-section .btn:hover {
+    background-color: #1A1917 !important;
+    color: #E5A93C !important;
+}

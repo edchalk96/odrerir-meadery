@@ -99,8 +99,6 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 # Allauth relevant settings - Credit to Travilabs -
 # https://medium.com/@travilabs/email-register-confirmation-django-django-allauth-299c4427726f
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
