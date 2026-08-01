@@ -3,7 +3,8 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
-from .forms import OrderForm, UserProfileForm
+from .forms import OrderForm
+from profiles.forms import UserProfileForm
 from .models import Order, OrderLineItem, UserProfile
 from products.models import Product
 
@@ -66,7 +67,7 @@ def checkout(request):
                         )
                         order_line_item.save()
                     else:
-                        for volume, quantity in item_data['items_by_size'].items():
+                        for volume, quantity in item_data['items_by_volume'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,

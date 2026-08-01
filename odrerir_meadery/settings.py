@@ -53,10 +53,11 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_select2',
     'basket',
+    'checkout',
+    'flavour_sandbox',
     'home',
     'products',
-    'flavour_sandbox',
-    'checkout',
+    'profiles',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

@@ -1,25 +1,21 @@
-{% extends "base.html" %}
+{% extends "account/base.html" %}
 {% load static %}
 {% load i18n %}
 {% load allauth account %}
 
 {% block head_title %}{% trans "Sign Out" %}{% endblock head_title %}
 
-{% block content %}
+{% block inner_content %}
+
+<div class="container-fluid page-header d-flex align-items-end px-4 pb-3">
+    <div class="row">
+        <div class="col-12 text-start">
+            <h1>Log Out</h1>
+        </div>
+    </div>
+</div>
 
 <div class="container text-center account-content">
-    <div class="row justify-content-center pt-4 pt-md-2">
-        <div class="col-md-8">
-            <h2 class="mb-4 mb-md-0">{% trans "Exit the Sagas" %}</h2>
-
-            <p class="px-5">Are you sure you want exit the exit the halls?</p>
-        </div>
-    </div>
-    <div class="row justify-content-center my-2 my-md-0 my-lg-2">
-        <div class="col-md-8 accounts-image">
-            <img src="" alt="Exit the Sagas" class="rounded mx-auto d-block">
-        </div>
-    </div>
     <div class="row justify-content-center mt-4 mt-md-3 mt-lg-4">
         <div class="col-md-8">
             <form class="logout" action="{% url 'account_logout' %}" method="post">
@@ -27,10 +23,10 @@
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                 {% endif %}
-                <button class="btn btn-signup" type="submit">{% trans "Leave the Halls" %}</button>
+                <button class="btn btn-signup" type="submit">{% trans "Log Out" %}</button>
             </form>
         </div>
     </div>
 </div>
 
-{% endblock content %}
+{% endblock %}

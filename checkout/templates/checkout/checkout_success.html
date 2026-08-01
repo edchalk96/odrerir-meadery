@@ -19,7 +19,7 @@
 <div class="checkout-container container-fluid mt-5 px-md-5 px-1"> 
     <div class="row align-items-start g-4">
 
-        <!-- Checkout Summary Section -->
+        <!-- Order Summary Section -->
         <div class="col-12 col-md-4 order-1 order-md-2 px-3 mb-4 mb-md-0 totals-summary">
             <div class="card p-3">
                 <h3 class="mb-3 text-center">Order Summary ({{ product_count }})</h3>
@@ -53,58 +53,36 @@
             </div>
         </div>
 
-        <!-- Delivery Details Section -->
+        <!-- Order Info Section -->
         <div class="col-12 col-md-8 order-2 order-md-1 px-3 delivery-details">
-            <p class="text-muted">Please fill out the form below to complete your order:</p>
-            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
-                {% csrf_token %}
-                <fieldset class="rounded mb-5">
-                    <legend class="fieldset-label w-auto">Details</legend>
-                    {{ order_form.full_name | as_crispy_field }}
-                    {{ order_form.email | as_crispy_field }}
-                </fieldset>
-                <fieldset class="rounded mb-5">
-                    <legend class="fieldset-label w-auto">Delivery</legend>
-                    {{ order_form.phone_number | as_crispy_field }}
-                    {{ order_form.street_address1 | as_crispy_field }}
-                    {{ order_form.street_address2 | as_crispy_field }}
-                    {{ order_form.town_or_city | as_crispy_field }}
-                    {{ order_form.postcode | as_crispy_field }}
-                    {{ order_form.county | as_crispy_field }}
-                    {{ order_form.country | as_crispy_field }}
-                    <div class="form-check form-check-inline p-0 mt-2">
-						{% if user.is_authenticated %}
-							<label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
-                            <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
-						{% else %}
-							<label class="form-check-label" for="id-save-info">
-                                <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
-                                <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
-                            </label>
-						{% endif %}
-					</div>
-                </fieldset>
-                <fieldset class="">
-                    <legend class="fieldset-label w-auto">Payment</legend>
-                    <div class="mb-3" id="card-element"></div>
-                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
-                    <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                </fieldset>
-                <div class="submit-button mt-5 mb-2">                    
-					<button id="submit-button" class="btn">
-						<span>Complete Order</span>
-						<span class="icon">
-							<i class="fa-solid fa-lock"></i>
-						</span>
-					</button>
-					<p class="text-danger my-1">
-						<span class="icon">
-							<i class="fa-solid fa-circle-exclamation"></i>
-						</span>
-						<span>Your card will be charged <strong class="checkout-total">£{{ grand_total|floatformat:2 }}</strong></span>
-					</p>
-				</div>
-            </form>
+            <p class="text-muted">Thank you for your order! A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>       
+        </div>
+
+        <div class="col-12 col-md-8 order-2 order-md-1 px-3 delivery-details">
+            <p>Order Info:</p>
+            <ul class="list-unstyled">
+                <li><strong>Order Number:</strong> {{ order.order_number }}</li>
+                <li><strong>Date:</strong> {{ order.date }}</li>
+                <li><strong>Full Name:</strong> {{ order.full_name }}</li>
+                <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
+                <li><strong>Address 1:</strong> {{ order.address_1 }}</li>
+                {% if order.address_2 %}
+                    <li><strong>Address 2:</strong> {{ order.address_2 }}</li>
+                {% endif %}
+                <li><strong>Town/City:</strong> {{ order.town_or_city }}</li>
+                {% if order.county %}
+                    <li><strong>County:</strong> {{ order.county }}</li>
+                {% endif %}
+                <li><strong>Postcode:</strong> {{ order.postcode }}</li>
+                <li><strong>Country:</strong> {{ order.country.name }}</li>   
+            </ul>    
+        </div>
+
+        <div class="col-12 col-md-8 order-2 order-md-1 px-3 delivery-details">
+            {% if from_profile %}
+                <a href="{% url 'profile' %}" class="btn">Return to Profile</a>    
+            {% endif %}
+            <span>Do you have any of your own ideas for mead flavours?</span><a href="{% url 'sandbox' %}">Submit them here!</a>
         </div>
     </div>
 </div>

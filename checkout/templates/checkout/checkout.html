@@ -25,16 +25,13 @@
                 <h3 class="mb-3 text-center">Order Summary ({{ product_count }})</h3>
                 <p>Need to amend your order? <a href="{% url 'basket' %}">Edit Order</a></p>
 
-                {% for item in bag_items %}
+                {% for item in basket_items %}
                     <div class="d-flex justify-content-between mb-2">
                         <p class="mb-0">{{ item.product.name }} | {{ item.volume }}</p>
                         <p class="mb-0">Qty: {{ item.quantity }}</p>
                         <p class="mb-0 checkout-total">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                     </div>
                 {% endfor %}
-                {% if not forloop.last %}
-                    <hr class="my-2">
-                {% endif %}
 
                 <div class="d-flex justify-content-between my-2 border-top pt-2">
                     <p class="mb-0">Subtotal:</p>
