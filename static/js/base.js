@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Toast Functionality
+// Toast Functionality | Adapted from https://colorlib.com/wp/bootstrap-toasts/ | https://codepen.io/nttoan1202/pen/OJzvQQN */
 
 function showDjangoToasts() {
     const toasts = document.querySelectorAll("#toast-container .toast");

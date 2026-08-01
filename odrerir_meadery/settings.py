@@ -29,7 +29,7 @@ ALLAUTH_TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates', 'allauth')
 SECRET_KEY = 'django-insecure-+be_3g6dihj*x)qb_zzz9e45t%2d#2#22plhjbs7gn8)1tf(k2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -90,6 +90,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'basket.contexts.basket_contents',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ],
         },
     },
 ]
@@ -111,13 +115,17 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 ACCOUNT_LOGIN_METHODS = {'email', 'username'}
 ACCOUNT_UNIQUE_EMAIL = True
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = 'Óðrerir Meadery <odrerirmeadery@gmail.com>'
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'Óðrerir Meadery <odrerirmeadery@gmail.com>'
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+    DEFAULT_FROM_EMAIL = 'Óðrerir Meadery <odrerirmeadery@gmail.com>'
 
 LOGIN_URL = 'accounts/login/'
 LOGIN_REDIRECT_URL = '/'
@@ -161,6 +169,8 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -176,3 +186,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'media')
 
 FREE_DELIVERY_THRESHOLD = 60
 STANDARD_DELIVERY_PERCENTAGE = 10
+
+# Stripe settings
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
+STRIPE_CURRENCY = 'gbp'
