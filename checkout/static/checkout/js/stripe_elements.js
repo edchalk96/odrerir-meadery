@@ -1,26 +1,36 @@
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
-var elements = stripe.elements();
-var style = {
-    base: {
-        color: '#000',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-            color: '#aab7c4'
-        }
-    },
-    invalid: {
-        color: '#dc3545',
-        iconColor: '#dc3545'
+
+var appearance = {
+    theme: 'stripe',
+    variables: {
+        colorPrimary: '#000000',
+        colorBackground: '#ffffff',
+        colorText: '#000000',
+        colorDanger: '#dc3545',
+        fontFamily: 'Helvetica Neue, Helvetica, sans-serif',
+        borderRadius: '4px',
     }
 };
-var card = elements.create('card', {style: style});
-card.mount('#card-element');
 
-card.addEventListener('change', function (event) {
+var elements = stripe.elements({
+    clientSecret: clientSecret,
+    appearance: appearance
+});
+
+
+var paymentElementOptions = {
+    layout: {
+        type: 'tabs',
+        defaultCollapsed: false,
+    },
+};
+
+var paymentElement = elements.create('payment', paymentElementOptions);
+paymentElement.mount('#payment-element');
+
+paymentElement.on('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
     if (event.error) {
         var html = `
@@ -39,7 +49,7 @@ var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
     ev.preventDefault();
-    card.update({ 'disabled': true});
+    
     $('#submit-button').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
@@ -58,34 +68,38 @@ form.addEventListener('submit', function(ev) {
             return element && element.value ? element.value.trim() : '';
         }
 
-        stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: card,
-                billing_details: {
+        stripe.confirmPayment({
+            elements: elements,
+            confirmParams: {
+                return_url: window.location.origin + '/checkout/checkout_success/',
+                payment_method_data: {
+                    billing_details: {
+                        name: getValue(form.full_name),
+                        phone: getValue(form.phone_number),
+                        email: getValue(form.email),
+                        address: {
+                            line1: getValue(form.street_address1),
+                            line2: getValue(form.street_address2),
+                            city: getValue(form.town_or_city),
+                            country: getValue(form.country),
+                            state: getValue(form.county),
+                        }
+                    }
+                },
+                shipping: {
                     name: getValue(form.full_name),
                     phone: getValue(form.phone_number),
-                    email: getValue(form.email),
-                    address:{
+                    address: {
                         line1: getValue(form.street_address1),
                         line2: getValue(form.street_address2),
                         city: getValue(form.town_or_city),
                         country: getValue(form.country),
+                        postal_code: getValue(form.postcode),
                         state: getValue(form.county),
                     }
                 }
             },
-            shipping: {
-                name: getValue(form.full_name),
-                phone: getValue(form.phone_number),
-                address: {
-                    line1: getValue(form.street_address1),
-                    line2: getValue(form.street_address2),
-                    city: getValue(form.town_or_city),
-                    country: getValue(form.country),
-                    postal_code: getValue(form.postcode),
-                    state: getValue(form.county),
-                }
-            },
+            redirect: 'if_required'
         }).then(function(result) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
@@ -97,16 +111,14 @@ form.addEventListener('submit', function(ev) {
                 $(errorDiv).html(html);
                 $('#payment-form').fadeToggle(100);
                 $('#loading-overlay').fadeToggle(100);
-                card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
-                if (result.paymentIntent.status === 'succeeded') {
+                if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
                     form.submit();
                 }
             }
         });
     }).fail(function () {
-        // just reload the page, the error will be in django messages
         location.reload();
     })
 });

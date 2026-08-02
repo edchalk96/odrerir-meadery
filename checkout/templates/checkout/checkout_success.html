@@ -22,67 +22,68 @@
         <!-- Order Summary Section -->
         <div class="col-12 col-md-4 order-1 order-md-2 px-3 mb-4 mb-md-0 totals-summary">
             <div class="card p-3">
-                <h3 class="mb-3 text-center">Order Summary ({{ product_count }})</h3>
-                <p>Need to amend your order? <a href="{% url 'basket' %}">Edit Order</a></p>
+                <h3 class="mb-3 text-center">Order Summary</h3>
 
-                {% for item in bag_items %}
+                {% for item in order.lineitems.all %}
                     <div class="d-flex justify-content-between mb-2">
-                        <p class="mb-0">{{ item.product.name }} | {{ item.volume }}</p>
+                        <p class="mb-0">{{ item.product.name }} | {{ item.product_volume }}</p>
                         <p class="mb-0">Qty: {{ item.quantity }}</p>
                         <p class="mb-0 checkout-total">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                     </div>
                 {% endfor %}
-                {% if not forloop.last %}
-                    <hr class="my-2">
-                {% endif %}
 
                 <div class="d-flex justify-content-between my-2 border-top pt-2">
                     <p class="mb-0">Subtotal:</p>
-                    <p class="mb-0 checkout-total">£{{ total | floatformat:2 }}</p>
+                    <p class="mb-0 checkout-total">£{{ order.order_total | floatformat:2 }}</p>
                 </div>
 
                 <div class="d-flex justify-content-between my-2 pt-2">
                     <p class="mb-0">Delivery:</p>
-                    <p class="mb-0 checkout-total">£{{ delivery | floatformat:2 }}</p>
+                    <p class="mb-0 checkout-total">£{{ order.delivery_cost | floatformat:2 }}</p>
                 </div>
 
                 <div class="d-flex justify-content-between my-2 border-top pt-2">
                     <p class="mb-0"><strong>Total:</strong></p>
-                    <p class="mb-0 checkout-total">£{{ grand_total | floatformat:2 }}</p>
+                    <p class="mb-0 checkout-total">£{{ order.grand_total | floatformat:2 }}</p>
                 </div>
             </div>
         </div>
 
         <!-- Order Info Section -->
         <div class="col-12 col-md-8 order-2 order-md-1 px-3 delivery-details">
-            <p class="text-muted">Thank you for your order! A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>       
-        </div>
+            <div>
+                <p class="text-muted">Thank you for your order! A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+            </div>
+            
+            <div class="mb-4">
+                <p class="mb-3">Order Info:</p>
+                <ul class="list-unstyled">
+                    <li><strong>Order Number:</strong> {{ order.order_number }}</li>
+                    <li><strong>Date:</strong> {{ order.date }}</li>
+                    <li><strong>Full Name:</strong> {{ order.full_name }}</li>
+                    <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
+                    <li><strong>Address 1:</strong> {{ order.address_1 }}</li>
+                    {% if order.address_2 %}
+                        <li><strong>Address 2:</strong> {{ order.address_2 }}</li>
+                    {% endif %}
+                    <li><strong>Town/City:</strong> {{ order.town_or_city }}</li>
+                    {% if order.county %}
+                        <li><strong>County:</strong> {{ order.county }}</li>
+                    {% endif %}
+                    <li><strong>Postcode:</strong> {{ order.postcode }}</li>
+                    <li><strong>Country:</strong> {{ order.country.name }}</li>   
+                </ul>  
+            </div>
 
-        <div class="col-12 col-md-8 order-2 order-md-1 px-3 delivery-details">
-            <p>Order Info:</p>
-            <ul class="list-unstyled">
-                <li><strong>Order Number:</strong> {{ order.order_number }}</li>
-                <li><strong>Date:</strong> {{ order.date }}</li>
-                <li><strong>Full Name:</strong> {{ order.full_name }}</li>
-                <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
-                <li><strong>Address 1:</strong> {{ order.address_1 }}</li>
-                {% if order.address_2 %}
-                    <li><strong>Address 2:</strong> {{ order.address_2 }}</li>
-                {% endif %}
-                <li><strong>Town/City:</strong> {{ order.town_or_city }}</li>
-                {% if order.county %}
-                    <li><strong>County:</strong> {{ order.county }}</li>
-                {% endif %}
-                <li><strong>Postcode:</strong> {{ order.postcode }}</li>
-                <li><strong>Country:</strong> {{ order.country.name }}</li>   
-            </ul>    
-        </div>
-
-        <div class="col-12 col-md-8 order-2 order-md-1 px-3 delivery-details">
             {% if from_profile %}
-                <a href="{% url 'profile' %}" class="btn">Return to Profile</a>    
+                <div class="my-3">
+                    <a href="{% url 'profile' %}" class="btn">Return to Profile</a>
+                </div>
             {% endif %}
-            <span>Do you have any of your own ideas for mead flavours?</span><a href="{% url 'sandbox' %}">Submit them here!</a>
+
+            <div class="mt-4 pt-3 border-top">
+                <span>Do you have any of your own ideas for mead flavours?</span><a href="{% url 'sandbox' %}">Submit them here!</a>
+            </div>
         </div>
     </div>
 </div>

@@ -82,56 +82,7 @@
     text-decoration: underline;
 }
 
-/* Stripe styling */
-
-.StripeElement,
-.stripe-style-input {
-  box-sizing: border-box;
-  height: 40px;
-  padding: 10px 12px;
-  border: 1px solid transparent;
-  border-radius: 0px;
-  background-color: white;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
-}
-
-.StripeElement--focus,
-.stripe-style-input:focus,
-.stripe-style-input:active {
-  box-shadow: 0 1px 3px 0 #cfd7df;
-}
-
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
-}
-
-.stripe-style-input::placeholder {
-    color: #aab7c4;
-}
-
-.fieldset-label {
-    position: relative;
-    right: .5rem;
-}
-
-#payment-form .form-control,
-#card-element {
-    color: #000;
-    border: 1px solid #000;
-}
-
-select, 
-select option {
-    color: #000000;
-}
-
-select:invalid,
-select option[value=""] {
-    color: #aab7c4 !important;
-}
-
+/* Loading Overlay */
 
 #loading-overlay {
 	display: none;
@@ -140,14 +91,71 @@ select option[value=""] {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(23, 162, 184, .85);
+    background: rgba(229, 169, 60, 0.9);
     z-index: 9999;
 }
 
-.loading-spinner {
-	display: flex;
+.bee-spinner-container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0;
     height: 100%;
+    gap: 20px;
+}
+
+.bee-orbit {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border: 3px dashed #1A1917;
+    border-radius: 50%;
+    animation: beeSpin 2.5s linear infinite;
+}
+
+.bee-wrapper {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bee-icon {
+    transform: rotate(90deg);
+    width: 50px;
+    height: 50px;
+    box-shadow: none;
+    margin: 0 16px;
+    padding: 0 8px;
+    display: block;
+}
+
+.dashed-line {
+    stroke: #1A1917;
+    stroke-width: 2px;
+    stroke-dasharray: 8px 246px;
+    stroke-linecap: round;
+}
+
+.loading-text {
+    color: #1A1917;
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+@keyframes beeSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
