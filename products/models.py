@@ -88,6 +88,12 @@ class Product(models.Model):
     def review_count(self):
         return self.reviews.count()
 
+    def get_user_rating(self, user):
+        if not user.is_authenticated:
+            return None
+        review = self.reviews.filter(user=user).first()
+        return review.rating if review else None
+
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')

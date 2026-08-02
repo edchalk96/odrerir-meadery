@@ -1,7 +1,11 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models.functions import Lower
-from django.shortcuts import render, get_object_or_404
-from .models import Product, Category
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Product, Category, Review
+from .forms import ReviewForm
+from checkout.models import OrderLineItem
 
 
 def all_products(request):
@@ -66,3 +70,39 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+@login_required
+def add_review(request, product_id):
+    """ A view to add a review for a product """
+
+    product = get_object_or_404(Product, pk=product_id)
+    order_number = request.GET.get('order_number')
+
+    has_purchased = OrderLineItem.objects.filter(order__user_profile__user=request.user, product=product).exists()
+
+    if not has_purchased:
+        messages.error(request, "You can only rate products you have purchased.")
+        return redirect('product_detail', product_id=product.id)
+
+    existing_review = Review.objects.filter(product=product, user=request.user).first()
+    if existing_review:
+        messages.error(request, "You have already rated this product.")
+        if order_number:
+            return redirect('order_history', order_number=order_number)
+        return redirect(request.META.get('HTTP_REFERER', 'profile'))
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.user = request.user
+            review.save()
+            messages.success(request, f"Thank you for rating {product.name}!")
+
+            if order_number:
+                return redirect('order_history', order_number=order_number)
+            return redirect(request.META.get('HTTP_REFERER', 'profile'))
+
+    return redirect(request.META.get('HTTP_REFERER', 'profile'))

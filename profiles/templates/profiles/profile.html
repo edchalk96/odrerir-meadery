@@ -16,6 +16,12 @@
 </div>
 
 <div class="profile-container container-fluid mt-5 px-md-5 px-1"> 
+    <div class="row mb-5">
+        <div class="col-12 text-center mx-5">
+            <p><i class="fa-solid fa-star ms-1"></i> Please leave a product rating by going to your specific order number link <i class="fa-solid fa-star ms-1"></i></p>
+        </div>
+    </div>
+
     <div class="row align-items-start g-4">
 
         <!-- Order History Section -->
@@ -56,7 +62,7 @@
                                             {% endfor %}
                                         </ul>
                                     </td>
-                                    <td>${{ order.grand_total }}</td>
+                                    <td>£{{ order.grand_total|floatformat:2 }}</td>
                                 </tr>
                             {% endfor %}
                             {% if not forloop.last %}

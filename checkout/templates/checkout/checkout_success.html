@@ -26,10 +26,33 @@
 
                 {% for item in order.lineitems.all %}
                     <div class="d-flex justify-content-between mb-2">
-                        <p class="mb-0">{{ item.product.name }} | {{ item.product_volume }}</p>
+                        <p class="mb-0">{{ item.product.name }} {% if item.product_volume %}| {{ item.product_volume }}{% endif %}</p>
                         <p class="mb-0">Qty: {{ item.quantity }}</p>
                         <p class="mb-0 checkout-total">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                     </div>
+
+                    {% if request.user.is_authenticated %}
+                        {% for review in item.product.reviews.all %}
+                            {% if review.user == request.user %}
+                                <span class="badge">Rated:<strong class="ms-2">{{ review.rating }}<i class="fa-solid fa-star ms-1"></i></strong></span>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if item.product.id not in user_reviewed_products_ids %}
+                            <form action="{% url 'add_review' item.product.id %}" method="POST" class="d-flex align-items-center gap-2">
+                                {% csrf_token %}
+                                <select name="rating" class="form-select form-select-sm w-auto" required>
+                                  <option value="" disabled selected>Rate product...</option>
+                                  <option value="5">★★★★★ (5/5)</option>
+                                  <option value="4">★★★★☆ (4/5)</option>
+                                  <option value="3">★★★☆☆ (3/5)</option>
+                                  <option value="2">★★☆☆☆ (2/5)</option>
+                                  <option value="1">★☆☆☆☆ (1/5)</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-outline-dark">Submit</button>
+                            </form>
+                        {% endif %}
+                    {% endif %}
                 {% endfor %}
 
                 <div class="d-flex justify-content-between my-2 border-top pt-2">
@@ -52,9 +75,13 @@
         <!-- Order Info Section -->
         <div class="col-12 col-md-8 order-2 order-md-1 px-3 delivery-details">
             <div>
-                <p class="text-muted">Thank you for your order! A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+                <p>Thank you for your order! A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
             </div>
-            
+
+            <div>
+                <p>A taste well worth sharing? Leave a quick rating for the items in your order summary—your feedback helps keep the mead flowing!</p>
+            </div>
+
             <div class="mb-4">
                 <p class="mb-3">Order Info:</p>
                 <ul class="list-unstyled">
