@@ -1,3 +1,4 @@
+from decimal import Decimal
 import uuid
 
 from django.conf import settings
@@ -70,7 +71,7 @@ class OrderLineItem(models.Model):
     def save(self, *args, **kwargs):
         """
         Override the original save method to calculate the volume-adjusted
-        unit price, set the lineitem total, and save.
+        unit price, set the lineitem total, deduct product stock and save.
         """
 
         if self.product_volume:
@@ -79,6 +80,12 @@ class OrderLineItem(models.Model):
             unit_price = self.product.price
         
         self.lineitem_total = unit_price * self.quantity
+
+        if not self.pk:
+            volume_in_liters = self.product.get_volume_in_liters(self.product_volume)
+            total_deduction = volume_in_liters * Decimal(str(self.quantity))
+            self.product.stock_level -= total_deduction
+            self.product.save()
         super().save(*args, **kwargs)
 
     def __str__(self):

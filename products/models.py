@@ -37,6 +37,12 @@ class Product(models.Model):
         '4L': Decimal('5.0'),
     }
 
+    VOLUME_LITERS = {
+        '500ML': Decimal('0.5'),
+        '1L': Decimal('1.0'),
+        '4L': Decimal('4.0'),
+    }
+
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     mead_type = models.ForeignKey('Category', on_delete=models.PROTECT)
@@ -46,7 +52,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2, help_text="Base price for 500ml bottle")
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    stock_level = models.PositiveIntegerField(default=0)
+    stock_level = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.0'), help_text="Stock level in liters")
     clearance = models.BooleanField(default=False)
     most_popular = models.BooleanField(default=False)
 
@@ -78,6 +84,16 @@ class Product(models.Model):
     @property
     def price_4l(self):
         return self.calculate_price_for_volume('4L')
+
+    def get_volume_in_liters(self, volume_code):
+        if volume_code and volume_code in self.VOLUME_LITERS:
+            return self.VOLUME_LITERS[volume_code]
+        return Decimal('1.0')  
+
+    def has_sufficient_stock(self, requested_quantity, volume_code=None):
+        liters_per_unit = self.get_volume_in_liters(volume_code)
+        total_requested = liters_per_unit * Decimal(str(requested_quantity))
+        return self.stock_level >= total_requested
 
     @property
     def average_rating(self):
