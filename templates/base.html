@@ -81,7 +81,7 @@
 
                                 <!-- Full width dropdown link to categorised product pages | Credit to https://github.com/mdbootstrap/bootstrap-mega-menu for Mega Menu code -->
                                 <li class="nav-item dropdown position-static mx-4">
-                                    <a class="nav-link dropdown-toggle dropdown-toggle-split {% if products_url in request.path %}active{% endif %} py-md-2 py-lg-0" data-bs-display="static" href="#" id="navbarDropdownProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle dropdown-toggle-split {% if request.resolver_match.url_name != 'add_product' and 'products' in request.path %}active{% endif %} py-md-2 py-lg-0" data-bs-display="static" href="#" id="navbarDropdownProducts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Products
                                     </a>
 
@@ -142,7 +142,7 @@
                                 </li>
                                 {% if user.is_staff %}
                                     <li class="nav-item mx-4">
-                                        <a class="nav-link {% if request.path == add_product_url %}active{% endif %} py-md-2 py-lg-0" href="#">Add Product</a> <!-- % url 'add_product' %} -->
+                                        <a class="nav-link {% if request.resolver_match.url_name == 'add_product' %}active{% endif %} py-md-2 py-lg-0" href="{% url 'add_product' %}">Add Product</a>
                                     </li>
                                 {% endif %}
                             </ul>

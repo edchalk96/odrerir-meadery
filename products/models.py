@@ -52,7 +52,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2, help_text="Base price for 500ml bottle")
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    stock_level = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.0'), help_text="Stock level in liters")
+    stock_level = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.0'), help_text="Stock level in liters if applicable, otherwise in units")
     clearance = models.BooleanField(default=False)
     most_popular = models.BooleanField(default=False)
 
