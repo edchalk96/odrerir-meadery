@@ -31,8 +31,11 @@ SECRET_KEY = 'django-insecure-+be_3g6dihj*x)qb_zzz9e45t%2d#2#22plhjbs7gn8)1tf(k2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'odrerir-meadery.herokuapp.com',
+]
 
 # Application definition
 

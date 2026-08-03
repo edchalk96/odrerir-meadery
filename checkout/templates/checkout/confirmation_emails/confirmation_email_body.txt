@@ -1,0 +1,23 @@
+Skál, {{ order.full_name }}!
+
+Thank you for choosing Óðrerir Meadery. We’ve received your order, and our team is preparing your batch for shipment!
+
+Here are the details of your order:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}
+
+Order Total: £{{ order.order_total }}
+Delivery: £{{ order.delivery_cost }}
+Grand Total: £{{ order.grand_total }}
+
+Your hall-worthy delivery will be sent to:
+{{ order.street_address1 }}, {{ order.town_or_city }}, {{ order.country }}
+
+We have your contact number on record as: {{ order.phone_number }}
+
+If you need to make any changes or have any questions about your order, please reach out to us at {{ contact_email }}.
+
+Many Thanks,
+
+The Óðrerir Meadery Team
