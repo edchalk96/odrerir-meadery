@@ -1,0 +1,1 @@
+web: gunicorn odrerir_meadery.wsgi:application
