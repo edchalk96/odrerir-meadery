@@ -196,3 +196,7 @@
     transform: scale(1.15);
     transition: transform 0.15s ease-in-out;
 }
+
+.select2-container--open {
+    z-index: 1060 !important;
+}

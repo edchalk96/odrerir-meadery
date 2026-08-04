@@ -66,7 +66,7 @@
             </div>
 
             {% if user.is_staff or idea.author == user %}
-                <div id="adminButtons" class="mt-4">
+                <div id="ideaButtons" class="mt-4">
                     <button class="btn edit-btn" type="button" data-bs-toggle="modal" data-bs-target="#editIdeaModal">Edit</button>
                     <button class="btn delete-btn" type="button" data-bs-toggle="modal" data-bs-target="#deleteIdeaModal">Delete</button>
                 </div>
@@ -74,14 +74,15 @@
                 <div class="modal fade" id="editIdeaModal" tabindex="-1" aria-labelledby="editIdeaModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form method="POST" enctype="multipart/form-data" action="">
+                            <form method="POST" enctype="multipart/form-data" action="{% url 'idea_detail' idea.id %}">
                                 {% csrf_token %}
                                 <div class="modal-body">
                                     <h5 class="text-center">Edit {{ idea.title }}</h5>
+                                    {{ edit_idea_form | crispy }}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn edit-btn">Edit</button>
+                                    <button type="submit" class="btn edit-btn" name="submit_edit_idea">Edit</button>
                                 </div>
                             </form>
                         </div>
@@ -99,7 +100,10 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
-                                <button href="#" class="btn delete-btn">Delete</button>
+                                <form action="{% url 'delete_idea' idea.id %}" method="POST" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn delete-btn">Delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -162,7 +166,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn close-btn" data-bs-dismiss="modal">Close</button>
-                <a id="deleteConfirm" href="#" class="btn delete-btn">Delete</a>
+                <a id="deleteConfirm" href="" class="btn delete-btn">Delete</a>
             </div>
         </div>
     </div>

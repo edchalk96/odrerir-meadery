@@ -7,7 +7,10 @@ class IdeaForm(forms.ModelForm):
     class Meta:
         model = FlavourSandboxIdea
         fields = ['title', 'ingredients', 'mead_type', 'content',]
-        widgets = {'mead_type': s2forms.Select2MultipleWidget(attrs={'data-placeholder': 'Leave blank or select mead type...', 'data-allow-clear': 'true', 'style': 'width: 100%'})}
+        widgets = {
+            'mead_type': s2forms.Select2Widget(attrs={'data-placeholder': 'Select mead type...', 'data-allow-clear': 'true', 'style': 'width: 100%'}),
+            'content': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Describe your flavour idea...',}),
+            }
 
     def __init__(self, *args, **kwargs):
         super(IdeaForm, self).__init__(*args, **kwargs)

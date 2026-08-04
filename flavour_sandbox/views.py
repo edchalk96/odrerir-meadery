@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.db.models import Count
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .forms import CommentForm, IdeaForm
 from .models import FlavourSandboxIdea, Comment
 
@@ -9,6 +9,24 @@ from .models import FlavourSandboxIdea, Comment
 def sandbox_list(request):
     """ View to display all, approved, sandbox idea posts and sorting """
     ideas = FlavourSandboxIdea.objects.filter(approved=True)
+
+    if request.method == "POST":
+        if not request.user.is_authenticated:
+            messages.error(request, 'Please log in or sign up to add a flavour idea!')
+            return redirect("account_login")
+
+        idea_form = IdeaForm(request.POST, request.FILES)
+        if idea_form.is_valid():
+            idea = idea_form.save(commit=False)
+            idea.author = request.user
+            idea.approved = False
+            idea.save()
+            messages.success(request, 'Your Flavour Idea has been submitted and is awaiting approval.')
+            return redirect("sandbox")
+        else:
+            messages.error(request, 'There was an error with your submission. Please check the form and try again.')
+    else:
+        idea_form = IdeaForm()
 
     sort = None
     direction = None
@@ -45,6 +63,7 @@ def sandbox_list(request):
         "is_paginated": page_obj.has_other_pages(),
         "sort": sort,
         "direction": direction,
+        "idea_form": idea_form,
     }
 
     return render(request, 'flavour_sandbox/flavour_sandbox.html', context)
@@ -78,14 +97,21 @@ def idea_detail(request, idea_id):
                 return redirect("idea_detail", idea_id)
 
         if "submit_edit_idea" in request.POST:
+            if not request.user.is_authenticated or request.user != idea.author:
+                messages.add_message(request, messages.ERROR, "You are not authorised to edit this idea.")
+                return redirect("idea_detail", idea_id)
+
             edit_idea_form = IdeaForm(data=request.POST, instance=idea, files=request.FILES)
+
             if edit_idea_form.is_valid():
                 idea = edit_idea_form.save(commit=False)
-                idea.status = 0
+                idea.approved = False
                 idea.save()
                 edit_idea_form.save_m2m()
-                messages.add_message(request, messages.SUCCESS, "Your Flavour Sandbox post has been edited and is waiting approval")
+                messages.add_message(request, messages.SUCCESS, "Your Flavour Idea has been edited and is waiting approval")
                 return redirect("sandbox")
+            else:
+                messages.add_message(request, messages.ERROR, "There was an error with your submission. Please check the form and try again.")
 
     context = {
         'idea': idea,
@@ -98,6 +124,22 @@ def idea_detail(request, idea_id):
     return render(request, 'flavour_sandbox/idea_detail.html', context)
 
 
+def delete_idea(request, idea_id):
+    """ A view to delete a flavour sandbox idea """
+
+    if not request.user.is_authenticated or request.user != get_object_or_404(FlavourSandboxIdea, pk=idea_id).author:
+        messages.add_message(request, messages.ERROR, 'You are not authorised to delete this idea!')
+
+    idea = get_object_or_404(FlavourSandboxIdea, pk=idea_id)
+
+    if request.method == 'POST':
+        idea.delete()
+        messages.success(request, f'Successfully deleted {idea.title}!')
+        return redirect(reverse('sandbox'))
+
+    messages.error(request, 'Invalid request method for idea deletion.')
+    return redirect(reverse('product_detail', args=[idea.id]))
+    
 def like_idea(request, pk):
     """ A view to enable users to like another users idea"""
 

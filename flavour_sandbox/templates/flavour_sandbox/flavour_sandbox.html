@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'flavour_sandbox/css/flavour_sandbox.css' %}">
+    {{ idea_form.media.css }}
 {% endblock %}
 
 {% block content %}
@@ -19,10 +21,10 @@
 
 <div class="container sandbox-ideas-container">
 
-    <!-- Sort function -->
-    <div class="row sorting-wrapper mt-3 mb-2">
-        <div class="col-md-8 justify-content-start">
-            <div class="dropdown sort-select-wrapper w-50">
+    <!-- Sort function & Add Idea-->
+    <div class="row sorting-wrapper mt-3 mb-2 align-items-center justify-content-between">
+        <div class="col-6 col-md-4">
+            <div class="dropdown sort-select-wrapper w-100">
                 <button class="btn dropdown-toggle w-100 text-start d-flex justify-content-between align-items-center" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <span>
                         {% if current_sorting == 'likes_desc' %}Most Liked
@@ -30,6 +32,7 @@
                         {% elif current_sorting == 'created_on_asc' %}Oldest First
                         {% else %}Sort by...{% endif %}
                     </span>
+                    <i class="fa-solid fa-chevron-down ms-2"></i>
                 </button>
                 <ul class="dropdown-menu w-100" aria-labelledby="sortDropdown">
                     <li>
@@ -57,6 +60,28 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+        </div>
+
+        <div class="col-auto text-end" id="addIdeaButton">
+            <button class="btn add-btn" type="button" data-bs-toggle="modal" data-bs-target="#addIdeaModal">Add Idea</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addIdeaModal" tabindex="-1" aria-labelledby="addIdeaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="{% url 'sandbox' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <h5 class="text-center">Add Flavour Idea</h5>
+                        {{ idea_form | crispy }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn edit-btn" name="edit_product">Submit Idea</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -140,5 +165,19 @@
 {% endblock %}
 
 {% block postloadjs %}
-<script src="{% static 'flavour_sandbox/js/flavour_sandbox.js' %}"></script>    
+<script>
+    if (typeof jQuery !== 'undefined') {
+        // Fix 1: Polyfill $.isArray
+        if (typeof jQuery.isArray !== 'function') {
+            jQuery.isArray = Array.isArray;
+        }
+        
+        // Fix 2: Polyfill $.trim to safely handle numbers/non-strings
+        jQuery.trim = function(text) {
+            return text == null ? "" : (text + "").replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
+        };
+    }
+</script>
+{{ idea_form.media.js }}   
+<script src="{% static 'flavour_sandbox/js/flavour_sandbox.js' %}"></script> 
 {% endblock %}
