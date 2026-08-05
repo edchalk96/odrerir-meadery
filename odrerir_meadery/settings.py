@@ -132,7 +132,7 @@ else:
     EMAIL_USE_TLS = True
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-    DEFAULT_FROM_EMAIL = 'Óðrerir Meadery <odrerirmeadery@gmail.com>'
+    DEFAULT_FROM_EMAIL = 'odrerirmeadery@gmail.com'
 
 LOGIN_URL = 'accounts/login/'
 LOGIN_REDIRECT_URL = '/'
