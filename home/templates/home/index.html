@@ -9,7 +9,7 @@
     <!-- Hero Video | Credit to https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_video_js_prop for video code -->
     <div class="hero-video-container">
         <video autoplay muted loop id="hero-video">
-            <source src="{% static 'videos/odrerir-meadery-hero-video.mp4' %}" type="video/mp4">
+            <source src="{{ MEDIA_URL }}odrerir-meadery-hero-video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay d-flex align-items-end p-4 p-md-5">
@@ -37,7 +37,7 @@
         <div class="row align-items-start g-0">
 
             <div class="col-12 col-lg-6 px-3">
-                <img src="{% static 'images/history-of-mead-image.png' %}" alt="history of mead image" id="historyImage" class="img-fluid w-100 rounded">
+                <img src="{{ MEDIA_URL }}history-of-mead-image.png" alt="history of mead image" id="historyImage" class="img-fluid w-100 rounded">
             </div>
 
             <div class="col-12 col-lg-6 px-3">
@@ -84,7 +84,7 @@
 
             <!-- Image Column -->
             <div class="col-12 col-lg-4 order-1 order-lg-2 mb-4 mb-lg-0 d-flex align-items-center justify-content-center px-3">
-                <img src="{% static 'images/mead-types-image.png' %}" alt="Mead selection" class="img-fluid rounded shadow-sm">
+                <img src="{{ MEDIA_URL }}mead-types-image.png" alt="Mead selection" class="img-fluid rounded shadow-sm">
             </div>
 
             <!-- Hex Grid Column -->
@@ -146,7 +146,7 @@
                 <span class="banner-text">No added sulfites or preservatives</span>
             </div>
             <div class="col-3 d-flex flex-column align-items-center justify-content-center icon-box">
-                <img src="{% static 'images/uk-icon.svg' %}" alt="UK Flag" class="banner-icon banner-svg">
+                <img src="{{ MEDIA_URL }}uk-icon.svg" alt="UK Flag" class="banner-icon banner-svg">
                 <span class="banner-text">Made in the UK</span>
             </div>
             <div class="col-3 d-flex flex-column align-items-center justify-content-center icon-box">
@@ -212,7 +212,7 @@
         <div class="row align-items-start g-0">
 
             <div class="col-12 col-md-4 px-3 d-flex justify-content-center align-items-center">
-                <img src="{% static 'images/brand-logo.png' %}" alt="company logo" class="img-fluid rounded">
+                <img src="{{ MEDIA_URL }}brand-logo.png" alt="company logo" class="img-fluid rounded">
             </div>
 
             <div class="col-12 col-md-8 px-3">

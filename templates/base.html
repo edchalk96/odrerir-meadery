@@ -43,7 +43,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <!--Brand Logo-->
-    <link rel="icon" href="{% static 'images/brand-logo.png' %}">
+    <link rel="icon" href="{{ MEDIA_URL }}brand-logo.png">
     <title>Óðrerir Meadery {% block extra_title %}{% endblock %}</title>
 
 </head>
@@ -152,7 +152,7 @@
                     <!-- Logo in navbar -->
                     <div class="col-6 col-lg-auto order-2 order-lg-1 text-center text-lg-start navbar-logo px-0">
                         <a class="navbar-brand me-0" href="{% url 'home' %}">
-                            <img src="{% static 'images/brand-logo.png' %}" alt="logo">
+                            <img src="{{ MEDIA_URL }}brand-logo.png" alt="logo">
                         </a>
                     </div>
 

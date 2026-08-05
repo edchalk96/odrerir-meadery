@@ -65,7 +65,7 @@ class Product(models.Model):
             return self.image.url
         elif self.image_url:
             return self.image_url
-        return f"{settings.STATIC_URL}images/no-product-image.png"
+        return f"{settings.MEDIA_URL}no-product-image.png"
 
     @property
     def get_image_alt(self):
