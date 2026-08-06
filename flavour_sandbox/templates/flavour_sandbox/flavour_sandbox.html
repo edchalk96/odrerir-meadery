@@ -22,7 +22,7 @@
 <div class="container sandbox-ideas-container">
 
     <!-- Sort function & Add Idea-->
-    <div class="row sorting-wrapper mt-3 mb-2 align-items-center justify-content-between">
+    <div class="row sorting-wrapper mt-3 mb-2 align-items-center justify-content-between fade-in-element">
         <div class="col-6 col-md-4">
             <div class="dropdown sort-select-wrapper w-100">
                 <button class="btn dropdown-toggle w-100 text-start d-flex justify-content-between align-items-center" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -89,7 +89,7 @@
     <!-- Sandbox Idea cards -->
     <div class="row" id="sandboxRow">
         {% for idea in sandbox_list %}
-            <div class="col-12 col-md-6 col-lg-3 pb-3 px-3 mt-3">
+            <div class="col-12 col-md-6 col-lg-3 pb-3 px-3 mt-3 fade-in-element">
                 <div class="card product-card h-100 px-4 px-md-0">
                     <div class="card-body d-flex flex-column pb-3 pt-2 px-3">
                         <a href="{% url 'idea_detail' idea.id %}" class="text-decoration-none">
@@ -127,17 +127,17 @@
                 </div>
             </div>
             {% if forloop.counter|divisibleby:1 %}
-                <div class="col-12 d-md-none">
+                <div class="col-12 d-md-none fade-in-element">
                     <hr class="mx-auto">
                 </div>
             {% endif %}
             {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-none d-md-block d-lg-none">
+                <div class="col-12 d-none d-md-block d-lg-none fade-in-element">
                     <hr class="mx-auto">
                 </div>
             {% endif %}
             {% if forloop.counter|divisibleby:4 %}
-                <div class="col-12 d-none d-lg-block ">
+                <div class="col-12 d-none d-lg-block fade-in-element">
                     <hr class="mx-auto">
                 </div>
             {% endif %}
@@ -145,7 +145,7 @@
         {% endfor %}
 
         {% if is_paginated %}
-        <nav aria-label="Page navigation" class="mt-4">
+        <nav aria-label="Page navigation" class="mt-4 fade-in-element">
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
                 <li><a href="?page=1{% if sort %}&sort={{ sort }}{% endif %}{% if direction %}&direction={{ direction }}{% endif %}" class="page-link mx-1">&laquo; First</a></li>

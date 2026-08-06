@@ -1,5 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Age Verification
+    const ageModalElement = document.getElementById("ageVerificationModal");
+    if (!ageModalElement) return;
+
+    const ageModal = new bootstrap.Modal(ageModalElement, {
+        backdrop: 'static',
+        keyboard: false
+    });
+
+    const isAgeVerified = localStorage.getItem("odrerir_age_verified");
+    const modalQuestion = document.getElementById("ageModalQuestion");
+    const modalDenied = document.getElementById("ageModalDenied");
+
+    if (isAgeVerified !== "true") {
+        modalQuestion.classList.remove("d-none");
+        modalDenied.classList.add("d-none");
+        ageModal.show();
+    }
+
+    document.getElementById("btnAgeConfirm").addEventListener("click", function () {
+        localStorage.setItem("odrerir_age_verified", "true");
+        ageModal.hide();
+    });
+
+    document.getElementById("btnAgeDeny").addEventListener("click", function () {
+        modalQuestion.classList.add("d-none");
+        modalDenied.classList.remove("d-none");
+    });
+
     // Hero Video Play/Pause Toggle
     const video = document.getElementById('hero-video');
     const button = document.getElementById('video-toggle-btn');
@@ -110,6 +139,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Fade-in on scroll
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const fadeElements = document.querySelectorAll(".fade-in-element");
+    fadeElements.forEach(el => observer.observe(el));
 
     // Read more dynamic changes
     const historyCollapse = document.getElementById('historyCollapse');

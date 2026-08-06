@@ -234,7 +234,7 @@
     </main>
 
     <!--Footer-->
-    <footer class="container-fluid overflow-hidden pt-4 pb-5">
+    <footer class="container-fluid overflow-hidden pt-4 pb-5 fade-in-element">
         <div class="row footer-sections text-center g-3 gy-4 align-items-center">
 
             <!-- Contact Developer modal trigger -->
@@ -371,6 +371,50 @@
             </div>
         </div>
     </footer>
+
+    <!-- Age Verification Modal -->
+    <div class="modal fade" id="ageVerificationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen m-0">
+            <div class="modal-content age-gate-fullscreen border-0 d-flex flex-column align-items-center justify-content-center text-center p-3 p-md-5">
+                <div class="age-gate-card p-4 p-md-5">
+
+                    <!-- Primary View: Age Question -->
+                    <div id="ageModalQuestion">
+                        <div class="modal-header border-0 pb-0 justify-content-center">
+                            <h2 class="modal-title" id="ageModalLabel">Age Verification</h2>
+                        </div>
+                        <div class="modal-body py-4">
+                            <p class="mb-2">You must be <strong>18 years of age or older</strong> to enter Óðrerir Meadery.</p>
+                            <p>Please confirm your age to continue.</p>
+                        </div>
+                        <div class="modal-footer border-0 pt-0 justify-content-center gap-3">
+                            <button type="button" id="btnAgeDeny" class="btn px-4">Under 18</button>
+                            <button type="button" id="btnAgeConfirm" class="btn px-4">I am 18 or Older</button>
+                        </div>
+                    </div>
+
+                    <!-- Secondary View: Denied Text -->
+                    <div id="ageModalDenied" class="d-none">
+                        <div class="modal-header border-0 pb-0 justify-content-center">
+                            <h2 class="modal-title">Access Denied!</h2>
+                        </div>
+                        <div class="modal-body py-4">
+                            <p class="mb-2">Sorry, you must be 18 or older to view this website.</p>
+                            <p>You cannot enter or place orders at Óðrerir Meadery.</p>
+                        </div>
+                    </div>
+
+                    <!-- Persistent Drinkaware Footer -->
+                    <div class="mt-4 pt-3 border-top">
+                        <p class="mb-0">
+                            For information on responsible drinking, visit 
+                            <a href="https://www.drinkaware.co.uk/" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">drinkaware.co.uk</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="{% static 'js/base.js' %}"></script>
 
