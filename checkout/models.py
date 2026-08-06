@@ -12,7 +12,9 @@ from profiles.models import UserProfile
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     related_name='orders')
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
@@ -23,11 +25,15 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
-    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-    grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2,
+                                        null=False, default=0)
+    order_total = models.DecimalField(max_digits=10, decimal_places=2,
+                                      null=False, default=0)
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2,
+                                      null=False, default=0)
     original_basket = models.TextField(null=False, blank=False, default='')
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    stripe_pid = models.CharField(max_length=254,
+                                  null=False, blank=False, default='')
 
     def _generate_order_number(self):
         """
@@ -40,7 +46,8 @@ class Order(models.Model):
         Update grand total each time a line item is added,
         accounting for delivery costs.
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))[
+            'lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             sdp = settings.STANDARD_DELIVERY_PERCENTAGE
             self.delivery_cost = self.order_total * sdp / 100
@@ -61,12 +68,18 @@ class Order(models.Model):
     def __str__(self):
         return self.order_number
 
+
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
-    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, null=False,
+                              blank=False, on_delete=models.CASCADE,
+                              related_name='lineitems')
+    product = models.ForeignKey(Product, null=False,
+                                blank=False, on_delete=models.CASCADE)
     product_volume = models.CharField(max_length=10, null=True, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,
+                                         null=False, blank=False,
+                                         editable=False)
 
     def save(self, *args, **kwargs):
         """
@@ -75,14 +88,16 @@ class OrderLineItem(models.Model):
         """
 
         if self.product_volume:
-            unit_price = self.product.calculate_price_for_volume(self.product_volume)
+            unit_price = self.product.calculate_price_for_volume(
+                self.product_volume)
         else:
             unit_price = self.product.price
-        
+
         self.lineitem_total = unit_price * self.quantity
 
         if not self.pk:
-            volume_in_liters = self.product.get_volume_in_liters(self.product_volume)
+            volume_in_liters = self.product.get_volume_in_liters(
+                self.product_volume)
             total_deduction = volume_in_liters * Decimal(str(self.quantity))
             self.product.stock_level -= total_deduction
             self.product.save()
@@ -90,4 +105,5 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         volume_str = f' ({self.product_volume})' if self.product_volume else ''
-        return f'SKU {self.product.sku or self.product.name}{volume_str} on order {self.order.order_number}'
+        return f'SKU {self.product.sku or self.product.name}{
+            volume_str} on order {self.order.order_number}'

@@ -12,7 +12,8 @@ def sandbox_list(request):
 
     if request.method == "POST":
         if not request.user.is_authenticated:
-            messages.error(request, 'Please log in or sign up to add a flavour idea!')
+            messages.error(request,
+                           'Please log in or sign up to add a flavour idea!')
             return redirect("account_login")
 
         idea_form = IdeaForm(request.POST, request.FILES)
@@ -21,10 +22,12 @@ def sandbox_list(request):
             idea.author = request.user
             idea.approved = False
             idea.save()
-            messages.success(request, 'Your Flavour Idea has been submitted and is awaiting approval.')
+            messages.success(request,
+                             'Your Flavour Idea has been submitted and is awaiting approval.')
             return redirect("sandbox")
         else:
-            messages.error(request, 'There was an error with your submission. Please check the form and try again.')
+            messages.error(request,
+                           'There was an error with your submission. Please check the form and try again.')
     else:
         idea_form = IdeaForm()
 
@@ -51,7 +54,7 @@ def sandbox_list(request):
 
     current_sorting = f'{sort}_{direction}'
 
-    paginator = Paginator(ideas, 12) # Show 12 products per page
+    paginator = Paginator(ideas, 12)  # Show 12 products per page
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -68,13 +71,15 @@ def sandbox_list(request):
 
     return render(request, 'flavour_sandbox/flavour_sandbox.html', context)
 
-def idea_detail(request, idea_id):    
+
+def idea_detail(request, idea_id):
     """ A view to show individual idea details """
 
     queryset = FlavourSandboxIdea.objects.filter(approved=True)
     idea = get_object_or_404(queryset, pk=idea_id)
     comments = idea.comments.all().order_by("-created_on")
-    comment_count = idea.comments.filter(approved=True, parent__isnull=True).count()
+    comment_count = idea.comments.filter(
+        approved=True, parent__isnull=True).count()
 
     comment_form = CommentForm()
     edit_idea_form = IdeaForm(instance=idea)
@@ -93,25 +98,34 @@ def idea_detail(request, idea_id):
                     comment.parent = Comment.objects.get(id=parent_id)
                 comment.save()
 
-                messages.add_message(request, messages.SUCCESS, "Your comment has been submitted and is awaiting approval.")
+                messages.add_message(request, messages.SUCCESS,
+                                     "Your comment has been submitted and "
+                                     "is awaiting approval.")
                 return redirect("idea_detail", idea_id)
 
         if "submit_edit_idea" in request.POST:
             if not request.user.is_authenticated or request.user != idea.author:
-                messages.add_message(request, messages.ERROR, "You are not authorised to edit this idea.")
+                messages.add_message(request, messages.ERROR,
+                                     "You are not authorised to "
+                                     "edit this idea.")
                 return redirect("idea_detail", idea_id)
 
-            edit_idea_form = IdeaForm(data=request.POST, instance=idea, files=request.FILES)
+            edit_idea_form = IdeaForm(data=request.POST,
+                                      instance=idea, files=request.FILES)
 
             if edit_idea_form.is_valid():
                 idea = edit_idea_form.save(commit=False)
                 idea.approved = False
                 idea.save()
                 edit_idea_form.save_m2m()
-                messages.add_message(request, messages.SUCCESS, "Your Flavour Idea has been edited and is waiting approval")
+                messages.add_message(request, messages.SUCCESS,
+                                     "Your Flavour Idea has been edited "
+                                     "and is waiting approval")
                 return redirect("sandbox")
             else:
-                messages.add_message(request, messages.ERROR, "There was an error with your submission. Please check the form and try again.")
+                messages.add_message(request, messages.ERROR,
+                                     "There was an error with your submission."
+                                     "Please check the form and try again.")
 
     context = {
         'idea': idea,
@@ -127,8 +141,10 @@ def idea_detail(request, idea_id):
 def delete_idea(request, idea_id):
     """ A view to delete a flavour sandbox idea """
 
-    if not request.user.is_authenticated or request.user != get_object_or_404(FlavourSandboxIdea, pk=idea_id).author:
-        messages.add_message(request, messages.ERROR, 'You are not authorised to delete this idea!')
+    if not request.user.is_authenticated or request.user != get_object_or_404(FlavourSandboxIdea,
+                                                                              pk=idea_id).author:
+        messages.add_message(request, messages.ERROR,
+                             'You are not authorised to delete this idea!')
 
     idea = get_object_or_404(FlavourSandboxIdea, pk=idea_id)
 
@@ -139,12 +155,14 @@ def delete_idea(request, idea_id):
 
     messages.error(request, 'Invalid request method for idea deletion.')
     return redirect(reverse('product_detail', args=[idea.id]))
-    
+
+
 def like_idea(request, pk):
     """ A view to enable users to like another users idea"""
 
     if not request.user.is_authenticated:
-        messages.add_message(request, messages.ERROR, 'Please log in or sign up to vote on flavour ideas!')
+        messages.add_message(request, messages.ERROR,
+                             'Please log in or sign up to vote on flavour ideas!')
         return redirect("account_login")
 
     idea = get_object_or_404(FlavourSandboxIdea, pk=pk)
@@ -172,9 +190,11 @@ def comment_edit(request, idea_id, comment_id):
             comment.idea = idea
             comment.approved = False
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated! Pending approval.')
+            messages.add_message(request, messages.SUCCESS,
+                                 'Comment Updated! Pending approval.')
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(request, messages.ERROR,
+                                 'Error updating comment!')
 
     return redirect("idea_detail", idea_id)
 

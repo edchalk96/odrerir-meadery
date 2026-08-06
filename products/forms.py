@@ -13,7 +13,7 @@ class ProductForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
-        
+
         self.fields['mead_type'].queryset = categories
         self.fields['mead_type'].label = 'Category / Mead Type'
 
@@ -48,7 +48,9 @@ class ProductForm(forms.ModelForm):
             Row(
                 Column(
                     HTML(
-                        '<a class="btn me-2" href="{% url \'products\' %}">Cancel</a>'
+                        '<a class="btn me-2" href="'
+                        '{% url \'products\' %}">'
+                        'Cancel</a>'
                     ),
                     Submit('submit', 'Add Product', css_class='btn'),
                     css_class='col-12 mt-4',
@@ -57,7 +59,8 @@ class ProductForm(forms.ModelForm):
         )
 
         for field_name, field in self.fields.items():
-            if field_name != 'image' and not isinstance(field.widget, forms.CheckboxInput):
+            if field_name != 'image' and not isinstance(field.widget,
+                                                        forms.CheckboxInput):
                 field.widget.attrs['class'] = 'form-control'
 
 
@@ -65,4 +68,7 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['rating']
-        widgets = {'rating': forms.Select(choices=[(i, f"{i} Star{'s' if i > 1 else ''}") for i in range(1, 6)], attrs={'class': 'form-select'}),}
+        widgets = {'rating': forms.Select(
+            choices=[(i, f"{i} Star{'s' if i > 1 else ''}")
+                     for i in range(1, 6)], attrs={
+                         'class': 'form-select'}), }

@@ -37,14 +37,18 @@ def profile(request):
 
 
 def order_history(request, order_number):
-    order = get_object_or_404(Order, order_number=order_number, user_profile__user=request.user)
+    order = get_object_or_404(Order,
+                              order_number=order_number,
+                              user_profile__user=request.user)
 
     messages.info(request, (
         f'This is a past confirmation for order number {order_number}. '
         'A confirmation email was sent on the order date.'
     ))
 
-    user_reviewed_product_ids = list(Review.objects.filter(user=request.user).values_list('product_id', flat=True))
+    user_reviewed_product_ids = list(Review.objects.filter
+                                     (user=request.user).values_list
+                                     ('product_id', flat=True))
 
     template = 'checkout/checkout_success.html'
     context = {

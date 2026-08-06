@@ -6,14 +6,18 @@ from products.models import Category
 
 class FlavourSandboxIdea(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    ingredients = ArrayField(models.CharField(max_length=254), blank=True, default=list)
+    ingredients = ArrayField(models.CharField(max_length=254),
+                             blank=True, default=list)
     mead_type = models.ForeignKey(Category, on_delete=models.PROTECT)
     content = models.TextField()
     approved = models.BooleanField(default=False)
-    likes = models.ManyToManyField(User, related_name="flavour_idea_likes", blank=True)
+    likes = models.ManyToManyField(User,
+                                   related_name="flavour_idea_likes",
+                                   blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User, related_name="user_flavour_ideas", on_delete=models.PROTECT)
+    author = models.ForeignKey(User, related_name="user_flavour_ideas",
+                               on_delete=models.PROTECT)
 
     class Meta:
         ordering = ['-created_on']
@@ -24,17 +28,21 @@ class FlavourSandboxIdea(models.Model):
     def total_likes(self):
         return self.likes.count()
 
-# Adapted from Mimir's Index | https://github.com/edchalk96/mimirs_index/
 
+# Adapted from Mimir's Index | https://github.com/edchalk96/mimirs_index/
 class Comment(models.Model):
-    idea = models.ForeignKey(FlavourSandboxIdea, related_name="comments", on_delete=models.CASCADE)
-    author = models.ForeignKey(User, related_name="user_comments", on_delete=models.CASCADE)
+    idea = models.ForeignKey(FlavourSandboxIdea, related_name="comments",
+                             on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name="user_comments",
+                               on_delete=models.CASCADE)
     body = models.TextField()
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     # Credit to Tom Dekan for for parent field in creating comments thread -
     # https://tomdekan.com/articles/comment-threads
-    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', null=True, blank=True,
+                               related_name='replies',
+                               on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['created_on']

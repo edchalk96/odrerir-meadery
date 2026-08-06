@@ -27,13 +27,13 @@ class StripeWH_Handler:
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
             {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-        
+
         send_mail(
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
-        )        
+        )
 
     def handle_event(self, event):
         """
@@ -42,7 +42,7 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
-    
+
     def handle_payment_intent_succeeded(self, event):
         """
         Handle the payment_intent.succeeded webhook from Stripe
@@ -50,9 +50,12 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
 
-        basket = intent.metadata['basket'] if 'basket' in intent.metadata else '{}'
-        save_info = intent.metadata['save_info'] if 'save_info' in intent.metadata else 'false'
-        username = intent.metadata['username'] if 'username' in intent.metadata else 'AnonymousUser'
+        basket = intent.metadata['basket'
+                                 ] if 'basket' in intent.metadata else '{}'
+        save_info = intent.metadata['save_info'
+                                    ] if 'save_info' in intent.metadata else 'false'
+        username = intent.metadata['username'
+                                   ] if 'username' in intent.metadata else 'AnonymousUser'
 
         stripe_charge = stripe.Charge.retrieve(
             intent.latest_charge
@@ -63,7 +66,9 @@ class StripeWH_Handler:
         grand_total = round(stripe_charge.amount / 100, 2)
 
         # Clean data in the shipping details
-        shipping_address = shipping_details.address.to_dict() if hasattr(shipping_details.address, 'to_dict') else dict(shipping_details.address)
+        shipping_address = shipping_details.address.to_dict() if hasattr(
+            shipping_details.address, 'to_dict') else dict(
+                shipping_details.address)
 
         for field, value in shipping_address.items():
             if value == "":
@@ -75,24 +80,32 @@ class StripeWH_Handler:
             try:
                 profile = UserProfile.objects.get(user__username=username)
                 if save_info == 'true' or save_info is True:
-                    profile.default_country = shipping_address.get('country')
-                    profile.default_postcode = shipping_address.get('postal_code')
-                    profile.default_town_or_city = shipping_address.get('city')
-                    profile.default_street_address1 = shipping_address.get('line1')
-                    profile.default_street_address2 = shipping_address.get('line2')
-                    profile.default_county = shipping_address.get('state')
+                    profile.default_country = shipping_address.get(
+                        'country')
+                    profile.default_postcode = shipping_address.get(
+                        'postal_code')
+                    profile.default_town_or_city = shipping_address.get(
+                        'city')
+                    profile.default_street_address1 = shipping_address.get(
+                        'line1')
+                    profile.default_street_address2 = shipping_address.get(
+                        'line2')
+                    profile.default_county = shipping_address.get(
+                        'state')
                     profile.save()
             except UserProfile.DoesNotExist:
-                # Safely catch if the profile doesn't exist, meaning order attaches to no profile
                 profile = None
 
         order_exists = False
         attempt = 1
 
-        email = getattr(billing_details, 'email', None) or 'unknown@example.com'
-        raw_phone = getattr(shipping_details, 'phone', None) if shipping_details else None
-        phone_number = raw_phone if (raw_phone and str(raw_phone).strip() != "") else '0000000000'
-        
+        email = getattr(billing_details, 'email',
+                        None) or 'unknown@example.com'
+        raw_phone = getattr(shipping_details,
+                            'phone', None) if shipping_details else None
+        phone_number = raw_phone if (raw_phone and str(
+            raw_phone).strip() != "") else '0000000000'
+
         while attempt <= 5:
             try:
                 order = Order.objects.get(
@@ -147,7 +160,8 @@ class StripeWH_Handler:
                         )
                         order_line_item.save()
                     else:
-                        for volume, quantity in item_data['items_by_volume'].items():
+                        for volume, quantity in item_data['items_by_volume'
+                                                          ].items():
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
@@ -165,7 +179,7 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
-    
+
     def handle_payment_intent_payment_failed(self, event):
         """
         Handle the payment_intent.payment_failed webhook from Stripe

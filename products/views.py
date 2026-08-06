@@ -9,7 +9,8 @@ from checkout.models import OrderLineItem
 
 
 def all_products(request):
-    """ A view to show all products, including sorting and filtering by category"""
+    """ A view to show all products,
+    including sorting and filtering by category"""
 
     products = Product.objects.all()
     categories = None
@@ -37,12 +38,14 @@ def all_products(request):
 
         if 'category' in request.GET:
             category_code = request.GET['category']
-            products = products.filter(mead_type__mead_type__iexact=category_code)
-            categories = Category.objects.filter(mead_type__iexact=category_code)
+            products = products.filter(
+                mead_type__mead_type__iexact=category_code)
+            categories = Category.objects.filter(
+                mead_type__iexact=category_code)
 
     current_sorting = f'{sort}_{direction}'
 
-    paginator = Paginator(products, 12) # Show 12 products per page
+    paginator = Paginator(products, 12)  # Show 12 products per page
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -60,23 +63,26 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
-def product_detail(request, product_id):    
-    """ A view to show individual product details and handle product editing for superusers """
+def product_detail(request, product_id):
+    """ A view to show individual product details
+    and handle product editing for superusers """
 
     product = get_object_or_404(Product, pk=product_id)
 
     if request.method == 'POST' and 'edit_product' in request.POST:
-            if not request.user.is_superuser:
-                messages.error(request, 'Sorry, only store owners can do that.')
-                return redirect(reverse('home'))
-    
-            edit_product_form = ProductForm(request.POST, request.FILES, instance=product)
-            if edit_product_form.is_valid():
-                edit_product_form.save()
-                messages.success(request, f'Successfully updated {product.name}!')
-                return redirect(reverse('product_detail', args=[product.id]))
-            else:
-                messages.error(request, f'Failed to update {product.name}. Please ensure the form is valid.')
+        if not request.user.is_superuser:
+            messages.error(request, 'Sorry, only store owners can do that.')
+            return redirect(reverse('home'))
+
+        edit_product_form = ProductForm(request.POST,
+                                        request.FILES, instance=product)
+        if edit_product_form.is_valid():
+            edit_product_form.save()
+            messages.success(request, f'Successfully updated {product.name}!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request,
+                           f'Failed to update {product.name}. Please ensure the form is valid.')
     else:
         edit_product_form = ProductForm(instance=product)
 
@@ -113,13 +119,17 @@ def add_review(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     order_number = request.GET.get('order_number')
 
-    has_purchased = OrderLineItem.objects.filter(order__user_profile__user=request.user, product=product).exists()
+    has_purchased = OrderLineItem.objects.filter(
+        order__user_profile__user=request.user,
+        product=product).exists()
 
     if not has_purchased:
-        messages.error(request, "You can only rate products you have purchased.")
+        messages.error(request,
+                       "You can only rate products you have purchased.")
         return redirect('product_detail', product_id=product.id)
 
-    existing_review = Review.objects.filter(product=product, user=request.user).first()
+    existing_review = Review.objects.filter(product=product,
+                                            user=request.user).first()
     if existing_review:
         messages.error(request, "You have already rated this product.")
         if order_number:
