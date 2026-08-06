@@ -17,15 +17,15 @@
 
 <div class="profile-container container-fluid mt-5 px-md-5 px-1 fade-in-element"> 
     <div class="row mb-5">
-        <div class="col-12 text-center mx-5">
+        <div class="col-12 text-center">
             <p><i class="fa-solid fa-star ms-1"></i> Please leave a product rating by going to your specific order number link <i class="fa-solid fa-star ms-1"></i></p>
         </div>
     </div>
 
-    <div class="row align-items-start g-4 fade-in-element">
+    <div class="row align-items-start fade-in-element">
 
         <!-- Order History Section -->
-        <div class="col-12 col-md-4 order-1 order-md-2 px-3 mb-4 mb-md-0 order-history">
+        <div class="col-12 col-md-6 order-1 order-md-2 px-3 mb-4 mb-md-0 order-history">
             <div class="card p-3">
                 <h3 class="mb-3 text-center">Order History</h3>
 
@@ -75,7 +75,7 @@
         </div>
 
         <!-- Default Delivery Info Section -->
-        <div class="col-12 col-md-8 order-2 order-md-1 px-3 default-delivery-details">
+        <div class="col-12 col-md-6 order-2 order-md-1 px-3 default-delivery-details">
             <p >Your Delivery Information</p>
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}

@@ -87,6 +87,7 @@
 .product-detail-container form .btn,
 .product-detail-container .modal .btn,
 #adminButtons .btn,
+.add-product-container .btn,
 .pagination a {
     background-color: #E5A93C;
     font-family: 'Cinzel', Georgia, serif;
@@ -98,11 +99,16 @@
 .product-detail-container form .btn:hover,
 .product-detail-container form .btn-check:checked+.btn,
 .product-detail-container .modal .btn:hover,
+.add-product-container .btn:hover,
 #adminButtons .btn:hover,
 .pagination a:hover {
     background-color: #1A1917;
     color: #E5A93C !important;
     font-weight: 600;
+}
+
+.add-product-container .btn-primary {
+    border: none;
 }
 
 .product-detail-container form .btn-check:checked+.btn {

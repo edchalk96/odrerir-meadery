@@ -99,7 +99,9 @@
 #adminButtons .btn,
 #submitButton,
 .comments-section .edit-btn,
-.comments-section .comment-delete-btn {
+.comments-section .comment-delete-btn,
+#addIdeaButton .btn,
+#ideaButtons .btn {
     background-color: #E5A93C;
     font-family: 'Cinzel', Georgia, serif;
     font-weight: 500;
@@ -113,7 +115,9 @@
 #adminButtons .btn:hover,
 #submitButton:hover,
 .comments-section .edit-btn:hover,
-.comments-section .comment-delete-btn:hover {
+.comments-section .comment-delete-btn:hover,
+#addIdeaButton .btn:hover,
+#ideaButtons .btn:hover {
     background-color: #1A1917;
     color: #E5A93C !important;
     font-weight: 600;
@@ -128,7 +132,8 @@
 }
 
 @media (max-width: 575.98px) {
-    .idea-detail-container form .btn {
+    .idea-detail-container form .btn,
+    #addIdeaButton .btn {
         font-size: 1rem;
     }
 }
@@ -158,7 +163,8 @@
     width: 80%;
 }
 
-.comments-section h2 {
+.comments-section h2,
+#addIdeaModal h5 {
     font-weight: 600;
     color: #1A1917;
 }

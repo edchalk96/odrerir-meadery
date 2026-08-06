@@ -163,8 +163,8 @@ def comment_edit(request, idea_id, comment_id):
     """
 
     if request.method == "POST":
-        queryset = FlavourSandboxIdea.objects.filter(status=1)
-        idea = get_object_or_404(queryset, idea_id)
+        queryset = FlavourSandboxIdea.objects.filter(approved=True)
+        idea = get_object_or_404(queryset, pk=idea_id)
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = CommentForm(data=request.POST, instance=comment)
         if comment_form.is_valid() and comment.author == request.user:

@@ -72,7 +72,31 @@ header {
 
 .fade-in-element.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none; 
+    will-change: auto;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    border-color: #E5A93C;
+    box-shadow: 0 0 0 .25rem rgba(229, 169, 60, 0.25)
+}
+
+.form-check-input:checked {
+    background-color: #1A1917;
+    border: none;
+
+}
+
+.modal-content,
+.form-control,
+.select2-selection--single {
+    background-color: #FAF8F4 !important;
+}
+
+.modal-body label {
+    color: #1A1917;
 }
 
 /* Age Verification */
@@ -799,7 +823,8 @@ footer a:hover {
 .mead-type-container .btn,
 #contactModal .btn,
 #returnsPolicy .btn,
-#deliveryPolicy .btn {
+#deliveryPolicy .btn,
+.btn-signup {
     background-color: #E5A93C;
     font-family: 'Cinzel', Georgia, serif;
     font-weight: 500;
@@ -817,7 +842,8 @@ footer a:hover {
 .mead-type-container .btn:hover,
 #contactModal .btn:hover,
 #returnsPolicy .btn:hover,
-#deliveryPolicy .btn:hover {
+#deliveryPolicy .btn:hover,
+.btn-signup:hover {
     background-color: #1A1917;
     color: #E5A93C;
     font-weight: 600;
@@ -842,7 +868,6 @@ footer a:hover {
     .mead-type-container span,
     .about-container span {
         font-size: 0.8rem;
-        color: #4D4A45;
     }
 }
 
@@ -919,7 +944,7 @@ footer a:hover {
         --s: 4rem;
     }
     .hex-text {
-        font-size: 0.5rem;
+        font-size: 0.5rem !important;
     }
 }
 
@@ -1323,4 +1348,16 @@ footer a:hover {
 .toast-totals-section .btn:hover {
     background-color: #1A1917 !important;
     color: #E5A93C !important;
+}
+
+/* Allauth styling */
+
+#id_password_helptext a,
+.signup-link {
+    color: #1A1917;
+}
+
+#id_password_helptext a:hover,
+.signup-link:hover {
+    color: #E5A93C;
 }
