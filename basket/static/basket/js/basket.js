@@ -50,7 +50,7 @@ $('.decrement-qty').click(function(e) {
 $('.update-link').click(function(e) {
         var form = $(this).closest('.col-12').find('.update-form');
         form.submit();
-    })
+    });
 
 $('.remove-item').click(function(e) {
     e.preventDefault();
@@ -64,4 +64,4 @@ $('.remove-item').click(function(e) {
      .done(function() {
          location.reload();
      });
-})
+});

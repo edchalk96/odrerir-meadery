@@ -14,7 +14,7 @@ $('#sort-selector').change(function() {
         currentUrl.searchParams.delete("direction");
         window.location.replace(currentUrl);
     }
-})
+});
 
 $('.volume-option').change(function() {
     var selectedPrice = $(this).data('price');

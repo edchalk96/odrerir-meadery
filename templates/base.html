@@ -10,30 +10,30 @@
 <head>
 
     {% block meta %}
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% endblock %}
 
     {% block corecss %}
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
 
     {% block corejs %}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         
-        <!--Font Awesome-->
-        <script src="https://kit.fontawesome.com/13b3abd37d.js" crossorigin="anonymous"></script>
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/13b3abd37d.js" crossorigin="anonymous"></script>
 
-        <!--JQuery-->
-        <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
-        <!-- Stripe -->
-        <script src="https://js.stripe.com/dahlia/stripe.js"></script>
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/dahlia/stripe.js"></script>
         
     {% endblock %}
 
@@ -85,7 +85,7 @@
                                         Products
                                     </a>
 
-                                    <div class="products-dropdown-menu dropdown-menu w-100 p-4 mt-0 border-0 shadow-sm" aria-labelledby="navbarDropdownProducts" data-bs-popper="static">
+                                    <div class="products-dropdown-menu dropdown-menu w-100 p-4 mt-0 border-0 shadow-sm" role="menu" aria-labelledby="navbarDropdownProducts" data-bs-popper="static">
                                         <div class="d-lg-none mb-3 pb-2 border-bottom d-flex align-items-center justify-content-between">
                                             <button type="button" class="btn btn-link p-0 text-decoration-none text-dark fw-bold" id="closeProductsMobile">
                                                 <i class="fa-solid fa-angles-left"></i> Back to Menu
@@ -99,9 +99,9 @@
                                                 <div class="col-6 col-lg-2 mx-lg-5">
                                                     <h6 class="dropdown-header px-0 d-none d-lg-block">&nbsp;</h6>
                                                     <ul class="ps-0 ps-lg-2">
-                                                        <a class="dropdown-item px-0 py-1 d-block" href="{% url 'products' %}">All Products</a>
-                                                        <a class="dropdown-item px-0 py-1 text-danger d-block" href="{% url 'products' %}?clearance=true">Clearance Items</a>
-                                                        <a class="dropdown-item px-0 py-1 d-block" href="{% url 'products' %}?most_popular=true">Most Popular</a>
+                                                        <li><a class="dropdown-item px-0 py-1 d-block" href="{% url 'products' %}">All Products</a></li>
+                                                        <li><a class="dropdown-item px-0 py-1 text-danger d-block" href="{% url 'products' %}?clearance=true">Clearance Items</a></li>
+                                                        <li><a class="dropdown-item px-0 py-1 d-block" href="{% url 'products' %}?most_popular=true">Most Popular</a></li>
                                                     </ul>
                                                 </div>
                                             
@@ -245,7 +245,7 @@
             </div>
 
             <!-- Contact Developer Modal -->
-            <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+            <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content text-center">
                         <div class="modal-header justify-content-center position-relative">
@@ -302,7 +302,7 @@
                 </div>
 
                 <!-- Returns Policy Modal-->
-                <div class="modal fade" id="returnsPolicy" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="returnsPolicyLabel" aria-hidden="true">
+                <div class="modal fade" id="returnsPolicy" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="returnsPolicyLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -338,7 +338,7 @@
                 </div>
 
                 <!-- Delivery Policy Modal-->
-                <div class="modal fade" id="deliveryPolicy" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deliveryPolicyLabel" aria-hidden="true">
+                <div class="modal fade" id="deliveryPolicy" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deliveryPolicyLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -373,7 +373,7 @@
     </footer>
 
     <!-- Age Verification Modal -->
-    <div class="modal fade" id="ageVerificationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ageModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ageVerificationModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen m-0">
             <div class="modal-content age-gate-fullscreen border-0 d-flex flex-column align-items-center justify-content-center text-center p-3 p-md-5">
                 <div class="age-gate-card p-4 p-md-5">

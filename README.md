@@ -2,11 +2,9 @@
 
 ## By Ed Chalk
 
-[View the live project here](PLACEHOLDER)
+[View the live project here](https://odrerir-meadery-1b979bd3451c.herokuapp.com/)
 
 [View the repository here](https://github.com/edchalk96/mimirs_index/tree/main)
-
-![Responsive website image](PLACEHOLDER)
 
 ## Table of Contents
 
@@ -352,13 +350,99 @@ All visual assets and iconography were carefully curated to reflect the core ide
 
 - **HTML5**
 
+    Provides the semantic structure and foundational framework for the project's content.
+
+- **CSS3**
+
+    Employed for comprehensive styling and to ensure fluid responsiveness across all device types.
+
+- **JavaScript**
+
+    Utilized to implement dynamic client-side logic and enhance user interactivity.
+
+- **Python3**
+
+    Serves as the core programming language for developing the site's backend logic and functionality.
+
 ### *Frameworks, Libraries & Programs Used*
+
+- **Bootstrap (v5.3)**
+
+    The primary CSS framework used for rapid layout development and mobile-first responsiveness.
+
+- **Font Awesome (v7.2)**
+
+    Integrated to provide a consistent library of scalable vector icons throughout the interface.
+
+- **Google Fonts**
+
+    Utilized to source and manage custom typography, ensuring aesthetic consistency.
+
+- **Git**
+
+    Facilitated version control, tracking project history and managing commits via the terminal.
+
+- **GitHub**
+
+    The cloud-based platform used for hosting the project repository and version history.
+
+- **Heroku**
+
+    The cloud platform utilized for the final deployment and hosting of the live application.
+
+- **PostgreSQL**
+
+    The relational database management system used to securely store and manage backend data.
+
+-**[Neon](https://neon.com/)**
+
+    This was utilized as the serverless, open-source PostgreSQL database to host and manage the project's relational data.
+
+- **Django (v6.0.6)**
+
+    A high-level Python web framework used to streamline development and handle site architecture.
+
+- **Canva Online Wireframe Tool**
+
+    Utilized to design the initial visual blueprints and structural layouts for the user interface.
+
+- **W3 Schools & MDN**
+
+    The primary technical references used for documentation, syntax verification, and coding standards.
+
+- **VSCode**
+
+    The primary Integrated Development Environment (IDE) used for writing, debugging, and managing the source code.
+
+- **[RandomKeygen](https://randomkeygen.com/)**
+
+    This service was utilized to generate a secure, randomized SECRET_KEY for the project's configuration settings.
+
+- **Real Python**
+
+    Served as a primary resource for advanced Python tutorials and technical deep-dives to optimize backend logic.
+
+- **[Pexels](https://www.pexels.com/)**
+
+    Unsplash was used a source for free stock videos where needed.
+
+- **[Vecteezy](https://www.vecteezy.com/)**
+
+    Vecteezy was used to source free stock videos as well as a free svg icon.
+
+- **[Stripe](https://stripe.com/gb)**
+
+    Stripe was integrated to securely process customer credit and debit card payments, handle checkout webhooks, and manage real-time transaction states.
+
+- **[AWS S3](https://aws.amazon.com/)**
+
+    Utilized Amazon Web Services (AWS) S3 to securely store and serve all static assets and user-uploaded media files in production.
 
 ---
 
 ## Testing
 
-Please view the [Testing.md](./Testing.md) for details on testing.
+Please view the [Testing.md](./testing.md) for details on testing.
 
 ---
 
@@ -400,4 +484,10 @@ Forking the GitHub repository allows you to make a copy of he original repositor
 
 ## Credits
 
+- Code Institute
+
+    Key architectural patterns and foundational elements of this codebase were informed by and adapted from the Code Institute instructional materials, specifically the Boutique Ado walkthrough project.
+
 ### Acknowledgements
+
+- Ashley Oliver for his support, before and during the development of this project.

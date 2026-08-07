@@ -1361,3 +1361,22 @@ footer a:hover {
 .signup-link:hover {
     color: #E5A93C;
 }
+
+/* Error Pages */
+
+.error-container {
+    min-height: 35vh;
+}
+
+.error-container p {
+    color: #4D4A45;
+}
+
+.error-container a {
+    color: #1A1917;
+}
+
+.error-container a:hover {
+    color: #E5A93C;
+    text-decoration: underline;
+}

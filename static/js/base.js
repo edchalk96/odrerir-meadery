@@ -94,9 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 requestAnimationFrame(() => { /* https://www.w3schools.com/jsref/met_win_requestanimationframe.asp */
                     requestAnimationFrame(() => {
-                        dropdownMenu.classList.add('show')
-                    })
-                })
+                        dropdownMenu.classList.add('show');
+                    });
+                });
             }
         });
 
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.classList.remove('navbar-products-open');
 
             if (dropdownMenu && !dropdownMenu.classList.contains('is-collapsing')) {
-                e.preventDefault() // https://getbootstrap.com/docs/4.0/getting-started/javascript/#:~:text=All%20infinitive%20events%20provide%20preventDefault,also%20automatically%20call%20preventDefault()%20
+                e.preventDefault(); // https://getbootstrap.com/docs/4.0/getting-started/javascript/#:~:text=All%20infinitive%20events%20provide%20preventDefault,also%20automatically%20call%20preventDefault()%20
                 
                 dropdownMenu.classList.remove('show');
                 productsToggle.classList.remove('show');
@@ -265,12 +265,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const row = document.createElement('div');
             row.className = 'row g-3 justify-content-center py-3 px-3 px-md-0';
 
-            chunk.forEach(cardWrapper => {
+            for (const cardWrapper of chunk) {
                 const col = document.createElement('div');
                 col.className = colClass;
                 col.appendChild(cardWrapper.cloneNode(true));
                 row.appendChild(col);
-            });
+            }
 
             slide.appendChild(row);
             container.appendChild(slide);
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let resizeTimer;
 
     window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer)
+        clearTimeout(resizeTimer);
         resizeTimer = setTimeout(responsiveCarousel, 150);
     });
 });

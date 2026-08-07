@@ -66,17 +66,17 @@
                         <label class="form-label d-block mb-2">Select Volume:</label>
                         <div class="btn-group mb-3" role="group" aria-label="Volume Selection">
                             {% if product.price and product.stock_level >= 0.5 %}
-                                <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-500ml" value="500ML" data-price="{{ product.price }}" checked autocomplete="off">
+                                <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-500ml" value="500ML" data-price="{{ product.price }}" checked>
                                 <label class="btn py-2" for="vol-500ml">500ml</label>
                             {% endif %}
 
                             {% if product.price_1l and product.stock_level >= 1.0 %}
-                                <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-1l" value="1L" data-price="{{ product.price_1l }}" autocomplete="off">
+                                <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-1l" value="1L" data-price="{{ product.price_1l }}">
                                 <label class="btn py-2 mx-2" for="vol-1l">1 Litre</label>
                             {% endif %}
 
                             {% if product.price_4l and product.stock_level >= 4.0 %}
-                                <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-4l" value="4L" data-price="{{ product.price_4l }}" autocomplete="off">
+                                <input type="radio" class="btn-check volume-option" name="product_volume" id="vol-4l" value="4L" data-price="{{ product.price_4l }}">
                                 <label class="btn py-2" for="vol-4l">4 Litre</label>
                             {% endif %}
                         </div>
@@ -108,7 +108,7 @@
                     <button class="btn delete-btn" type="button" data-bs-toggle="modal" data-bs-target="#deleteProductModal">Delete</button>
                 </div>
 
-                <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+                <div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <form method="POST" enctype="multipart/form-data" action="{% url 'product_detail' product.id %}">
@@ -126,7 +126,7 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+                <div class="modal fade" id="deleteProductModal" role="dialog" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

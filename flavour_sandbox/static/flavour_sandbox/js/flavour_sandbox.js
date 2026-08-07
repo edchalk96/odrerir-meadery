@@ -14,7 +14,7 @@ $('#sort-selector').change(function() {
         currentUrl.searchParams.delete("direction");
         window.location.replace(currentUrl);
     }
-})
+});
 
 /** Function to toggle a reply in comments thread and ensure empty reply text area | Adapted from Mimir's Index | https://github.com/edchalk96/mimirs_index/ */
 
