@@ -106,7 +106,7 @@ The initial assessment yielded a balanced aggregate score of 53 for Importance a
 | **User Authentication (Login/Out)**                   | 5              | 5                         | 10              |
 | **User Profile (inc. Delivery info & Order history)** | 5              | 5                         | 10              |
 | **Responsive Storefront and Navigation**              | 5              | 5                         | 10              |
-| **Product Catalogue**                                   | 5              | 5                         | 10              |
+| **Product Catalogue**                                 | 5              | 5                         | 10              |
 | **Full Admin CRUD (Products)**                        | 5              | 5                         | 10              |
 | **Product Ratings**                                   | 4              | 4                         | 8               |
 | **Product Reviews**                                   | 2              | 2                         | 5               |
