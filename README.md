@@ -12,9 +12,9 @@
 2. [User Experience (UX) | The 5 Planes](#user-experience-ux--the-5-planes)
     1. [Strategy Plane](#strategy-plane)
     2. [Scope Plane](#scope-plane)
-    3. [Structure PLane](#structure-plane)
+    3. [Structure Plane](#structure-plane)
     4. [Skeleton Plane](#skeleton-plane)
-    5. [Surface PLane](#surface-plane)
+    5. [Surface Plane](#surface-plane)
 3. [Technologies Used](#technologies-used)
 4. [Testing](#testing)
 5. [Deployment](#deployment)
@@ -30,7 +30,7 @@
 
 ## User Experience (UX) | The 5 Planes
 
-The planning and development of the Óðrerir Meadery website followed the core principles of UX design, utilizing Jesse James Garrett's framework from The Elements of User Experience. To ensure a thorough and well-structured design process, this framework was supplemented by Urooj Qureshi’s practical "Five Planes Method" alongside the Code Institute curriculum. The site was built progressively by applying these five planes in distinct, sequential stages:
+The planning and development of the Óðrerir Meadery website followed the core principles of UX design, utilizing Jesse James Garrett's framework from The Elements of User Experience. To ensure a thorough and well-structured design process, this framework was supplemented by Urooj Qureshi's practical "Five Planes Method" alongside the Code Institute curriculum. The site was built progressively by applying these five planes in distinct, sequential stages:
 
 1. The Strategy Plane
 2. The Scope Plane
@@ -44,23 +44,23 @@ The planning and development of the Óðrerir Meadery website followed the core 
 
 #### *Project Goals*
 
-The primary objective of the Óðrerir Meadery website is to provide a seamless, secure e-commerce experience where customers can purchase craft mead in various volumes, manage personalized accounts, and browse curated brand accessories. Beyond sales, the beautifully designed platform serves as a powerful marketing tool to celebrate the traditional heritage of mead-making while elevating the brand's online presence. Additionally, the site fosters community engagement by offering a dedicated channel for customers to request or suggest new mead flavors, directly involving them in the company’s future product development. In order to achieve these project goals, the site will implement the following core features, mapped to the user experience:
+The primary objective of the Óðrerir Meadery website is to provide a seamless, secure e-commerce experience where customers can purchase craft mead in various volumes, manage personalised accounts, and browse curated brand accessories. Beyond sales, the beautifully designed platform serves as a powerful marketing tool to celebrate the traditional heritage of mead-making while elevating the brand's online presence. Additionally, the site fosters community engagement by offering a dedicated channel for customers to request or suggest new mead flavours, directly involving them in the company’s future product development. In order to achieve these project goals, the site will implement the following core features, mapped to the user experience:
 
-- **Dynamic E-Commerce Storefront & Catalog**: A robust product catalog allowing users to filter and sort mead products by type and flavor profile with dedicated product detail pages showcasing detailed tasting notes and descriptions.
+- **Dynamic E-Commerce Storefront & Catalogue**: A robust product catalogue allowing users to filter and sort mead products by type and flavour profile with dedicated product detail pages showcasing detailed tasting notes and descriptions.
 
-- **Secure Authentication & User Profiles**: Custom user registration and secure login functionality, giving customers a personalised dashboard to manage their delivery addresses, save payment preferences, and view past order histories.
+- **Secure Authentication & User Profiles**: Custom user registration and secure login functionality, giving customers a personalised dashboard to manage their delivery addresses, save payment preferences, and view past order history.
 
 - **Intuitive Shopping Cart & Checkout Pipeline**: A persistent shopping cart that calculates item subtotals dynamically, paired with a secure, multi-step checkout pipeline integrated with a reliable payment processor (such as Stripe) to handle transaction validation and email order confirmations.
 
-- **Flavor Sandbox & Innovation Hub**: An interactive community submission portal where registered users can submit custom mead flavor ideas, view submissions from other users, and upvote or comment on community-suggested blends.
+- **Flavour Sandbox & Innovation Hub**: An interactive community submission portal where registered users can submit custom mead flavour ideas, view submissions from other users, and upvote or comment on community-suggested blends.
 
-- **Administrative Control Panel (Content Management)**: A secure backend administrative interface allowing the meadery staff to easily manage product stock levels, make updates to products and update pricing and review flavour submissions.
+- **Administrative Control Panel (Content Management)**: A secure backend administrative interface allowing the meadery staff to easily manage product stock levels, make updates to products, update pricing, and review flavour submissions.
 
 #### *User Stories*
 
-The primary objective for customers visiting the site is to seamlessly explore the meadery's diverse product range, learn about the rich history of mead-making, and discover the brand's unique origin story. Beyond browsing, users require an intuitive, secure pathway to purchase products, alongside an interactive space where they can actively engage with the company by proposing new flavor concepts.
+The primary objective for customers visiting the site is to seamlessly explore the meadery's diverse product range, learn about the rich history of mead-making, and discover the brand's unique origin story. Beyond browsing, users require an intuitive, secure pathway to purchase products, alongside an interactive space where they can actively engage with the company by proposing new flavour concepts.
 
-##### First Time User Goals
+##### First-Time User Goals
 
 - As a First-Time Visitor, I want to immediately understand the core identity and product offerings of Óðrerir Meadery upon landing on the homepage, so that I can quickly decide if the brand appeals to me.
 - As a First-Time Visitor, I want to experience a clean, intuitive navigation layout, so that I can effortlessly explore the site's content, product lines, and interactive features without confusion.
@@ -95,9 +95,9 @@ The primary objective for customers visiting the site is to seamlessly explore t
 
 ### Scope Plane
 
-The scope of the Óðrerir Meadery platform was strictly defined by translating the strategic objectives established in the Strategy Plane into tangible functional requirements. To ensure a viable, highly functional Minimum Viable Product (MVP), an Opportunities Matrix was utilized to mathematically evaluate each proposed feature against two core metrics: User/Business Importance and Technical Feasibility.
+The scope of the Óðrerir Meadery platform was strictly defined by translating the strategic objectives established in the Strategy Plane into tangible functional requirements. To ensure a viable, highly functional Minimum Viable Product (MVP), an Opportunities Matrix was utilised to mathematically evaluate each proposed feature against two core metrics: User/Business Importance and Technical Feasibility.
 
-The initial assessment yielded a balanced aggregate score of 53 for Importance and 58 for Feasibility (updated to reflect the modification). During this scoping process, a specific feature (Product Reviews) evaluating poorly at a 2 for Importance and a 2 for Feasibility was deliberately removed from the immediate roadmap. As this feature carried both low importance to the user and low technical feasibility, this represented a high-risk allocation of development time for minimal reward. By stripping away this low-value complexity, development efforts were strictly optimized around the high-value, high-feasibility threshold. This calculated adjustment ensures that the MVP remains streamlined and achievable within the project timeline, successfully prioritising core commercial requirements—such as secure authentication, product CRUD functionality, and a secure checkout flow—while safely deferring non-essential mechanics to future development phases.
+The initial assessment yielded a balanced aggregate score of 53 for Importance and 58 for Feasibility (updated to reflect the modification). During this scoping process, a specific feature (Product Reviews) evaluating poorly at a 2 for Importance and a 2 for Feasibility was deliberately removed from the immediate roadmap. As this feature carried both low importance to the user and low technical feasibility, this represented a high-risk allocation of development time for minimal reward. By stripping away this low-value complexity, development efforts were strictly optimised around the high-value, high-feasibility threshold. This calculated adjustment ensures that the MVP remains streamlined and achievable within the project timeline, successfully prioritising core commercial requirements—such as secure authentication, product CRUD functionality, and a secure checkout flow—while safely deferring non-essential mechanics to future development phases.
 
 #### Opportunities Matrix
 
@@ -106,7 +106,7 @@ The initial assessment yielded a balanced aggregate score of 53 for Importance a
 | **User Authentication (Login/Out)**                   | 5              | 5                         | 10              |
 | **User Profile (inc. Delivery info & Order history)** | 5              | 5                         | 10              |
 | **Responsive Storefront and Navigation**              | 5              | 5                         | 10              |
-| **Product Catalog**                                   | 5              | 5                         | 10              |
+| **Product Catalogue**                                   | 5              | 5                         | 10              |
 | **Full Admin CRUD (Products)**                        | 5              | 5                         | 10              |
 | **Product Ratings**                                   | 4              | 4                         | 8               |
 | **Product Reviews**                                   | 2              | 2                         | 5               |
@@ -124,21 +124,21 @@ The initial assessment yielded a balanced aggregate score of 53 for Importance a
 
     A secure system utilizing robust verification to allow users to register, log in, and log out of their personal accounts safely, protecting their data and gating member-only features.
 
-- **User Profile (inc. Delivery info & Order history)**
+- **User Profile (incl. Delivery info & Order history)**
 
-    A personalized customer dashboard where users can manage their default shipping details for a faster checkout, while maintaining a clear view of their past transaction history.
+    A personalised customer dashboard where users can manage their default shipping details for a faster checkout, while maintaining a clear view of their past transaction history.
 
 - **Responsive Storefront and Navigation**
 
-    A fully optimized, mobile-first user interface featuring fluid navigation and layout structures, ensuring a seamless and visually engaging experience across all screen sizes.
+    A fully optimised, mobile-first user interface featuring fluid navigation and layout structures, ensuring a seamless and visually engaging experience across all screen sizes.
 
-- **Product Catalog**
+- **Product Catalogue**
 
     An intuitive digital storefront that showcases the meadery's product range, allowing users to browse items, read detailed descriptions, and filter or sort products by flavour profile.
 
 - **Full Admin CRUD (Products)**
 
-    An administrative feature enabling authorized site managers to Create, Read, Update, and Delete products directly from the front-end to maintain real-time inventory and pricing accuracy.
+    An administrative feature enabling authorised site managers to Create, Read, Update, and Delete products directly from the front-end to maintain real-time inventory and pricing accuracy.
 
 - **Product Ratings**
 
@@ -166,13 +166,13 @@ The initial assessment yielded a balanced aggregate score of 53 for Importance a
 
 - **Admin Moderation Dashboard**
 
-    A secure, centralized backend interface leveraging built-in Django Administration features, configured specifically to allow site managers to efficiently moderate community engagement, manage database models, and oversee user interactions.
+    A secure, centralised backend interface leveraging built-in Django Administration features, configured specifically to allow site managers to efficiently moderate community engagement, manage database models, and oversee user interactions.
 
 ---
 
 ### Structure Plane
 
-The Structure Plane defines how the platform’s functional requirements and technical features are organised to create a cohesive user experience. For the Óðrerir Meadery website, this involved designing an intuitive informational architecture and user flow that allows visitors to navigate seamlessly between commercial spaces and community features. To support this front-end layout, a robust relational database schema was architected to handle complex data relationships securely. The sections below detail the structural layout of the site, alongside the database architecture, Entity Relationship Diagrams (ERDs), and the combination of core Django frameworks and custom-built data models implemented to power the sites functionality.
+The Structure Plane defines how the platform’s functional requirements and technical features are organised to create a cohesive user experience. For the Óðrerir Meadery website, this involved designing an intuitive informational architecture and user flow that allows visitors to navigate seamlessly between commercial spaces and community features. To support this front-end layout, a robust relational database schema was architected to handle complex data relationships securely. The sections below detail the structural layout of the site, alongside the database architecture, Entity Relationship Diagrams (ERDs), and the combination of core Django frameworks and custom-built data models implemented to power the site's functionality.
 
 #### Site Layout & User Flows
 
@@ -198,11 +198,11 @@ The Structure Plane defines how the platform’s functional requirements and tec
 
 - **Administrative Product Management Panel**
 
-    Built specifically for staff members and superusers, this restricted interface features a custom front-end form that facilitates full CRUD functionality. Authorized administrators can seamlessly create new items, adjust pricing, update descriptions, and manage live stock levels. To maintain platform security, the link to this management area is strictly gated and will only appear in the navigation bar if a logged-in account possesses superuser credentials.
+    Built specifically for staff members and superusers, this restricted interface features a custom front-end form that facilitates full CRUD functionality. Authorised administrators can seamlessly create new items, adjust pricing, update descriptions, and manage live stock levels. To maintain platform security, the link to this management area is strictly gated and will only appear in the navigation bar if a logged-in account possesses superuser credentials.
 
 #### Database Architecture
 
-The website utilises Neon, a serverless cloud infrastructure, to host and manage its robust PostgreSQL relational database. This serverless approach ensures high availability, automatic scaling, and optimal performance for the sites data layer.
+The website utilises Neon, a serverless cloud infrastructure, to host and manage its robust PostgreSQL relational database. This serverless approach ensures high availability, automatic scaling, and optimal performance for the site's data layer.
 
 To support the core commercial and community functionality across the site, the platform’s database architecture integrates a combination of built-in Django frameworks and bespoke, custom-built models.
 
@@ -236,14 +236,14 @@ The architecture and visual identity of the Óðrerir Meadery platform are heavi
 
 #### *Colour Scheme*
 
-To establish a premium, artisanal aesthetic that honors both the honey-based craft of mead-making and a bold, historic atmosphere, a carefully balanced palette was curated:
+To establish a premium, artisanal aesthetic that honours both the honey-based craft of mead-making and a bold, historic atmosphere, a carefully balanced palette was curated:
 
 ![Colour Palette](./documentation/images/odrerir-meadery-colour-palette.png)
-Colour pallete was generate using [Coolors](https://coolors.co/)
+Colour palette was generated using [Coolors](https://coolors.co/)
 
 - **Honey Gold | #E5A93C**
 
-    Serves as the primary brand identifier, injecting warmth and directly symbolising raw honey. It is utilized as the default background fill for primary call-to-action buttons, active badges, and prominent interface highlights.
+    Serves as the primary brand identifier, injecting warmth and directly symbolising raw honey. It is utilised as the default background fill for primary call-to-action buttons, active badges, and prominent interface highlights.
 
 - **Ashen Black | #1A1917**
 
@@ -263,7 +263,7 @@ Colour pallete was generate using [Coolors](https://coolors.co/)
 
 #### *Typography*
 
-To maintain a balanced visual hierarchy that honors the brand's rustic roots while ensuring modern readability, the typography relies on a clean, geometric pairing:
+To maintain a balanced visual hierarchy that honours the brand's rustic roots while ensuring modern readability, the typography relies on a clean, geometric pairing:
 
 - **Norse (Custom Font)**
 
@@ -279,7 +279,7 @@ To maintain a balanced visual hierarchy that honors the brand's rustic roots whi
 
 - **Montserrat (Google Font)**
 
-    Used for all body copy, product descriptions, and interactive UI text to provide contrast to te bold headings.
+    Used for all body copy, product descriptions, and interactive UI text to provide contrast to the bold headings.
 
 - **Montserrat Fallback Font (`sans-serif`)**
 
@@ -287,13 +287,13 @@ To maintain a balanced visual hierarchy that honors the brand's rustic roots whi
 
 #### *Imagery & Iconography*
 
-All visual assets and iconography were carefully curated to reflect the core identity of the brand, emphasizing the premium, handcrafted nature of the companies artisanal products.
+All visual assets and iconography were carefully curated to reflect the core identity of the brand, emphasizing the premium, handcrafted nature of the company's artisanal products.
 
 - **Hero Video**: Immediately following the age-verification gateway, the homepage opens with a cinematic, looping background video. This footage showcases the raw, organic journey of mead production, focusing heavily on active honeybees and the harvest of rich golden honey. This serves to instantly immerse the user in the brand's authentic atmosphere, visually validating our commitment to natural, premium, and handcrafted ingredients before they begin to browse the products.
 
 - **Product Imagery**: Each product listing features an image of the product, to provide an authentic preview of the mead, capturing its distinct colour, clarity, and character so users know exactly what to expect from our artisanal batches.
 
-- **AI-Assisted Asset Creation**: Because the business is currently a conceptual project without physical inventory to photograph, Google Gemini was utilized to generate high-quality, realistic product and bottle imagery. This advanced AI generation was also leveraged to design the brand's custom logo, ensuring a cohesive and premium visual identity across the entire application.
+- **AI-Assisted Asset Creation**: Because the business is currently a conceptual project without physical inventory to photograph, Google Gemini was utilised to generate high-quality, realistic product and bottle imagery. This advanced AI generation was also leveraged to design the brand's custom logo, ensuring a cohesive and premium visual identity across the entire application.
 
 - **Responsive Design**: All visual assets are designed with fluid responsiveness, using CSS to ensure images scale proportionally and fit seamlessly across mobile, tablet, and desktop screens.
 
@@ -305,7 +305,7 @@ All visual assets and iconography were carefully curated to reflect the core ide
 
   - **Navigation & Dropdowns**: Includes direct links to all primary pages, featuring a structured dropdown menu that allows users to quickly filter by specific mead types or browse accessories.
   - **Utility Icons**: Features clean, recognizable iconography linking directly to the shopping basket, user profile, and authentication pages (Login/Sign Up).
-  - **Visual Indicators**: Active navigation states are utilized so users always have immediate visual feedback regarding their current location on the site.
+  - **Visual Indicators**: Active navigation states are utilised so users always have immediate visual feedback regarding their current location on the site.
   - **Brand Identity**: The company logo is prominently displayed and serves as an instant link back to the homepage.
 
 - **Footer**
@@ -319,12 +319,12 @@ All visual assets and iconography were carefully curated to reflect the core ide
   - Access Granted: Confirming they are of legal drinking age grants the user seamless access to the homepage.
   - Access Denied: If a user indicates they are under 18, they are presented with a polite block message detailing the legal age requirements to enter the site.
 
-- **Product Catalog & Detail Pages**
+- **Product Catalogue & Detail Pages**
 
-    The website features a comprehensive product catalog with built-in filtering and sorting capabilities, allowing users to effortlessly toggle between distinct mead categories and merchandise.
+    The website features a comprehensive product catalogue with built-in filtering and sorting capabilities, allowing users to effortlessly toggle between distinct mead categories and merchandise.
 
   - **Dynamic Pricing**: On individual product detail pages, customers can choose from three distinct volume options, with the displayed price updating dynamically to reflect their selection.
-  - **Admin Management**: Authorized administrators can manage catalog details and update stock levels directly from the product detail interface.
+  - **Admin Management**: Authorised administrators can manage catalogue details and update stock levels directly from the product detail interface.
 
 - **Basket & Checkout**
 
@@ -336,11 +336,11 @@ All visual assets and iconography were carefully curated to reflect the core ide
 
 - **Administration**
 
-    Beyond editing existing listings on the product pages, authorized administrators have access to a secure, dedicated dashboard link in the main navigation. This administrative portal allows staff to seamlessly add new products.
+    Beyond editing existing listings on the product pages, authorised administrators have access to a secure, dedicated dashboard link in the main navigation. This administrative portal allows staff to seamlessly add new products.
 
 - **User Profile**
 
-    Registered users have access to a personalized profile dashboard. Within this secure portal, customers can easily view their complete order history and manage or update their default shipping address for a faster checkout experience on future visits.
+    Registered users have access to a personalised profile dashboard. Within this secure portal, customers can easily view their complete order history and manage or update their default shipping address for a faster checkout experience on future visits.
 
 ---
 
@@ -358,9 +358,9 @@ All visual assets and iconography were carefully curated to reflect the core ide
 
 - **JavaScript**
 
-    Utilized to implement dynamic client-side logic and enhance user interactivity.
+    Utilised to implement dynamic client-side logic and enhance user interactivity.
 
-- **Python3**
+- **Python 3**
 
     Serves as the core programming language for developing the site's backend logic and functionality.
 
@@ -376,7 +376,7 @@ All visual assets and iconography were carefully curated to reflect the core ide
 
 - **Google Fonts**
 
-    Utilized to source and manage custom typography, ensuring aesthetic consistency.
+    Utilised to source and manage custom typography, ensuring aesthetic consistency.
 
 - **Git**
 
@@ -388,15 +388,15 @@ All visual assets and iconography were carefully curated to reflect the core ide
 
 - **Heroku**
 
-    The cloud platform utilized for the final deployment and hosting of the live application.
+    The cloud platform utilised for the final deployment and hosting of the live application.
 
 - **PostgreSQL**
 
     The relational database management system used to securely store and manage backend data.
 
--**[Neon](https://neon.com/)**
+- **[Neon](https://neon.com/)**
 
-    This was utilized as the serverless, open-source PostgreSQL database to host and manage the project's relational data.
+    This was utilised as the serverless, open-source PostgreSQL database to host and manage the project's relational data.
 
 - **Django (v6.0.6)**
 
@@ -404,7 +404,7 @@ All visual assets and iconography were carefully curated to reflect the core ide
 
 - **Canva Online Wireframe Tool**
 
-    Utilized to design the initial visual blueprints and structural layouts for the user interface.
+    Utilised to design the initial visual blueprints and structural layouts for the user interface.
 
 - **W3 Schools & MDN**
 
@@ -416,19 +416,19 @@ All visual assets and iconography were carefully curated to reflect the core ide
 
 - **[RandomKeygen](https://randomkeygen.com/)**
 
-    This service was utilized to generate a secure, randomized SECRET_KEY for the project's configuration settings.
+    This service was utilised to generate a secure, randomised SECRET_KEY for the project's configuration settings.
 
 - **Real Python**
 
-    Served as a primary resource for advanced Python tutorials and technical deep-dives to optimize backend logic.
+    Served as a primary resource for advanced Python tutorials and technical deep-dives to optimise backend logic.
 
 - **[Pexels](https://www.pexels.com/)**
 
-    Unsplash was used a source for free stock videos where needed.
+    Pexels was used as sa source for free stock videos where needed.
 
 - **[Vecteezy](https://www.vecteezy.com/)**
 
-    Vecteezy was used to source free stock videos as well as a free svg icon.
+    Vecteezy was used to source free stock videos as well as a free SVG icon.
 
 - **[Stripe](https://stripe.com/gb)**
 
@@ -436,7 +436,7 @@ All visual assets and iconography were carefully curated to reflect the core ide
 
 - **[AWS S3](https://aws.amazon.com/)**
 
-    Utilized Amazon Web Services (AWS) S3 to securely store and serve all static assets and user-uploaded media files in production.
+    Utilised Amazon Web Services (AWS) S3 to securely store and serve all static assets and user-uploaded media files in production.
 
 ---
 
