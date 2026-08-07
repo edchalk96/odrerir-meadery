@@ -208,3 +208,5 @@ This site was designed for and tested across the following web browsers:
 
 ### Lighthouse Testing
 
+- [Home](./documentation/images/testing/home-lighthouse.png)
+  - The Google Lighthouse audit for the homepage (index.html) demonstrates strong overall scores across core metrics. The slight reduction in the Performance score is primarily driven by the Largest Contentful Paint (LCP) metric, resulting from media image load times and network overhead from external CDNs and AWS S3 storage. Because these load times fall within an acceptable baseline for a media-rich page, no further modifications were made.

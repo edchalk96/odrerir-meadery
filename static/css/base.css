@@ -101,7 +101,7 @@ header {
 
 /* Age Verification */
 .age-gate-fullscreen {
-    background-color: #1A1917; /* Solid dark background blocking out the site */
+    background-color: #1A1917 !important;
     color: #1A1917;
     min-height: 100vh;
 }
