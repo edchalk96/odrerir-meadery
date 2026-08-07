@@ -370,6 +370,10 @@ header {
     visibility: hidden !important;
 }
 
+.products-dropdown-menu li {
+    list-style: none;
+}
+
 .dropdown-header {
     font-weight: 600;
     color: #1A1917;
